@@ -1,23 +1,43 @@
 ﻿using AutoMapper;
+using Azure;
 using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Linq.Expressions;
 
 namespace BeerRateApi.Services
 {
     public class UserService : BaseService, IUserService
     {
-        public UserService(AppDbContext dbContext, IMapper mapper, ILogger logger, UserManager<User> userManager) : base(dbContext, mapper, logger)
+        private readonly ITokenService _tokenService;
+
+        public UserService(AppDbContext dbContext, IMapper mapper, ILogger logger, ITokenService tokenService) : base(dbContext, mapper, logger)
         {
+            _tokenService = tokenService;
         }
 
-        public RegisterResult RegisterUser (RegisterDTO registerDTO)
+        public async Task<RegisterResult> RegisterUser (RegisterDTO registerDTO)
         {
             try
             {
-                return new RegisterResult();
+                if (await DbContext.Users.AnyAsync(user => user.Username == registerDTO.Username))
+                {
+                    throw new Exception();
+                }
+
+                if (await DbContext.Users.AnyAsync(user => user.Email == registerDTO.Email))
+                {
+                    throw new Exception();
+                }
+
+                var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(registerDTO.Password);
+                var user = new User { Email = registerDTO.Email, Username = registerDTO.Username, PasswordHash=passwordHash };
+                DbContext.Users.Add(user);
+                await DbContext.SaveChangesAsync();
+                return new RegisterResult{Username = registerDTO.Username};
             }
             catch (Exception ex)
             {
@@ -26,11 +46,38 @@ namespace BeerRateApi.Services
             }
         }
 
-        public LoginResult LoginUser(LoginDTO loginDTO)
+        public async Task<LoginResult> LoginUser(LoginDTO loginDTO)
         {
             try
             {
-                return new LoginResult();
+                var user = await DbContext.Users.FirstOrDefaultAsync(u => u.Email==loginDTO.Email);
+
+                if (user==null)
+                    throw new Exception();
+
+                if (!BCrypt.Net.BCrypt.EnhancedVerify(loginDTO.Password, user.PasswordHash))
+                {
+                    throw new Exception();
+                }
+
+                var refreshToken = _tokenService.GenerateRefreshToken();
+                var refreshTokenExpiry = DateTime.UtcNow.AddDays(7);
+
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiry = refreshTokenExpiry;
+                await DbContext.SaveChangesAsync();
+
+                var refreshCookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = refreshTokenExpiry
+                };
+
+                var jwtToken = _tokenService.GenerateJwtToken(user.Username);
+
+                return new LoginResult { Id=user.Id, Email=user.Email, Username=user.Username, JwtToken=jwtToken, RefreshTokenExpiry=user.RefreshTokenExpiry, RefreshToken=user.RefreshToken };
             }
             catch (Exception ex)
             {
