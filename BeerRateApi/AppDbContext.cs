@@ -1,7 +1,7 @@
 ﻿using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BeerRateApi.AppDbContext
+namespace BeerRateApi
 {
     public class AppDbContext : DbContext
     {
