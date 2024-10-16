@@ -14,7 +14,7 @@ namespace BeerRateApi.Services
     {
         private readonly ITokenService _tokenService;
 
-        public UserService(AppDbContext dbContext, IMapper mapper, ILogger logger, ITokenService tokenService) : base(dbContext, mapper, logger)
+        public UserService(AppDbContext dbContext,  ILogger logger, ITokenService tokenService) : base(dbContext, logger)
         {
             _tokenService = tokenService;
         }
@@ -86,7 +86,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public IEnumerable<UserDTO> GetUsers(Expression<Func<User, bool>> filterExpression = null)
+        /* public IEnumerable<UserDTO> GetUsers(Expression<Func<User, bool>> filterExpression = null)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace BeerRateApi.Services
                 throw;
             }
 
-        }
+        } */
 
         public ResetResult ResetPassword(ResetDTO resetDTO)
         {
