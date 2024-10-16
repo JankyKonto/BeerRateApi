@@ -1,4 +1,6 @@
-﻿namespace BeerRateApi.Services
+﻿using AutoMapper;
+
+namespace BeerRateApi.Services
 {
     public abstract class BaseService
     {

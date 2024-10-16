@@ -1,4 +1,3 @@
-using BeerRateApi.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
