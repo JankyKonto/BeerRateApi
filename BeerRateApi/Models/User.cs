@@ -9,6 +9,7 @@
         public required string PasswordHash { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiry { get; set; }
+        public UserType UserType { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
     }

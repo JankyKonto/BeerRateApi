@@ -8,16 +8,16 @@ namespace BeerRateApi.Models
         public string? Text { get; set; }
 
         [Range(1, 10, ErrorMessage = "This rate must be value between 1 and 10")]
-        public int TasteRate { get; set; }
+        public int? TasteRate { get; set; }
 
         [Range(1, 10, ErrorMessage = "This rate must be value between 1 and 10")]
-        public int AromaRate { get; set; }
+        public int? AromaRate { get; set; }
 
         [Range(1, 10, ErrorMessage = "This rate must be value between 1 and 10")]
-        public int FoamRate { get; set; }
+        public int? FoamRate { get; set; }
 
         [Range(1, 10, ErrorMessage = "This rate must be value between 1 and 10")]
-        public int ColourRate { get; set; }
+        public int? ColorRate { get; set; }
 
         //navigation properties
         public virtual Beer Beer { get; set; }
