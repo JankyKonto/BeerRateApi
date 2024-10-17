@@ -75,7 +75,7 @@ namespace BeerRateApi.Services
                     Expires = refreshTokenExpiry
                 };
 
-                var jwtToken = _tokenService.GenerateJwtToken(user.Username);
+                var jwtToken = _tokenService.GenerateJwtToken(user.Username, user.Id);
 
                 return new LoginResult { Id=user.Id, Email=user.Email, Username=user.Username, JwtToken=jwtToken, RefreshTokenExpiry=user.RefreshTokenExpiry, RefreshToken=user.RefreshToken };
             }
@@ -125,5 +125,10 @@ namespace BeerRateApi.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IActionResult> Refresh() { };
+
+
+
     }
 }

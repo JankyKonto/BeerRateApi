@@ -54,15 +54,28 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         {
             var claimsPrincipal = context.Principal;
             var username = claimsPrincipal?.FindFirstValue(ClaimTypes.Name);
+            
 
             if (username == null)
             {
                 context.Fail("Bad request");
             }
 
+            var userId = claimsPrincipal?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                context.Fail("Bad request");
+            }
+
+            if(!int.TryParse(userId, out var id))
+            {
+                context.Fail("Bad request");
+            }
+
             var dbContext = context.HttpContext.RequestServices.GetRequiredService<AppDbContext>();
 
-            var isUserInDb = await dbContext.Users.AnyAsync(user => user.Username == username);
+            var isUserInDb = await dbContext.Users.AnyAsync(user => user.Id == id);
 
             if (!isUserInDb)
             {

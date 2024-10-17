@@ -11,5 +11,6 @@ namespace BeerRateApi.Interfaces
         //IEnumerable<UserDTO> GetUsers(Expression<Func<User, bool>> filterExpression = null);
         //UserDTO GetUser(Expression<Func<User, bool>> filterExpression);
         ResetResult ResetPassword (ResetDTO resetDTO);
+        Task<LoginResult> Refresh(string expiredToken, string refreshToken);
     }
 }

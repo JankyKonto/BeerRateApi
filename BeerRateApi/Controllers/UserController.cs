@@ -1,5 +1,6 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeerRateApi.Controllers
@@ -67,6 +68,34 @@ namespace BeerRateApi.Controllers
                 return BadRequest(new { ex.Message});
             }
         }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh ()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (refreshToken == null)
+            {
+                return BadRequest();
+            }
+
+            var expiredToken = HttpContext.Request.Cookies["jwtToken"];
+
+            if (expiredToken == null)
+            {
+                return BadRequest();
+            }
+
+            var principal = GetPrincipalFromExpiredToken(expiredToken);
+
+            if (principal?.Identity?.Name == null)
+            {
+                return Unauthorized();
+            }
+
+        }
+
+
+
 
     }
 }

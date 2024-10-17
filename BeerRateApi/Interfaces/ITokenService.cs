@@ -3,7 +3,7 @@
     public interface ITokenService
     {
         string GenerateRefreshToken();
-        string GenerateJwtToken(string username);
+        string GenerateJwtToken(string username, int userId);
 
     }
 }

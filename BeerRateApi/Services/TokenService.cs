@@ -24,7 +24,7 @@ namespace BeerRateApi.Services
             return Convert.ToBase64String(randomNumber);
         }
 
-        public string GenerateJwtToken(string username)
+        public string GenerateJwtToken(string username, int userId)
         {
             var key = Encoding.UTF8.GetBytes(_configuration.GetSection("TokenOptions:Key").Value!);
 
@@ -33,6 +33,7 @@ namespace BeerRateApi.Services
                 Subject = new ClaimsIdentity(new[]
                    {
                         new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.NameIdentifier, userId.ToString())
                     }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256),
