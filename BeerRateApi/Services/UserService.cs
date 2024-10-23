@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using Azure;
-using BeerRateApi.DTOs;
+﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
-using System.Linq.Expressions;
+using System.Security.Claims;
+
 
 namespace BeerRateApi.Services
 {
@@ -53,11 +50,11 @@ namespace BeerRateApi.Services
                 var user = await DbContext.Users.FirstOrDefaultAsync(u => u.Email==loginDTO.Email);
 
                 if (user==null)
-                    throw new Exception();
+                    throw new Exception("User is null");
 
                 if (!BCrypt.Net.BCrypt.EnhancedVerify(loginDTO.Password, user.PasswordHash))
                 {
-                    throw new Exception();
+                    throw new Exception("Verification unsuccesful");
                 }
 
                 var refreshToken = _tokenService.GenerateRefreshToken();
@@ -126,7 +123,45 @@ namespace BeerRateApi.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IActionResult> Refresh() { };
+        public async Task<LoginResult> Refresh(string expiredToken, string refreshToken) 
+        {
+            try
+            {
+                var principal = _tokenService.GetPrincipalFromExpiredToken(expiredToken);
+                if (principal?.Identity?.Name == null)
+                {
+                    throw new Exception();
+                }
+                var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Username == principal.Identity.Name);
+
+                if (user == null || refreshToken == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
+                {
+                    throw new Exception();
+                }
+
+                var idClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                if (idClaim == null) 
+                {
+                    throw new Exception();
+                }
+
+                if (!int.TryParse(idClaim.Value, out var id)) 
+                { 
+                    throw new Exception(); 
+                }
+
+                var jwtToken = _tokenService.GenerateJwtToken(principal.Identity.Name,id);
+
+                return new LoginResult { Id = id, Username = principal.Identity.Name, JwtToken=jwtToken };
+
+
+            }
+            catch(Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
 
 
 

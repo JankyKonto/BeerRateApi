@@ -46,5 +46,23 @@ namespace BeerRateApi.Services
 
             return tokenHandler.WriteToken(token);
         }
+
+        public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+        {
+            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("TokenOptions:Key").Value!);
+
+            var validation = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = false,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = _configuration.GetSection("TokenOptions:Issuer").Value,
+                ValidAudience = _configuration.GetSection("TokenOptions:Audience").Value,
+                IssuerSigningKey = new SymmetricSecurityKey(key)
+            };
+
+            return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+        }
     }
 }

@@ -14,12 +14,6 @@ namespace BeerRateApi.Controllers
 
         public UserController(IUserService userService) { _userService = userService; }
 
-        [HttpGet("ping")]
-        public IActionResult Ping()
-        {
-            return Ok("pong");
-        }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
@@ -65,32 +59,46 @@ namespace BeerRateApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { ex.Message});
+                return BadRequest(new { ex.Message });
             }
         }
 
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh ()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
-            if (refreshToken == null)
+            try
             {
-                return BadRequest();
+                var refreshToken = Request.Cookies["refreshToken"];
+                if (refreshToken == null)
+                {
+                    return BadRequest();
+                }
+
+                var expiredToken = HttpContext.Request.Cookies["jwtToken"];
+                if (expiredToken == null)
+                {
+                    return BadRequest();
+                }
+
+                var refreshResult = await _userService.Refresh(expiredToken, refreshToken);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddDays(1)
+                };
+
+                Response.Cookies.Append("jwtToken", refreshResult.JwtToken, cookieOptions);
+
+                return Ok(new { refreshResult.Id, refreshResult.Username });
             }
-
-            var expiredToken = HttpContext.Request.Cookies["jwtToken"];
-
-            if (expiredToken == null)
+            catch (Exception ex) 
             {
-                return BadRequest();
+                return BadRequest(new { ex.Message });
             }
-
-            var principal = GetPrincipalFromExpiredToken(expiredToken);
-
-            if (principal?.Identity?.Name == null)
-            {
-                return Unauthorized();
-            }
+            
 
         }
 
