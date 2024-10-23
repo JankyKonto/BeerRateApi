@@ -83,41 +83,6 @@ namespace BeerRateApi.Services
             }
         }
 
-        /* public IEnumerable<UserDTO> GetUsers(Expression<Func<User, bool>> filterExpression = null)
-        {
-            try
-            {
-                var userEntities = DbContext.Users.AsQueryable();
-                if (filterExpression != null)
-                    userEntities = userEntities.Where(filterExpression);
-                var userDTOs = Mapper.Map<IEnumerable<UserDTO>>(userEntities);
-                return userDTOs;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                throw;
-            }
-        }
-
-        public UserDTO GetUser(Expression<Func<User, bool>> filterExpression)
-        {
-            try
-            {
-                if (filterExpression == null)
-                    throw new ArgumentNullException($" FilterExpression is null");
-                var userEntity = DbContext.Users.FirstOrDefault(filterExpression);
-                var userDTO = Mapper.Map<User, UserDTO>(userEntity);
-                return userDTO;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                throw;
-            }
-
-        } */
-
         public ResetResult ResetPassword(ResetDTO resetDTO)
         {
             throw new NotImplementedException();

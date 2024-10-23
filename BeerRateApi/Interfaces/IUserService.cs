@@ -8,8 +8,6 @@ namespace BeerRateApi.Interfaces
     {
         Task<RegisterResult> RegisterUser(RegisterDTO registerDTO);
         Task<LoginResult> LoginUser (LoginDTO loginDTO);
-        //IEnumerable<UserDTO> GetUsers(Expression<Func<User, bool>> filterExpression = null);
-        //UserDTO GetUser(Expression<Func<User, bool>> filterExpression);
         ResetResult ResetPassword (ResetDTO resetDTO);
         Task<LoginResult> Refresh(string expiredToken, string refreshToken);
     }
