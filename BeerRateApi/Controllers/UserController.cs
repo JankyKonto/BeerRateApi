@@ -81,13 +81,13 @@ namespace BeerRateApi.Controllers
                 var refreshToken = Request.Cookies["refreshToken"];
                 if (refreshToken == null)
                 {
-                    return BadRequest("RefreshToken is null");
+                    return Unauthorized(new { Message = "RefreshToken is null" });
                 }
 
                 var expiredToken = HttpContext.Request.Cookies["jwtToken"];
                 if (expiredToken == null)
                 {
-                    return BadRequest("ExpiredToken is null");
+                    return Unauthorized(new { Message = "ExpiredToken is null" });
                 }
 
                 var refreshResult = await _userService.Refresh(expiredToken, refreshToken);
@@ -134,7 +134,7 @@ namespace BeerRateApi.Controllers
                 var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (!int.TryParse(userIdClaim, out var userId))
                 {
-                    throw new InvalidOperationException("Invalid user identifier.");
+                    return Unauthorized(new { Message = "Invalid user identifier." });
                 }
 
                 await _userService.Revoke(userId);
