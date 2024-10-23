@@ -1,7 +1,9 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
+using BeerRateApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
@@ -63,11 +65,11 @@ namespace BeerRateApi.Controllers
             }
             catch (UnauthorizedAccessException ex)
             {
-                return BadRequest(new { ex.Message });
+                return Unauthorized(new { ex.Message });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { ex.Message });
+                return StatusCode(500, new { ex.Message });
             }
         }
 
@@ -112,22 +114,58 @@ namespace BeerRateApi.Controllers
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { ex.Message });
+                return NotFound(new { ex.Message });
             }
             catch (UnauthorizedAccessException ex)
             {
-                return BadRequest(new { ex.Message });
+                return Unauthorized(new { ex.Message });
             }
             catch (Exception ex) 
             {
-                return BadRequest(new { ex.Message });
+                return StatusCode(500, new { ex.Message });
             }
-            
+        }
+
+        [HttpDelete("revoke")]
+        public async Task<IActionResult> Revoke()
+        {
+            try
+            {
+                var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                if (!int.TryParse(userIdClaim, out var userId))
+                {
+                    throw new InvalidOperationException("Invalid user identifier.");
+                }
+
+                await _userService.Revoke(userId);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None
+                };
+
+                Response.Cookies.Delete("refreshToken", cookieOptions);
+                Response.Cookies.Delete("jwtToken", cookieOptions);
+
+                return Ok();
+
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new {ex.Message });
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, new { ex.Message });
+            }
+
 
         }
 
 
 
 
-    }
+        }
 }

@@ -134,7 +134,27 @@ namespace BeerRateApi.Services
             }
         }
 
+        public async Task Revoke(int id)
+        {
+            try
+            {
+                var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Id == id);
 
+                if (user == null) 
+                {
+                    throw new ArgumentNullException("User not found");
+                }
 
+                user.RefreshToken = null;
+                user.RefreshTokenExpiry = null;
+
+                await DbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }
