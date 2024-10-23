@@ -92,7 +92,7 @@ namespace BeerRateApi.Controllers
 
                 Response.Cookies.Append("jwtToken", refreshResult.JwtToken, cookieOptions);
 
-                return Ok(new { refreshResult.Id, refreshResult.Username });
+                return Ok(new { refreshResult.Id, refreshResult.Username, refreshResult.Email });
             }
             catch (Exception ex) 
             {

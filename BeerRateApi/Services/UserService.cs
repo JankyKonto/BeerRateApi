@@ -132,9 +132,15 @@ namespace BeerRateApi.Services
                 {
                     throw new Exception();
                 }
-                var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Username == principal.Identity.Name);
 
+                var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Username == principal.Identity.Name);
                 if (user == null || refreshToken == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
+                {
+                    throw new Exception();
+                }
+
+                var email = user.Email;
+                if (email == null)
                 {
                     throw new Exception();
                 }
@@ -152,9 +158,7 @@ namespace BeerRateApi.Services
 
                 var jwtToken = _tokenService.GenerateJwtToken(principal.Identity.Name,id);
 
-                return new LoginResult { Id = id, Username = principal.Identity.Name, JwtToken=jwtToken };
-
-
+                return new LoginResult { Id = id, Username = principal.Identity.Name, JwtToken=jwtToken, Email=email };
             }
             catch(Exception ex)
             {
