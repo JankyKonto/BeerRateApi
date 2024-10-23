@@ -149,7 +149,7 @@ namespace BeerRateApi.Controllers
                 Response.Cookies.Delete("refreshToken", cookieOptions);
                 Response.Cookies.Delete("jwtToken", cookieOptions);
 
-                return Ok();
+                return Ok(new {});
 
             }
             catch (ArgumentNullException ex)
