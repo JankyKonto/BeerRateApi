@@ -22,12 +22,12 @@ namespace BeerRateApi.Services
             {
                 if (await DbContext.Users.AnyAsync(user => user.Username == registerDTO.Username))
                 {
-                    throw new Exception();
+                    throw new InvalidOperationException($"User with username '{registerDTO.Username}' already exists.");
                 }
 
                 if (await DbContext.Users.AnyAsync(user => user.Email == registerDTO.Email))
                 {
-                    throw new Exception();
+                    throw new InvalidOperationException($"User with email '{registerDTO.Email}' already exists.");
                 }
 
                 var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(registerDTO.Password);
@@ -49,12 +49,14 @@ namespace BeerRateApi.Services
             {
                 var user = await DbContext.Users.FirstOrDefaultAsync(u => u.Email==loginDTO.Email);
 
-                if (user==null)
-                    throw new Exception("User is null");
+                if (user == null)
+                {
+                    throw new UnauthorizedAccessException("Invalid email or password.");
+                }
 
                 if (!BCrypt.Net.BCrypt.EnhancedVerify(loginDTO.Password, user.PasswordHash))
                 {
-                    throw new Exception("Verification unsuccesful");
+                    throw new UnauthorizedAccessException("Invalid email or password.");
                 }
 
                 var refreshToken = _tokenService.GenerateRefreshToken();
@@ -95,30 +97,30 @@ namespace BeerRateApi.Services
                 var principal = _tokenService.GetPrincipalFromExpiredToken(expiredToken);
                 if (principal?.Identity?.Name == null)
                 {
-                    throw new Exception();
+                    throw new UnauthorizedAccessException("Invalid token: could not extract user information.");
                 }
 
                 var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Username == principal.Identity.Name);
                 if (user == null || refreshToken == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
                 {
-                    throw new Exception();
+                    throw new UnauthorizedAccessException("Invalid refresh token or the token has expired.");
                 }
 
                 var email = user.Email;
                 if (email == null)
                 {
-                    throw new Exception();
+                    throw new ArgumentNullException(nameof(user.Email), "User email is missing.");
                 }
 
                 var idClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
                 if (idClaim == null) 
                 {
-                    throw new Exception();
+                    throw new InvalidOperationException("Token does not contain a valid user identifier.");
                 }
 
                 if (!int.TryParse(idClaim.Value, out var id)) 
-                { 
-                    throw new Exception(); 
+                {
+                    throw new InvalidOperationException("Invalid user identifier in token.");
                 }
 
                 var jwtToken = _tokenService.GenerateJwtToken(principal.Identity.Name,id);

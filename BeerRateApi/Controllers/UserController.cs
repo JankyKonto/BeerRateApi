@@ -22,6 +22,10 @@ namespace BeerRateApi.Controllers
                 var registerResult = await _userService.RegisterUser(registerDTO);
                 return Ok(registerResult);
             }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
             catch (Exception ex) 
             {
                 return BadRequest(new { ex.Message });
@@ -57,6 +61,10 @@ namespace BeerRateApi.Controllers
 
                 return Ok(new { loginResult.Id, loginResult.Email, loginResult.Username});
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
             catch (Exception ex)
             {
                 return BadRequest(new { ex.Message });
@@ -71,13 +79,13 @@ namespace BeerRateApi.Controllers
                 var refreshToken = Request.Cookies["refreshToken"];
                 if (refreshToken == null)
                 {
-                    return BadRequest();
+                    return BadRequest("RefreshToken is null");
                 }
 
                 var expiredToken = HttpContext.Request.Cookies["jwtToken"];
                 if (expiredToken == null)
                 {
-                    return BadRequest();
+                    return BadRequest("ExpiredToken is null");
                 }
 
                 var refreshResult = await _userService.Refresh(expiredToken, refreshToken);
@@ -93,6 +101,22 @@ namespace BeerRateApi.Controllers
                 Response.Cookies.Append("jwtToken", refreshResult.JwtToken, cookieOptions);
 
                 return Ok(new { refreshResult.Id, refreshResult.Username, refreshResult.Email });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return BadRequest(new { ex.Message });
             }
             catch (Exception ex) 
             {
