@@ -29,5 +29,33 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
         }
+
+        [HttpGet("getbeers")]
+        public async Task<IActionResult> GetBeers ()
+        {
+            try
+            {
+                var getBeersResult = await _beerService.GetBeers();
+                return Ok(getBeersResult);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ex.Message });
+            }
+        }
+
+        [HttpGet("getbeer")]
+        public async Task<IActionResult> GetBeer(int id)
+        {
+            try
+            {
+                var getBeerResult = await _beerService.GetBeer(id);
+                return Ok(getBeerResult);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ex.Message });
+            }
+        }
     }
 }

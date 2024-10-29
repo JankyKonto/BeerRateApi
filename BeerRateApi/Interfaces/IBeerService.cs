@@ -6,5 +6,7 @@ namespace BeerRateApi.Interfaces
     {
         Task<AddBeerResult> AddBeer(AddBeerDTO addBeerDTO);
         //Task<AddBeerResult> UpdateBeer(AddBeerDTO addBeerDTO);
+        Task<GetBeersResult> GetBeers ();
+        Task<GetBeerResult> GetBeer (int id);
     }
 }

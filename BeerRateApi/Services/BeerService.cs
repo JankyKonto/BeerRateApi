@@ -33,5 +33,33 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
+        
+        public async Task<GetBeerResult> GetBeer(int id)
+        {
+            try
+            {
+                var beer = await DbContext.Beers.FindAsync(id);
+                return new GetBeerResult { Name = beer.Name, Producer = beer.Producer, Kind = beer.Kind, OriginCountry = beer.OriginCountry, AlcoholAmount = beer.AlcoholAmount, Ibu = beer.Ibu, BeerImage = beer.BeerImage, BeerImageId = beer.BeerImageId };
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<GetBeersResult> GetBeers()
+        {
+            try
+            {
+                var beers = await DbContext.Beers.ToListAsync();
+                return new GetBeersResult { Beers = beers };
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }
