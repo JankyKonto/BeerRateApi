@@ -30,7 +30,7 @@ namespace BeerRateApi.Controllers
             }
             catch (Exception ex) 
             {
-                return BadRequest(new { ex.Message });
+                return StatusCode(500, new { ex.Message });
             }
         }
 
@@ -161,11 +161,7 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
 
-
         }
 
-
-
-
-        }
+    }
 }
