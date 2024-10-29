@@ -19,7 +19,7 @@ namespace BeerRateApi.Controllers
             {
                 if (addBeerDTO.BeerImage == null) 
                 {
-                    return BadRequest("No image uploaded.");
+                    return BadRequest(new { Message = "No image uploaded." });
                 }
 
                 var addBeerResult = await _beerService.AddBeer(addBeerDTO);

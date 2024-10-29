@@ -11,6 +11,6 @@ namespace BeerRateApi.DTOs
         public string OriginCountry { get; set; } = string.Empty;
         public decimal AlcoholAmount { get; set; }
         public int Ibu { get; set; }
-        public virtual BeerImage? BeerImage { get; set; }
+        public virtual IFormFile BeerImage { get; set; }
     }
 }
