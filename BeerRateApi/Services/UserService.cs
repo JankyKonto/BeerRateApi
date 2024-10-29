@@ -3,6 +3,7 @@ using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 
 namespace BeerRateApi.Services
@@ -28,6 +29,17 @@ namespace BeerRateApi.Services
                 if (await DbContext.Users.AnyAsync(user => user.Email == registerDTO.Email))
                 {
                     throw new InvalidOperationException($"User with email '{registerDTO.Email}' already exists.");
+                }
+
+                if (registerDTO.Password.Length < 8)
+                {
+                    throw new ArgumentException("Password is too short");
+                }
+
+                Regex regex = new Regex(@"^[a-zA-Z0-9_]+$");
+                if (!regex.IsMatch(registerDTO.Username))
+                {
+                    throw new ArgumentException("Username contains forbidden characters.");
                 }
 
                 var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(registerDTO.Password);

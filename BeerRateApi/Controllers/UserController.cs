@@ -33,7 +33,7 @@ namespace BeerRateApi.Controllers
             }
             catch (Exception ex) 
             {
-                return BadRequest(new { ex.Message });
+                return StatusCode(500, new { ex.Message });
             }
         }
 
@@ -164,7 +164,6 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
 
-
         }
         [HttpPost("remind-password")]
         public async Task<IActionResult> RemindPassword(string email)
@@ -212,7 +211,6 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, $"SMTP Protocol error: {ex.Message}");
             }
         }
-
 
 
     }
