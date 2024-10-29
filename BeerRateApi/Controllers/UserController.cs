@@ -1,8 +1,11 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
+using System.Net.Http;
 using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
@@ -81,13 +84,13 @@ namespace BeerRateApi.Controllers
                 var refreshToken = Request.Cookies["refreshToken"];
                 if (refreshToken == null)
                 {
-                    return BadRequest("RefreshToken is null");
+                    return Unauthorized(new { Message = "RefreshToken is null" });
                 }
 
                 var expiredToken = HttpContext.Request.Cookies["jwtToken"];
                 if (expiredToken == null)
                 {
-                    return BadRequest("ExpiredToken is null");
+                    return Unauthorized(new { Message = "ExpiredToken is null" });
                 }
 
                 var refreshResult = await _userService.Refresh(expiredToken, refreshToken);
@@ -134,7 +137,7 @@ namespace BeerRateApi.Controllers
                 var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (!int.TryParse(userIdClaim, out var userId))
                 {
-                    throw new InvalidOperationException("Invalid user identifier.");
+                    return Unauthorized(new { Message = "Invalid user identifier." });
                 }
 
                 await _userService.Revoke(userId);
@@ -149,7 +152,7 @@ namespace BeerRateApi.Controllers
                 Response.Cookies.Delete("refreshToken", cookieOptions);
                 Response.Cookies.Delete("jwtToken", cookieOptions);
 
-                return Ok();
+                return Ok(new {});
 
             }
             catch (ArgumentNullException ex)
@@ -162,6 +165,53 @@ namespace BeerRateApi.Controllers
             }
 
         }
+        [HttpPost("remind-password")]
+        public async Task<IActionResult> RemindPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return BadRequest("Email address is required");
+
+            try
+            {
+                // Tworzenie wiadomości e-mail
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Milosz", "beerratemail@gmail.com"));
+                message.To.Add(new MailboxAddress("", email));
+                message.Subject = "Beer rate wiadomosc";
+
+                message.Body = new TextPart("plain")
+                {
+                    Text = "Testujemy piwerko mordo"
+                };
+
+                // Wysyłanie wiadomości przy użyciu MailKit
+                using (var client = new SmtpClient())
+                {
+                    // Łączymy się z serwerem Gmail SMTP
+                    await client.ConnectAsync("smtp.gmail.com", 465, true);
+
+                    // Uwierzytelnianie za pomocą konta Gmail
+                    await client.AuthenticateAsync("beerratemail@gmail.com", "jankyhaslo12");
+
+                    // Wysyłanie wiadomości
+                    await client.SendAsync(message);
+
+                    // Rozłączamy się z serwerem
+                    await client.DisconnectAsync(true);
+                }
+
+                return Ok("Email sent successfully");
+            }
+            catch (SmtpCommandException ex)
+            {
+                return StatusCode(500, $"SMTP Command error: {ex.Message}");
+            }
+            catch (SmtpProtocolException ex)
+            {
+                return StatusCode(500, $"SMTP Protocol error: {ex.Message}");
+            }
+        }
+
 
     }
 }
