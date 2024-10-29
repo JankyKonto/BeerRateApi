@@ -13,10 +13,15 @@ namespace BeerRateApi.Controllers
         public BeerController(IBeerService beerService) { _beerService = beerService; }
 
         [HttpPost("addbeer")]
-        public async Task<IActionResult> AddBeer (AddBeerDTO addBeerDTO)
+        public async Task<IActionResult> AddBeer ([FromForm] AddBeerDTO addBeerDTO)
         {
             try
             {
+                if (addBeerDTO.BeerImage == null) 
+                {
+                    return BadRequest("No image uploaded.");
+                }
+
                 var addBeerResult = await _beerService.AddBeer(addBeerDTO);
                 return Ok(addBeerResult);
             }
