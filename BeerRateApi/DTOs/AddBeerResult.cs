@@ -7,3 +7,4 @@
         public string Producer { get; set; } = string.Empty;
     }
 }
+

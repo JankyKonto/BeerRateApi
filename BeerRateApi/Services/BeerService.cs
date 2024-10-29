@@ -33,7 +33,7 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-
+        
         public async Task<GetBeerResult> GetBeer(int id)
         {
             try
