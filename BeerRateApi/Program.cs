@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins("http://localhost:5173")
         .AllowAnyMethod()
         .AllowCredentials()
         .AllowAnyHeader();
@@ -24,6 +24,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBeerService, BeerService>();
 builder.Services.AddScoped(typeof(ILogger), typeof(Logger<Program>));
 
 builder.Services.AddEndpointsApiExplorer();

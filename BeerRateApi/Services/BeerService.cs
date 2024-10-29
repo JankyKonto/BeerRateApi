@@ -12,6 +12,26 @@ namespace BeerRateApi.Services
 
         }
 
+        private static async Task<BeerImage?> ConvertIFormFileToBeerImage(IFormFile formFile, string caption = "")
+        {
+            if (formFile == null || formFile.Length == 0)
+            {
+                return null;
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(memoryStream);
+
+                return new BeerImage
+                {
+                    Data = memoryStream.ToArray(),
+                    FileName = formFile.FileName,
+                    Caption = caption
+                };
+            }
+        }
+
         public async Task<AddBeerResult> AddBeer(AddBeerDTO addBeerDTO)
         {
             try
@@ -21,7 +41,7 @@ namespace BeerRateApi.Services
                     throw new InvalidOperationException($"Beer with name '{addBeerDTO.Name}' already exists.");
                 }
 
-                var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = addBeerDTO.BeerImage };
+                var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = await ConvertIFormFileToBeerImage(addBeerDTO.BeerImage) };
                 DbContext.Beers.Add(beer);
                 await DbContext.SaveChangesAsync();
 
