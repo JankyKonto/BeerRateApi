@@ -10,6 +10,7 @@ using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -19,6 +20,7 @@ namespace BeerRateApi.Controllers
 
         public UserController(IUserService userService) { _userService = userService; }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
@@ -37,6 +39,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login (LoginDTO loginDTO)
         {
@@ -76,6 +79,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh ()
         {
@@ -165,19 +169,24 @@ namespace BeerRateApi.Controllers
             }
 
         }
+
+        [AllowAnonymous]
         [HttpPost("remind-password")]
-        public async Task<IActionResult> RemindPassword()
+        public async Task<IActionResult> RemindPassword(RemindPasswordDTO remindPasswordDTO)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdClaim, out var userId))
+            if (string.IsNullOrEmpty(remindPasswordDTO.Email))
             {
-                return Unauthorized(new { Message = "Invalid user identifier." });
+                return Unauthorized(new { Message = "Email cannot be empty" });
             }
 
             try
             {
-                await _userService.RemindPassword(userId);
+                await _userService.RemindPassword(remindPasswordDTO.Email);
                 return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { ex.Message });
             }
             catch (ArgumentNullException ex)
             {

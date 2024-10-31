@@ -157,7 +157,7 @@ namespace BeerRateApi.Services
 
                 if (user == null) 
                 {
-                    throw new ArgumentNullException("User not found");
+                    throw new UnauthorizedAccessException("User not found");
                 }
 
                 user.RefreshToken = null;
@@ -172,12 +172,12 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task RemindPassword(int id)
+        public async Task RemindPassword(string email)
         {
-            var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Id == id);
+            var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
             if (user == null)
             {
-                throw new ArgumentNullException("User not found");
+                throw new UnauthorizedAccessException("User not found");
             }
 
             await _emailService.SendAsync(user.Email, "Remind password", "This is a test email message with paswword remind");
