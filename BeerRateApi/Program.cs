@@ -25,6 +25,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBeerService, BeerService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped(typeof(ILogger), typeof(Logger<Program>));
 
 builder.Services.AddEndpointsApiExplorer();
