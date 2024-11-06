@@ -53,7 +53,7 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-        
+
         public async Task<GetBeerResult> GetBeer(int id)
         {
             try
@@ -73,6 +73,71 @@ namespace BeerRateApi.Services
             try
             {
                 var beers = await DbContext.Beers.ToListAsync();
+                return new GetBeersResult { Beers = beers };
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<GetBeersResult> FilterBeers(
+            string name = null,
+            string producer = null,
+            string kind = null,
+            string originCountry = null,
+            decimal? minAlcoholAmount = null,
+            decimal? maxAlcoholAmount = null,
+            int? minIbu = null,
+            int? maxIbu = null
+            )
+        {
+            try
+            {
+                var query = DbContext.Beers.AsQueryable();
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    query = query.Where(b => b.Name.Contains(name));
+                }
+
+                if (!string.IsNullOrEmpty(producer))
+                {
+                    query = query.Where(b => b.Producer.Contains(producer));
+                }
+
+                if (!string.IsNullOrEmpty(kind))
+                {
+                    query = query.Where(b => b.Kind.Contains(kind));
+                }
+
+                if (!string.IsNullOrEmpty(originCountry))
+                {
+                    query = query.Where(b => b.OriginCountry.Contains(originCountry));
+                }
+
+                if (minAlcoholAmount.HasValue)
+                {
+                    query = query.Where(b => b.AlcoholAmount >= minAlcoholAmount.Value);
+                }
+
+                if (maxAlcoholAmount.HasValue)
+                {
+                    query = query.Where(b => b.AlcoholAmount <= maxAlcoholAmount.Value);
+                }
+
+                if (minIbu.HasValue)
+                {
+                    query = query.Where(b => b.Ibu >= minIbu.Value);
+                }
+
+                if (maxIbu.HasValue)
+                {
+                    query = query.Where(b => b.Ibu <= maxIbu.Value);
+                }
+
+                var beers = await query.ToListAsync();
                 return new GetBeersResult { Beers = beers };
             }
             catch (Exception ex)
