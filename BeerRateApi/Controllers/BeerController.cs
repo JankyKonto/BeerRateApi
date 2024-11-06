@@ -1,9 +1,11 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeerRateApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BeerController : ControllerBase
@@ -35,6 +37,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("getbeers")]
         public async Task<IActionResult> GetBeers ()
         {
