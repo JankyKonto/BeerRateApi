@@ -6,7 +6,7 @@ namespace BeerRateApi.Models
     {
         public int Id { get; set; }
         public byte[] Data { get; set; }
-        public string FileName { get; set; }
+        public string ContentType { get; set; }
         public string Caption { get; set; }
 
 

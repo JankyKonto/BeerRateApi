@@ -9,7 +9,7 @@
         public string OriginCountry { get; set; }
         public decimal AlcoholAmount { get; set; }
         public int Ibu { get; set; }
-        public bool isConfirmed { get; set; }
+        public bool IsConfirmed { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
 
         public int BeerImageId { get; set; }
