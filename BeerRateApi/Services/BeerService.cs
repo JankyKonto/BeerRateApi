@@ -45,7 +45,7 @@ namespace BeerRateApi.Services
                 DbContext.Beers.Add(beer);
                 await DbContext.SaveChangesAsync();
 
-                return new AddBeerResult { Id = addBeerDTO.Id, Name = addBeerDTO.Name };
+                return new AddBeerResult { Id = addBeerDTO.Id, Name = addBeerDTO.Name, Producer = addBeerDTO.Producer };
             }
             catch (Exception ex)
             {
