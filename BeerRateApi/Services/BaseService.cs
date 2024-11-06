@@ -6,10 +6,13 @@ namespace BeerRateApi.Services
     {
         protected readonly AppDbContext DbContext = null!;
         protected readonly ILogger Logger = null!;
-        public BaseService(AppDbContext dbContext, ILogger logger)
+        protected readonly IMapper Mapper = null!;
+
+        public BaseService(AppDbContext dbContext, ILogger logger, IMapper mapper)
         {
             DbContext = dbContext;
             Logger = logger;
+            Mapper = mapper;
         }
     }
 }

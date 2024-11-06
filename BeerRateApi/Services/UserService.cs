@@ -1,4 +1,5 @@
-﻿using BeerRateApi.DTOs;
+﻿using AutoMapper;
+using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,8 @@ namespace BeerRateApi.Services
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
 
-        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger)
-            : base(dbContext, logger)
+        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper)
+            : base(dbContext, logger, mapper)
         {
             _tokenService = tokenService;
             _emailService = emailService;
