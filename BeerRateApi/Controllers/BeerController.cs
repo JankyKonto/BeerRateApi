@@ -44,7 +44,7 @@ namespace BeerRateApi.Controllers
             try
             {
                 var getBeersResult = await _beerService.GetBeers();
-                return Ok(getBeersResult);
+                return Ok(new { Beers = getBeersResult });
             }
             catch (Exception ex)
             {

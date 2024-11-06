@@ -1,4 +1,5 @@
-﻿using BeerRateApi.DTOs;
+﻿using AutoMapper;
+using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace BeerRateApi.Services
 {
     public class BeerService : BaseService, IBeerService
     {
-        public BeerService(AppDbContext dbContext, ILogger logger) : base(dbContext, logger)
+        public BeerService(AppDbContext dbContext, ILogger logger, IMapper mapper) : base(dbContext, logger, mapper)
         {
 
         }
@@ -45,7 +46,7 @@ namespace BeerRateApi.Services
                 DbContext.Beers.Add(beer);
                 await DbContext.SaveChangesAsync();
 
-                return new AddBeerResult { Id = addBeerDTO.Id, Name = addBeerDTO.Name, Producer = addBeerDTO.Producer };
+                return new AddBeerResult { Name = addBeerDTO.Name };
             }
             catch (Exception ex)
             {
@@ -59,7 +60,10 @@ namespace BeerRateApi.Services
             try
             {
                 var beer = await DbContext.Beers.FindAsync(id);
-                return new GetBeerResult { Name = beer.Name, Producer = beer.Producer, Kind = beer.Kind, OriginCountry = beer.OriginCountry, AlcoholAmount = beer.AlcoholAmount, Ibu = beer.Ibu, BeerImage = beer.BeerImage, BeerImageId = beer.BeerImageId };
+                if (beer != null)
+                    return new GetBeerResult { Name = beer.Name, Producer = beer.Producer, Kind = beer.Kind, OriginCountry = beer.OriginCountry, AlcoholAmount = beer.AlcoholAmount, Ibu = beer.Ibu, BeerImage = beer.BeerImage, BeerImageId = beer.BeerImageId };
+                else
+                    throw new InvalidOperationException($"Beer with id '{id}' not found.");
             }
             catch (Exception ex)
             {
@@ -68,12 +72,12 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<GetBeersResult> GetBeers()
+        public async Task<IEnumerable<BeerListElementDTO>> GetBeers()
         {
             try
             {
                 var beers = await DbContext.Beers.ToListAsync();
-                return new GetBeersResult { Beers = beers };
+                return Mapper.Map<IEnumerable<BeerListElementDTO>>(beers);
             }
             catch (Exception ex)
             {
@@ -117,6 +121,7 @@ namespace BeerRateApi.Services
                     query = query.Where(b => b.OriginCountry.Contains(originCountry));
                 }
 
+                /*
                 if (minAlcoholAmount.HasValue)
                 {
                     query = query.Where(b => b.AlcoholAmount >= minAlcoholAmount.Value);
@@ -126,6 +131,7 @@ namespace BeerRateApi.Services
                 {
                     query = query.Where(b => b.AlcoholAmount <= maxAlcoholAmount.Value);
                 }
+                */
 
                 if (minIbu.HasValue)
                 {
