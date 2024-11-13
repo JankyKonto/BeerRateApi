@@ -7,6 +7,9 @@ using Microsoft.Identity.Client;
 
 namespace BeerRateApi.Controllers
 {
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
     public class BeerReviewController : Controller
     {
         public readonly IBeerReviewService _beerReviewService;
@@ -34,7 +37,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("getbeerreview")]
+        [HttpGet("getbeerreview/{id}")]
         public async Task<IActionResult> GetBeerReview(int id)
         {
             try
@@ -47,14 +50,15 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
         }
+
         [AllowAnonymous]
-        [HttpPost("getbeerreviewscounter")]
+        [HttpGet("getbeerreviewscounter/{id}")]
         public async Task<IActionResult> GetBeerReviewsCounter(int id)
         {
             try
             {
                 var counter = await _beerReviewService.GetReviewsCounter(id);
-                return Ok(counter);
+                return Ok(new { Counter = counter } );
             }
             catch (Exception ex)
             {
@@ -64,13 +68,13 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("getbeerreviews")]
+        [HttpGet("getbeerreviews/{id}")]
         public async Task<IActionResult> GetBeerReviews(int id, int startIndex, int endIndex)
         {
             try
             {
                 var reviews = await _beerReviewService.GetBeerReviews(id, startIndex, endIndex); 
-                return Ok(reviews);
+                return Ok(new { Reviews = reviews });
             }
             catch (Exception ex)
             {
