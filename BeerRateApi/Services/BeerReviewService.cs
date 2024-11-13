@@ -6,47 +6,61 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeerRateApi.Services
 {
-    public class BeerService : BaseService, IBeerService
+    public class BeerReviewService : BaseService, IBeerReviewService
     {
-        public BeerService(AppDbContext dbContext, ILogger logger, IMapper mapper) : base(dbContext, logger, mapper)
+        public BeerReviewService(AppDbContext dbContext, ILogger logger, IMapper mapper)
+            : base(dbContext, logger, mapper) { }
+        public async Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO AddBeerReviewDTO)
         {
-
-        }
-
-        private static async Task<BeerImage?> ConvertIFormFileToBeerImage(IFormFile formFile, string caption = "")
-        {
-            if (formFile == null || formFile.Length == 0)
+            try
             {
-                return null;
-            }
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await formFile.CopyToAsync(memoryStream);
-
-                return new BeerImage
+                if (await DbContext.Reviews.AnyAsync(review => review.UserId == AddBeerReviewDTO.UserId))
                 {
-                    Data = memoryStream.ToArray(),
-                    ContentType = formFile.FileName,
-                    Caption = caption
+                    throw new InvalidOperationException($"This user has been already rated this beer");
+                }
+
+                var review = new Review()
+                {
+                    Text = AddBeerReviewDTO.Text,
+                    TasteRate = AddBeerReviewDTO.TasteRate,
+                    AromaRate = AddBeerReviewDTO.AromaRate,
+                    FoamRate = AddBeerReviewDTO.FoamRate,
+                    ColorRate = AddBeerReviewDTO.ColorRate,
+                    BeerId = AddBeerReviewDTO.BeerId,
+                    UserId = AddBeerReviewDTO.UserId,
+                };
+                DbContext.Reviews.Add(review);
+                await DbContext.SaveChangesAsync();
+                var user = await DbContext.Users.FindAsync(AddBeerReviewDTO.UserId);
+                string username = user.Username;
+                return new AddBeerReviewResult()
+                {
+                    Username = username
                 };
             }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
         }
-
-        public async Task<AddBeerResult> AddBeer(AddBeerDTO addBeerDTO)
+        public async Task<GetBeerReviewResult> GetBeerReview(int id)
         {
             try
             {
-                if (await DbContext.Beers.AnyAsync(beer => beer.Name == addBeerDTO.Name))
+                var review = await DbContext.Reviews.FindAsync(id);
+                return new GetBeerReviewResult()
                 {
-                    throw new InvalidOperationException($"Beer with name '{addBeerDTO.Name}' already exists.");
-                }
-
-                var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = await ConvertIFormFileToBeerImage(addBeerDTO.BeerImage) };
-                DbContext.Beers.Add(beer);
-                await DbContext.SaveChangesAsync();
-
-                return new AddBeerResult { Name = addBeerDTO.Name };
+                    Id = review.Id,
+                    Text = review.Text,
+                    TasteRate = review.TasteRate,
+                    AromaRate = review.AromaRate,
+                    FoamRate = review.FoamRate,
+                    ColorRate = review.ColorRate,
+                    BeerId = review.BeerId,
+                    UserId = review.UserId,
+                    UserName = review.User.Username
+                };
             }
             catch (Exception ex)
             {
@@ -54,16 +68,13 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-
-        public async Task<GetBeerResult> GetBeer(int id)
+        //Method is getting id of beer as param
+        public async Task<int> GetReviewsCounter(int id)
         {
             try
             {
-                var beer = await DbContext.Beers.FindAsync(id);
-                if (beer != null)
-                    return new GetBeerResult { Name = beer.Name, Producer = beer.Producer, Kind = beer.Kind, OriginCountry = beer.OriginCountry, AlcoholAmount = beer.AlcoholAmount, Ibu = beer.Ibu, BeerImage = beer.BeerImage, BeerImageId = beer.BeerImageId };
-                else
-                    throw new InvalidOperationException($"Beer with id '{id}' not found.");
+                var counter = await DbContext.Reviews.CountAsync();
+                return counter;
             }
             catch (Exception ex)
             {
@@ -71,13 +82,31 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-
-        public async Task<IEnumerable<BeerListElementDTO>> GetBeers()
+        public async Task<IQueryable<GetBeerReviewResult>> GetBeerReviews(int beerId, int startIndex, int endIndex)
         {
             try
             {
-                var beers = await DbContext.Beers.ToListAsync();
-                return Mapper.Map<IEnumerable<BeerListElementDTO>>(beers);
+                var reviews =
+                    DbContext.Reviews
+                    .Where(review => review.BeerId == beerId)
+                    .Skip(startIndex)
+                    .Take(endIndex - startIndex)
+                    .Select
+                    (
+                        review => new GetBeerReviewResult()
+                        {
+                            Id = review.Id,
+                            Text = review.Text,
+                            TasteRate = review.TasteRate,
+                            AromaRate = review.AromaRate,
+                            FoamRate = review.FoamRate,
+                            ColorRate = review.ColorRate,
+                            BeerId = review.BeerId,
+                            UserId = review.UserId,
+                            UserName = review.User.Username
+                        }
+                    );
+                return reviews;
             }
             catch (Exception ex)
             {
@@ -85,72 +114,5 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-
-        public async Task<GetBeersResult> FilterAndSortBeers(FilterAndSortBeersDTO dto)
-        {
-            try
-            {
-                var query = DbContext.Beers.AsQueryable();
-
-                if (!string.IsNullOrEmpty(dto.Name))
-                {
-                    query = query.Where(b => b.Name.Contains(dto.Name));
-                }
-
-                if (!string.IsNullOrEmpty(dto.Producer))
-                {
-                    query = query.Where(b => b.Producer.Contains(dto.Producer));
-                }
-
-                if (!string.IsNullOrEmpty(dto.Kind))
-                {
-                    query = query.Where(b => b.Kind.Contains(dto.Kind));
-                }
-
-                if (!string.IsNullOrEmpty(dto.OriginCountry))
-                {
-                    query = query.Where(b => b.OriginCountry.Contains(dto.OriginCountry));
-                }
-
-                if (dto.MinAlcoholAmount.HasValue)
-                {
-                    query = query.Where(b => b.AlcoholAmount >= dto.MinAlcoholAmount.Value);
-                }
-
-                if (dto.MaxAlcoholAmount.HasValue)
-                {
-                    query = query.Where(b => b.AlcoholAmount <= dto.MaxAlcoholAmount.Value);
-                }
-
-                if (dto.MinIbu.HasValue)
-                {
-                    query = query.Where(b => b.Ibu >= dto.MinIbu.Value);
-                }
-
-                if (dto.MaxIbu.HasValue)
-                {
-                    query = query.Where(b => b.Ibu <= dto.MaxIbu.Value);
-                }
-
-                if (dto.isAscending == true)
-                {
-                    query = query.OrderBy(b => dto.SortType.ToString());
-                }
-                else
-                {
-                    query = query.OrderByDescending(b => dto.SortType.ToString());
-                }
-
-                var beers = await query.ToListAsync();
-                return new GetBeersResult { Beers = beers };
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                throw;
-            }
-        }
-
-
     }
 }
