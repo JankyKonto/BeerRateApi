@@ -2,7 +2,7 @@
 
 namespace BeerRateApi.DTOs
 {
-    public class BeerListElementDTO
+    public class BeerDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

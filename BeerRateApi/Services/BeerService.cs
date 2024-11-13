@@ -55,13 +55,13 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<GetBeerResult> GetBeer(int id)
+        public async Task<BeerDTO> GetBeer(int id)
         {
             try
             {
                 var beer = await DbContext.Beers.FindAsync(id);
                 if (beer != null)
-                    return new GetBeerResult { Name = beer.Name, Producer = beer.Producer, Kind = beer.Kind, OriginCountry = beer.OriginCountry, AlcoholAmount = beer.AlcoholAmount, Ibu = beer.Ibu, BeerImage = beer.BeerImage, BeerImageId = beer.BeerImageId };
+                    return Mapper.Map<BeerDTO>(beer);
                 else
                     throw new InvalidOperationException($"Beer with id '{id}' not found.");
             }
@@ -72,12 +72,12 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<IEnumerable<BeerListElementDTO>> GetBeers()
+        public async Task<IEnumerable<BeerDTO>> GetBeers()
         {
             try
             {
                 var beers = await DbContext.Beers.ToListAsync();
-                return Mapper.Map<IEnumerable<BeerListElementDTO>>(beers);
+                return Mapper.Map<IEnumerable<BeerDTO>>(beers);
             }
             catch (Exception ex)
             {
