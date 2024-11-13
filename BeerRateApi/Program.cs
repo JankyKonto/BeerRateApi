@@ -1,9 +1,11 @@
 using BeerRateApi;
 using BeerRateApi.Interfaces;
+using BeerRateApi.Profiles;
 using BeerRateApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.Security.Claims;
 using System.Text;
 
@@ -21,12 +23,22 @@ builder.Services.AddCors(options =>
 });
 
 
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBeerService, BeerService>();
+<<<<<<< HEAD
 builder.Services.AddScoped<IBeerReviewService, BeerReviewService>();
+=======
+builder.Services.AddScoped<IEmailService, EmailService>();
+>>>>>>> origin/master
 builder.Services.AddScoped(typeof(ILogger), typeof(Logger<Program>));
+
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

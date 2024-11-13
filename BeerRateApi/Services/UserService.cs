@@ -1,4 +1,5 @@
-﻿using BeerRateApi.DTOs;
+﻿using AutoMapper;
+using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,13 @@ namespace BeerRateApi.Services
     public class UserService : BaseService, IUserService
     {
         private readonly ITokenService _tokenService;
+        private readonly IEmailService _emailService;
 
-        public UserService(AppDbContext dbContext,  ILogger logger, ITokenService tokenService) : base(dbContext, logger)
+        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper)
+            : base(dbContext, logger, mapper)
         {
             _tokenService = tokenService;
+            _emailService = emailService;
         }
 
         public async Task<RegisterResult> RegisterUser (RegisterDTO registerDTO)
@@ -154,7 +158,7 @@ namespace BeerRateApi.Services
 
                 if (user == null) 
                 {
-                    throw new ArgumentNullException("User not found");
+                    throw new UnauthorizedAccessException("User not found");
                 }
 
                 user.RefreshToken = null;
@@ -167,6 +171,17 @@ namespace BeerRateApi.Services
                 Logger.LogError(ex, ex.Message);
                 throw;
             }
+        }
+
+        public async Task RemindPassword(string email)
+        {
+            var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("User not found");
+            }
+
+            await _emailService.SendAsync(user.Email, "Remind password", "This is a test email message with paswword remind");
         }
     }
 }
