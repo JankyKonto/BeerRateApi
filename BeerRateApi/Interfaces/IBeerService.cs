@@ -9,5 +9,6 @@ namespace BeerRateApi.Interfaces
         Task<IEnumerable<BeerListElementDTO>> GetBeers ();
         Task<GetBeerResult> GetBeer (int id);
         Task<GetBeersResult> FilterAndSortBeers(FilterAndSortBeersDTO dto);
+        Task<bool> ConfirmBeer(int id);
     }
 }

@@ -42,7 +42,7 @@ namespace BeerRateApi.Services
                     throw new InvalidOperationException($"Beer with name '{addBeerDTO.Name}' already exists.");
                 }
 
-                var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = await ConvertIFormFileToBeerImage(addBeerDTO.BeerImage) };
+                var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = await ConvertIFormFileToBeerImage(addBeerDTO.BeerImage), IsConfirmed = false };
                 DbContext.Beers.Add(beer);
                 await DbContext.SaveChangesAsync();
 
@@ -151,6 +151,27 @@ namespace BeerRateApi.Services
             }
         }
 
+        public async Task<bool> ConfirmBeer(int id)
+        {
+            try
+            {
+                var beer = await DbContext.Beers.FindAsync(id);
+                if (beer != null)
+                {
+                    beer.IsConfirmed = true;
+                    DbContext.Update(beer);
+                    await DbContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    throw new InvalidOperationException($"Beer with id '{id}' not found.");
 
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }

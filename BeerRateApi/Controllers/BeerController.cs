@@ -52,6 +52,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("getbeer")]
         public async Task<IActionResult> GetBeer(int id)
         {
@@ -78,6 +79,20 @@ namespace BeerRateApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { ex.Message});
+            }
+        }
+
+        [HttpPost("confirmbeer")]
+        public async Task<IActionResult> ConfirmBeer (int id)
+        {
+            try
+            {
+                var result = await _beerService.ConfirmBeer(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode (500, new { ex.Message });
             }
         }
     }
