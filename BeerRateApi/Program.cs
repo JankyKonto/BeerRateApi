@@ -31,11 +31,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBeerService, BeerService>();
-<<<<<<< HEAD
-builder.Services.AddScoped<IBeerReviewService, BeerReviewService>();
-=======
 builder.Services.AddScoped<IEmailService, EmailService>();
->>>>>>> origin/master
 builder.Services.AddScoped(typeof(ILogger), typeof(Logger<Program>));
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);

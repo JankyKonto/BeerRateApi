@@ -27,7 +27,7 @@ namespace BeerRateApi.Services
                 return new BeerImage
                 {
                     Data = memoryStream.ToArray(),
-                    ContentType = formFile.ContentType,
+                    FileName = formFile.FileName,
                     Caption = caption
                 };
             }
@@ -86,61 +86,59 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<GetBeersResult> FilterBeers(
-            string name = null,
-            string producer = null,
-            string kind = null,
-            string originCountry = null,
-            decimal? minAlcoholAmount = null,
-            decimal? maxAlcoholAmount = null,
-            int? minIbu = null,
-            int? maxIbu = null
-            )
+        public async Task<GetBeersResult> FilterAndSortBeers(FilterAndSortBeersDTO dto)
         {
             try
             {
                 var query = DbContext.Beers.AsQueryable();
 
-                if (!string.IsNullOrEmpty(name))
+                if (!string.IsNullOrEmpty(dto.Name))
                 {
-                    query = query.Where(b => b.Name.Contains(name));
+                    query = query.Where(b => b.Name.Contains(dto.Name));
                 }
 
-                if (!string.IsNullOrEmpty(producer))
+                if (!string.IsNullOrEmpty(dto.Producer))
                 {
-                    query = query.Where(b => b.Producer.Contains(producer));
+                    query = query.Where(b => b.Producer.Contains(dto.Producer));
                 }
 
-                if (!string.IsNullOrEmpty(kind))
+                if (!string.IsNullOrEmpty(dto.Kind))
                 {
-                    query = query.Where(b => b.Kind.Contains(kind));
+                    query = query.Where(b => b.Kind.Contains(dto.Kind));
                 }
 
-                if (!string.IsNullOrEmpty(originCountry))
+                if (!string.IsNullOrEmpty(dto.OriginCountry))
                 {
-                    query = query.Where(b => b.OriginCountry.Contains(originCountry));
+                    query = query.Where(b => b.OriginCountry.Contains(dto.OriginCountry));
                 }
 
-                /*
-                if (minAlcoholAmount.HasValue)
+                if (dto.MinAlcoholAmount.HasValue)
                 {
-                    query = query.Where(b => b.AlcoholAmount >= minAlcoholAmount.Value);
+                    query = query.Where(b => b.AlcoholAmount >= dto.MinAlcoholAmount.Value);
                 }
 
-                if (maxAlcoholAmount.HasValue)
+                if (dto.MaxAlcoholAmount.HasValue)
                 {
-                    query = query.Where(b => b.AlcoholAmount <= maxAlcoholAmount.Value);
-                }
-                */
-
-                if (minIbu.HasValue)
-                {
-                    query = query.Where(b => b.Ibu >= minIbu.Value);
+                    query = query.Where(b => b.AlcoholAmount <= dto.MaxAlcoholAmount.Value);
                 }
 
-                if (maxIbu.HasValue)
+                if (dto.MinIbu.HasValue)
                 {
-                    query = query.Where(b => b.Ibu <= maxIbu.Value);
+                    query = query.Where(b => b.Ibu >= dto.MinIbu.Value);
+                }
+
+                if (dto.MaxIbu.HasValue)
+                {
+                    query = query.Where(b => b.Ibu <= dto.MaxIbu.Value);
+                }
+
+                if (dto.isAscending == true)
+                {
+                    query = query.OrderBy(b => dto.SortType.ToString());
+                }
+                else
+                {
+                    query = query.OrderByDescending(b => dto.SortType.ToString());
                 }
 
                 var beers = await query.ToListAsync();
