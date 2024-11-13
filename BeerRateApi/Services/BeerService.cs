@@ -102,9 +102,9 @@ namespace BeerRateApi.Services
                     query = query.Where(b => b.Producer.Contains(dto.Producer));
                 }
 
-                if (!string.IsNullOrEmpty(dto.Kind))
+                if (dto.Kind != 0 && dto.Kind != null)
                 {
-                    query = query.Where(b => b.Kind.Contains(dto.Kind));
+                    query = query.Where(b => b.Kind == dto.Kind);
                 }
 
                 if (!string.IsNullOrEmpty(dto.OriginCountry))

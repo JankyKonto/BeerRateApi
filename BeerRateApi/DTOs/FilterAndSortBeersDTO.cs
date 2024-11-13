@@ -6,7 +6,7 @@ namespace BeerRateApi.DTOs
     {
         public string Name { get; set; } = string.Empty;
         public string Producer {  get; set; } = string.Empty;
-        public string Kind {  get; set; } = string.Empty;
+        public int? Kind {  get; set; }
         public string OriginCountry {  get; set; } = string.Empty;
         public decimal? MaxAlcoholAmount { get; set; } = null;
         public decimal? MinAlcoholAmount { get; set; } = null;
