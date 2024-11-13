@@ -1,6 +1,7 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 
@@ -13,6 +14,7 @@ namespace BeerRateApi.Controllers
         {
             _beerReviewService = beerReviewService;
         }
+
         [HttpPost("addbeerreview")]
         public async Task<IActionResult> AddBeerReview(AddBeerReviewDTO addBeerReviewDTO)
         {
@@ -30,6 +32,8 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
         }
+
+        [AllowAnonymous]
         [HttpPost("getbeerreview")]
         public async Task<IActionResult> GetBeerReview(int id)
         {
@@ -43,6 +47,7 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new { ex.Message });
             }
         }
+        [AllowAnonymous]
         [HttpPost("getbeerreviewscounter")]
         public async Task<IActionResult> GetBeerReviewsCounter(int id)
         {
@@ -57,6 +62,8 @@ namespace BeerRateApi.Controllers
 
             }
         }
+
+        [AllowAnonymous]
         [HttpPost("getbeerreviews")]
         public async Task<IActionResult> GetBeerReviews(int id, int startIndex, int endIndex)
         {
