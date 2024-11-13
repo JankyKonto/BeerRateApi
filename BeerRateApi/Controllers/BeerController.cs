@@ -39,7 +39,7 @@ namespace BeerRateApi.Controllers
 
         [AllowAnonymous]
         [HttpGet("getbeers")]
-        public async Task<IActionResult> GetBeers ()
+        public async Task<IActionResult> GetBeers()
         {
             try
             {
@@ -52,7 +52,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
-        [HttpGet("getbeer")]
+        [HttpGet("getbeer/{id}")]
         public async Task<IActionResult> GetBeer(int id)
         {
             try
