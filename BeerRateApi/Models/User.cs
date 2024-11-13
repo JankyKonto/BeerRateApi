@@ -1,4 +1,6 @@
-﻿namespace BeerRateApi.Models
+﻿using BeerRateApi.Enums;
+
+namespace BeerRateApi.Models
 {
     public class User
     {

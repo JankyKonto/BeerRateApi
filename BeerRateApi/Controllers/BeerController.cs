@@ -68,19 +68,11 @@ namespace BeerRateApi.Controllers
 
         [AllowAnonymous]
         [HttpGet("filterbeers")]
-        public async Task<IActionResult> FilterBeers(
-            string name,
-            string producer,
-            string kind,
-            string originCountry,
-            decimal? minAlcoholAmount,
-            decimal? maxAlcoholAmount,
-            int? minIbu,
-            int? maxIbu)
+        public async Task<IActionResult> FilterBeers(FilterAndSortBeersDTO dto)
         {
             try
             {
-                var getBeersResult = await _beerService.FilterBeers(name, producer, kind, originCountry, minAlcoholAmount, maxAlcoholAmount, minIbu, maxIbu);
+                var getBeersResult = await _beerService.FilterAndSortBeers(dto);
                 return Ok(getBeersResult);
             }
             catch (Exception ex)

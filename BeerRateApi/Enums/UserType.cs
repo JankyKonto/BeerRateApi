@@ -1,4 +1,4 @@
-﻿namespace BeerRateApi.Models
+﻿namespace BeerRateApi.Enums
 {
     public enum UserType
     {
