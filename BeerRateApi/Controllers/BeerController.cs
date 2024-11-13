@@ -1,9 +1,11 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeerRateApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BeerController : ControllerBase
@@ -35,13 +37,14 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("getbeers")]
         public async Task<IActionResult> GetBeers ()
         {
             try
             {
                 var getBeersResult = await _beerService.GetBeers();
-                return Ok(getBeersResult);
+                return Ok(new { Beers = getBeersResult });
             }
             catch (Exception ex)
             {
@@ -60,6 +63,29 @@ namespace BeerRateApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { ex.Message });
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("filterbeers")]
+        public async Task<IActionResult> FilterBeers(
+            string name,
+            string producer,
+            string kind,
+            string originCountry,
+            decimal? minAlcoholAmount,
+            decimal? maxAlcoholAmount,
+            int? minIbu,
+            int? maxIbu)
+        {
+            try
+            {
+                var getBeersResult = await _beerService.FilterBeers(name, producer, kind, originCountry, minAlcoholAmount, maxAlcoholAmount, minIbu, maxIbu);
+                return Ok(getBeersResult);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ex.Message});
             }
         }
     }

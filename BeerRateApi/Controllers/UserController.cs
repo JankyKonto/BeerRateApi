@@ -10,6 +10,7 @@ using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -19,6 +20,7 @@ namespace BeerRateApi.Controllers
 
         public UserController(IUserService userService) { _userService = userService; }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
@@ -37,6 +39,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login (LoginDTO loginDTO)
         {
@@ -70,12 +73,17 @@ namespace BeerRateApi.Controllers
             {
                 return Unauthorized(new { ex.Message });
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { ex.Message });
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh ()
         {
@@ -165,53 +173,33 @@ namespace BeerRateApi.Controllers
             }
 
         }
+
+        [AllowAnonymous]
         [HttpPost("remind-password")]
-        public async Task<IActionResult> RemindPassword(string email)
+        public async Task<IActionResult> RemindPassword(RemindPasswordDTO remindPasswordDTO)
         {
-            if (string.IsNullOrEmpty(email))
-                return BadRequest("Email address is required");
+            if (string.IsNullOrEmpty(remindPasswordDTO.Email))
+            {
+                return Unauthorized(new { Message = "Email cannot be empty" });
+            }
 
             try
             {
-                // Tworzenie wiadomości e-mail
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Milosz", "beerratemail@gmail.com"));
-                message.To.Add(new MailboxAddress("", email));
-                message.Subject = "Beer rate wiadomosc";
-
-                message.Body = new TextPart("plain")
-                {
-                    Text = "Testujemy piwerko mordo"
-                };
-
-                // Wysyłanie wiadomości przy użyciu MailKit
-                using (var client = new SmtpClient())
-                {
-                    // Łączymy się z serwerem Gmail SMTP
-                    await client.ConnectAsync("smtp.gmail.com", 465, true);
-
-                    // Uwierzytelnianie za pomocą konta Gmail
-                    await client.AuthenticateAsync("beerratemail@gmail.com", "jankyhaslo12");
-
-                    // Wysyłanie wiadomości
-                    await client.SendAsync(message);
-
-                    // Rozłączamy się z serwerem
-                    await client.DisconnectAsync(true);
-                }
-
-                return Ok("Email sent successfully");
+                await _userService.RemindPassword(remindPasswordDTO.Email);
+                return Ok();
             }
-            catch (SmtpCommandException ex)
+            catch (UnauthorizedAccessException ex)
             {
-                return StatusCode(500, $"SMTP Command error: {ex.Message}");
+                return Unauthorized(new { ex.Message });
             }
-            catch (SmtpProtocolException ex)
+            catch (ArgumentNullException ex)
             {
-                return StatusCode(500, $"SMTP Protocol error: {ex.Message}");
+                return BadRequest(new { ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ex.Message });
             }
         }
-
-
     }
 }

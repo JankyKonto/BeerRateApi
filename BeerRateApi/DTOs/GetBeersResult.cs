@@ -4,6 +4,6 @@ namespace BeerRateApi.DTOs
 {
     public class GetBeersResult
     {
-        public List<Beer> Beers;
+        public IEnumerable<Beer>? Beers;
     }
 }
