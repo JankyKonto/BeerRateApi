@@ -47,6 +47,17 @@ namespace BeerRateApi.Services
             return tokenHandler.WriteToken(token);
         }
 
+        public string GenerateRandom64Token()
+        {
+            const int length = 64;
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            var random = new Random();
+            var randomString = new string(Enumerable.Repeat(chars, length)
+                                                    .Select(s => s[random.Next(s.Length)]).ToArray());
+            return randomString;
+        }
+
         public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
         {
             var key = Encoding.UTF8.GetBytes(_configuration.GetSection("TokenOptions:Key").Value!);

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeerRateApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241106191138_kolejnamigracja")]
-    partial class kolejnamigracja
+    [Migration("20241113232604_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,9 +45,11 @@ namespace BeerRateApi.Migrations
                     b.Property<int>("Ibu")
                         .HasColumnType("int");
 
-                    b.Property<string>("Kind")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -60,9 +62,6 @@ namespace BeerRateApi.Migrations
                     b.Property<string>("Producer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isConfirmed")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -83,13 +82,13 @@ namespace BeerRateApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("Data")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -142,6 +141,13 @@ namespace BeerRateApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ConfirmEmailToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ConfirmEmailTokenExpiry")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -157,6 +163,13 @@ namespace BeerRateApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RefreshTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RemindPasswordToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RemindPasswordTokenExpiry")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserType")

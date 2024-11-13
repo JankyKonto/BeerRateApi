@@ -12,7 +12,10 @@ namespace BeerRateApi.Models
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiry { get; set; }
         public UserType UserType { get; set; }
-
+        public string? RemindPasswordToken { get; set; }
+        public DateTime? RemindPasswordTokenExpiry { get; set; }
+        public string? ConfirmEmailToken { get; set; }
+        public DateTime? ConfirmEmailTokenExpiry { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }
 }

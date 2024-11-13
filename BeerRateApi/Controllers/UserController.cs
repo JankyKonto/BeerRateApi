@@ -4,7 +4,9 @@ using BeerRateApi.Models;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using MimeKit;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Security.Claims;
 
@@ -149,7 +151,7 @@ namespace BeerRateApi.Controllers
                 }
 
                 await _userService.Revoke(userId);
-
+                
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = true,
@@ -175,17 +177,38 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("remind-password")]
-        public async Task<IActionResult> RemindPassword(RemindPasswordDTO remindPasswordDTO)
+        [HttpPost("remind-password-send-email")]
+        public async Task<IActionResult> RemindPasswordSendEmail(RemindPasswordDTO remindPasswordDTO)
         {
             if (string.IsNullOrEmpty(remindPasswordDTO.Email))
             {
                 return Unauthorized(new { Message = "Email cannot be empty" });
             }
-
             try
             {
-                await _userService.RemindPassword(remindPasswordDTO.Email);
+                await _userService.RemindPasswordSendEmail(remindPasswordDTO.Email, Request);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { ex.Message });
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ex.Message });
+            }
+        }
+        [AllowAnonymous]
+        [HttpPost("remind-password-realization")]
+        public async Task<IActionResult> RemindPasswordRealization(string newPassword,string token)
+        {
+            try
+            {
+                _userService.RealisePasswordReminding(newPassword, token);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)

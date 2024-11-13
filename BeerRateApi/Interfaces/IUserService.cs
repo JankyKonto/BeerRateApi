@@ -11,6 +11,7 @@ namespace BeerRateApi.Interfaces
         ResetResult ResetPassword (ResetDTO resetDTO);
         Task<LoginResult> Refresh(string expiredToken, string refreshToken);
         Task Revoke(int id);
-        Task RemindPassword(string email);
+        Task RealisePasswordReminding(string newPassword, string token);
+        Task RemindPasswordSendEmail(string email, HttpRequest request);
     }
 }

@@ -2,8 +2,10 @@
 using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 
 
@@ -20,6 +22,8 @@ namespace BeerRateApi.Services
             _tokenService = tokenService;
             _emailService = emailService;
         }
+
+
 
         public async Task<RegisterResult> RegisterUser (RegisterDTO registerDTO)
         {
@@ -173,15 +177,50 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task RemindPassword(string email)
+        public async Task RemindPasswordSendEmail(string email, HttpRequest request)
         {
+            string token = _tokenService.GenerateRandom64Token();
+            DateTime expireDate = DateTime.UtcNow.AddHours(1);
+            StringBuilder message = new StringBuilder();
+
+            string hostAddress = request.Scheme + "://" + request.Host;
+            message.AppendLine("Aby przypomnieć hasło kliknij link poniżej:");
+            message.Append($"{hostAddress}/{token}");
+
             var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
+
             if (user == null)
             {
                 throw new UnauthorizedAccessException("User not found");
             }
+            else
+            {
+                user.RemindPasswordToken = token;
+                user.RemindPasswordTokenExpiry = expireDate;
+                await _emailService.SendAsync(user.Email, "Beer-rate przypomnienie hasła", message.ToString());
 
-            await _emailService.SendAsync(user.Email, "Remind password", "This is a test email message with paswword remind");
+            }
+        }
+
+        public async Task RealisePasswordReminding(string newPassword, string token)
+        {
+            User user = await DbContext.Users.FirstOrDefaultAsync(user=>user.RemindPasswordToken == token);
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("User not found");
+            }
+            else if (user.RemindPasswordTokenExpiry > DateTime.UtcNow)
+            {
+                throw new UnauthorizedAccessException("Token expired");
+            } 
+            else
+            {
+                var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newPassword);
+                user.PasswordHash = passwordHash;
+                user.RemindPasswordToken = null;
+                user.RemindPasswordTokenExpiry = null;
+                
+            }    
         }
     }
 }

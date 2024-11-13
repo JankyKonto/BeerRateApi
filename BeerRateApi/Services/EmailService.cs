@@ -13,10 +13,16 @@ namespace BeerRateApi.Services
         }
         public async Task SendAsync(string toEmail, string subject, string body)
         {
+            
             var host = _configuration.GetSection("EmailSenderSettings")["Host"];
             var hostAddress = _configuration.GetSection("EmailSenderSettings")["HostAddress"];
             var appPassword = Environment.GetEnvironmentVariable("GOOGLE_APP_PASSWORD");
-
+            
+            /*
+            var host = "smtp-relay.gmail.com";
+            var hostAddress = "beerratemail@gmail.com";
+            var appPassword = "parp srel qore pthp";
+            */
             if(host == null || hostAddress == null || appPassword == null)
             {
                 throw new ArgumentNullException("Wrong email sender settings");
