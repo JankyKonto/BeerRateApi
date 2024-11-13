@@ -77,6 +77,11 @@ namespace BeerRateApi.Services
             try
             {
                 var beers = await DbContext.Beers.ToListAsync();
+                foreach (var beer in beers)
+                {
+                    if (beer.IsConfirmed == false)
+                        beers.Remove(beer);
+                }
                 return Mapper.Map<IEnumerable<BeerListElementDTO>>(beers);
             }
             catch (Exception ex)
