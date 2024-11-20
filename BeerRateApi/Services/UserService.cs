@@ -15,10 +15,12 @@ namespace BeerRateApi.Services
     {
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
 
-        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper)
+        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper, IConfiguration configuration)
             : base(dbContext, logger, mapper)
         {
+            _configuration = configuration;
             _tokenService = tokenService;
             _emailService = emailService;
         }
@@ -177,15 +179,15 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task RemindPasswordSendEmail(string email, HttpRequest request)
+        public async Task RemindPasswordSendEmail(string email)
         {
             string token = _tokenService.GenerateRandom64Token();
             DateTime expireDate = DateTime.UtcNow.AddHours(1);
             StringBuilder message = new StringBuilder();
 
-            string hostAddress = request.Scheme + "://" + request.Host;
+            string hostAddress = "";
             message.AppendLine("Aby przypomnieć hasło kliknij link poniżej:");
-            message.Append($"{hostAddress}/{token}");
+            message.AppendLine($"{hostAddress}/remind-password/{token}");
 
             var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
 
@@ -197,6 +199,7 @@ namespace BeerRateApi.Services
             {
                 user.RemindPasswordToken = token;
                 user.RemindPasswordTokenExpiry = expireDate;
+                DbContext.SaveChangesAsync();
                 await _emailService.SendAsync(user.Email, "Beer-rate przypomnienie hasła", message.ToString());
 
             }

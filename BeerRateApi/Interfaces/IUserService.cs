@@ -12,6 +12,6 @@ namespace BeerRateApi.Interfaces
         Task<LoginResult> Refresh(string expiredToken, string refreshToken);
         Task Revoke(int id);
         Task RealisePasswordReminding(string newPassword, string token);
-        Task RemindPasswordSendEmail(string email, HttpRequest request);
+        Task RemindPasswordSendEmail(string email);
     }
 }

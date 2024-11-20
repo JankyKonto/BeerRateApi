@@ -6,7 +6,7 @@ namespace BeerRateApi.Interfaces
     {
         string GenerateRefreshToken();
         string GenerateJwtToken(string username, int userId);
-        string GenerateRandom64Token();
+        string GenerateRandom32Token();
         ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
     }
 }
