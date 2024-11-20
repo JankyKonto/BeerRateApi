@@ -10,7 +10,7 @@ namespace BeerRateApi.Services
     {
         public BeerReviewService(AppDbContext dbContext, ILogger logger, IMapper mapper)
             : base(dbContext, logger, mapper) { }
-        private const int reviewsPerPage = 20;
+        private const int reviewsPerPage = 10;
         public async Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO AddBeerReviewDTO)
         {
             try
@@ -29,6 +29,7 @@ namespace BeerRateApi.Services
                     ColorRate = AddBeerReviewDTO.ColorRate,
                     BeerId = AddBeerReviewDTO.BeerId,
                     UserId = AddBeerReviewDTO.UserId,
+                    CreatedAt = DateTime.UtcNow,
                 };
                 DbContext.Reviews.Add(review);
                 await DbContext.SaveChangesAsync();
@@ -89,7 +90,7 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
-        public async Task<IQueryable<GetBeerReviewResult>> GetBeerReviews(int beerId, int startIndex, int endIndex)
+        public async Task<IEnumerable<GetBeerReviewResult>> GetBeerReviews(int beerId, int startIndex, int endIndex)
         {
             try
             {
@@ -110,10 +111,11 @@ namespace BeerRateApi.Services
                             ColorRate = review.ColorRate,
                             BeerId = review.BeerId,
                             UserId = review.UserId,
-                            UserName = review.User.Username
+                            UserName = review.User.Username,
+                            CreatedAt = review.CreatedAt
                         }
                     );
-                return reviews;
+                return await reviews.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -122,11 +124,9 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<IQueryable<GetBeerReviewResult>> GetBeerReviewsPage(int beerId, int page)
+        public async Task<IEnumerable<GetBeerReviewResult>> GetBeerReviewsPage(int beerId, int page)
         {
-            int pagesAmount = await GetBeerReviewPagesAmount(beerId);
-
-            if (page < 1 || page > pagesAmount)
+            if (page < 1)
             {
                 throw new ArgumentException("Wrong page number");
             }

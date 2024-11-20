@@ -4,6 +4,7 @@ using BeerRateApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
@@ -22,6 +23,12 @@ namespace BeerRateApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddBeerReview(AddBeerReviewDTO addBeerReviewDTO)
         {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized(new { Message = "Invalid user identifier." });
+            }
+            addBeerReviewDTO.UserId = userId;
             try
             {
                 var addBeerReviewResult = await _beerReviewService.AddBeerReview(addBeerReviewDTO);

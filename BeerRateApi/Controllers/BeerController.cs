@@ -44,7 +44,7 @@ namespace BeerRateApi.Controllers
             try
             {
                 var getBeersResult = await _beerService.FilterAndSortBeers(dto);
-                return Ok(getBeersResult.Beers);
+                return Ok(new { Beers = getBeersResult.Beers });
             }
             catch (Exception ex)
             {
