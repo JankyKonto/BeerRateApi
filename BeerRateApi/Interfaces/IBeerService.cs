@@ -6,8 +6,10 @@ namespace BeerRateApi.Interfaces
     public interface IBeerService
     {
         Task<AddBeerResult> AddBeer(AddBeerDTO addBeerDTO);
-        Task<IEnumerable<BeerDTO>> GetBeers ();
         Task<BeerDTO> GetBeer (int id);
-        Task<GetBeersResult> FilterAndSortBeers(FilterAndSortBeersDTO dto);
+        Task<IEnumerable<BeerDTO>> FilterAndSortBeers(FilterAndSortBeersDTO dto, int startIndex, int endIndex);
+        Task<int> GetBeersCounter();
+        Task<IEnumerable<BeerDTO>> GetBeersPage(int page, FilterAndSortBeersDTO dto);
+        Task<int> GetBeersPagesAmount();
     }
 }

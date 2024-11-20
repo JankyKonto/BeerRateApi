@@ -12,7 +12,7 @@ namespace BeerRateApi.Services
         {
 
         }
-
+        private const int reviewsPerPage = 10;
         private static async Task<BeerImage?> ConvertIFormFileToBeerImage(IFormFile formFile, string caption = "")
         {
             if (formFile == null || formFile.Length == 0)
@@ -72,21 +72,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetBeers()
-        {
-            try
-            {
-                var beers = await DbContext.Beers.ToListAsync();
-                return Mapper.Map<IEnumerable<BeerDTO>>(beers);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                throw;
-            }
-        }
-
-        public async Task<GetBeersResult> FilterAndSortBeers(FilterAndSortBeersDTO dto)
+        public async Task<IEnumerable<BeerDTO>> FilterAndSortBeers(FilterAndSortBeersDTO dto, int startIndex, int endIndex)
         {
             try
             {
@@ -132,17 +118,46 @@ namespace BeerRateApi.Services
                     query = query.Where(b => b.Ibu <= dto.MaxIbu.Value);
                 }
 
+                var sortType = (int)dto.SortType;
                 if (dto.isAscending == true)
                 {
-                    query = query.OrderBy(b => dto.SortType.ToString());
+                    switch (sortType)
+                    {
+                        case 0:
+                            query = query.OrderBy(b => b.Name);
+                            break;
+                        case 1:
+                            query = query.OrderBy(b => b.AlcoholAmount);
+                            break;
+                        case 2:
+                            query = query.OrderBy(b => b.Ibu);
+                            break;
+                        default:
+                            query = query.OrderBy(b => b.Name);
+                            break;
+                    }
                 }
                 else
                 {
-                    query = query.OrderByDescending(b => dto.SortType.ToString());
+                    switch (sortType)
+                    {
+                        case 0:
+                            query = query.OrderByDescending(b => b.Name);
+                            break;
+                        case 1:
+                            query = query.OrderByDescending(b => b.AlcoholAmount);
+                            break;
+                        case 2:
+                            query = query.OrderByDescending(b => b.Ibu);
+                            break;
+                        default:
+                            query = query.OrderByDescending(b => b.Name);
+                            break;
+                    }
                 }
 
                 var beers = await query.ToListAsync();
-                return new GetBeersResult { Beers = Mapper.Map<IEnumerable<BeerDTO>>(beers) };
+                return Mapper.Map<IEnumerable<BeerDTO>>(beers);
             }
             catch (Exception ex)
             {
@@ -151,6 +166,35 @@ namespace BeerRateApi.Services
             }
         }
 
+        public async Task<IEnumerable<BeerDTO>> GetBeersPage(int page, FilterAndSortBeersDTO dto)
+        {
+            int pagesAmount = await GetBeersPagesAmount();
 
+            if (page < 1 || page > pagesAmount)
+            {
+                throw new ArgumentException("Wrong page number");
+            }
+
+            return await FilterAndSortBeers(dto, (page - 1) * reviewsPerPage, reviewsPerPage * page);
+        }
+
+        public async Task<int> GetBeersPagesAmount()
+        {
+            var counter = await GetBeersCounter();
+            return counter % reviewsPerPage == 0 ? counter / reviewsPerPage : counter / reviewsPerPage + 1;
+        }
+
+        public async Task<int> GetBeersCounter ()
+        {
+            try
+            {
+                return await DbContext.Beers.CountAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }
