@@ -19,7 +19,7 @@ namespace BeerRateApi.Controllers
             _beerReviewService = beerReviewService;
         }
 
-        [HttpPost("addbeerreview")]
+        [HttpPost("add-beer-review")]
         public async Task<IActionResult> AddBeerReview(AddBeerReviewDTO addBeerReviewDTO)
         {
             try
@@ -38,7 +38,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("getbeerreview/{id}")]
+        [HttpGet("get-beer-review/{id}")]
         public async Task<IActionResult> GetBeerReview(int id)
         {
             try
@@ -53,7 +53,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("getbeerreviewscounter/{id}")]
+        [HttpGet("get-beer-reviews-counter/{id}")]
         public async Task<IActionResult> GetBeerReviewsCounter(int id)
         {
             try
@@ -69,7 +69,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("getbeerreviews/{id}")]
+        [HttpGet("get-beer-reviews/{id}")]
         public async Task<IActionResult> GetBeerReviews(int id, int startIndex, int endIndex)
         {
             try

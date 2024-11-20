@@ -14,7 +14,7 @@ namespace BeerRateApi.Controllers
 
         public BeerController(IBeerService beerService) { _beerService = beerService; }
 
-        [HttpPost("addbeer")]
+        [HttpPost("add-beer")]
         public async Task<IActionResult> AddBeer ([FromForm] AddBeerDTO addBeerDTO)
         {
             try
@@ -38,7 +38,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("getbeers")]
+        [HttpGet("get-beers")]
         public async Task<IActionResult> GetBeers()
         {
             try
@@ -52,7 +52,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
-        [HttpGet("getbeer/{id}")]
+        [HttpGet("get-beer/{id}")]
         public async Task<IActionResult> GetBeer(int id)
         {
             try
@@ -67,7 +67,7 @@ namespace BeerRateApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("filterbeers")]
+        [HttpGet("filter-beers")]
         public async Task<IActionResult> FilterBeers(FilterAndSortBeersDTO dto)
         {
             try
