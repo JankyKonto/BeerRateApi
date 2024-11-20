@@ -142,7 +142,7 @@ namespace BeerRateApi.Services
                 }
 
                 var beers = await query.ToListAsync();
-                return new GetBeersResult { Beers = beers };
+                return new GetBeersResult { Beers = Mapper.Map<IEnumerable<BeerDTO>>(beers) };
             }
             catch (Exception ex)
             {

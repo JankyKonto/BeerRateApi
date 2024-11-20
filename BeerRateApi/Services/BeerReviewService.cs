@@ -10,6 +10,7 @@ namespace BeerRateApi.Services
     {
         public BeerReviewService(AppDbContext dbContext, ILogger logger, IMapper mapper)
             : base(dbContext, logger, mapper) { }
+        private const int reviewsPerPage = 20;
         public async Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO AddBeerReviewDTO)
         {
             try
@@ -73,8 +74,14 @@ namespace BeerRateApi.Services
         {
             try
             {
-                var counter = await DbContext.Reviews.CountAsync();
-                return counter;
+                var beer = await DbContext.Beers.FindAsync(id);
+
+                if(beer == null)
+                {
+                    throw new UnauthorizedAccessException("Beer not found");
+                }
+
+                return beer.Reviews.Count;
             }
             catch (Exception ex)
             {
@@ -113,6 +120,24 @@ namespace BeerRateApi.Services
                 Logger.LogError(ex, ex.Message);
                 throw;
             }
+        }
+
+        public async Task<IQueryable<GetBeerReviewResult>> GetBeerReviewsPage(int beerId, int page)
+        {
+            int pagesAmount = await GetBeerReviewPagesAmount(beerId);
+
+            if (page < 1 || page > pagesAmount)
+            {
+                throw new ArgumentException("Wrong page number");
+            }
+
+            return await GetBeerReviews(beerId, (page - 1) * reviewsPerPage, reviewsPerPage * page);
+        }
+
+        public async Task<int> GetBeerReviewPagesAmount(int beerId)
+        {
+            var counter = await GetReviewsCounter(beerId);
+            return counter % reviewsPerPage == 0 ? counter / reviewsPerPage : counter / reviewsPerPage + 1;
         }
     }
 }

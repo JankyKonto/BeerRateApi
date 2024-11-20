@@ -14,7 +14,7 @@ namespace BeerRateApi.Controllers
 
         public BeerController(IBeerService beerService) { _beerService = beerService; }
 
-        [HttpPost("add-beer")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddBeer ([FromForm] AddBeerDTO addBeerDTO)
         {
             try
@@ -29,30 +29,30 @@ namespace BeerRateApi.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
 
         [AllowAnonymous]
-        [HttpGet("get-beers")]
-        public async Task<IActionResult> GetBeers()
+        [HttpGet("beers")]
+        public async Task<IActionResult> GetBeers([FromQuery] FilterAndSortBeersDTO dto)
         {
             try
             {
-                var getBeersResult = await _beerService.GetBeers();
-                return Ok(new { Beers = getBeersResult });
+                var getBeersResult = await _beerService.FilterAndSortBeers(dto);
+                return Ok(getBeersResult.Beers);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
 
-        [HttpGet("get-beer/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetBeer(int id)
         {
             try
@@ -62,22 +62,7 @@ namespace BeerRateApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { ex.Message });
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpGet("filter-beers")]
-        public async Task<IActionResult> FilterBeers(FilterAndSortBeersDTO dto)
-        {
-            try
-            {
-                var getBeersResult = await _beerService.FilterAndSortBeers(dto);
-                return Ok(getBeersResult);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { ex.Message});
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
     }

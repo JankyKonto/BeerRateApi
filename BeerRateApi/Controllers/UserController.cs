@@ -31,11 +31,11 @@ namespace BeerRateApi.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex) 
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
 
@@ -71,15 +71,15 @@ namespace BeerRateApi.Controllers
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(new { ex.Message });
+                return Unauthorized(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
 
@@ -92,13 +92,13 @@ namespace BeerRateApi.Controllers
                 var refreshToken = Request.Cookies["refreshToken"];
                 if (refreshToken == null)
                 {
-                    return Unauthorized(new { Message = "RefreshToken is null" });
+                    return Unauthorized(new ErrorMessageDTO { ErrorMessage = "RefreshToken is null" });
                 }
 
                 var expiredToken = HttpContext.Request.Cookies["jwtToken"];
                 if (expiredToken == null)
                 {
-                    return Unauthorized(new { Message = "ExpiredToken is null" });
+                    return Unauthorized(new ErrorMessageDTO { ErrorMessage = "ExpiredToken is null" });
                 }
 
                 var refreshResult = await _userService.Refresh(expiredToken, refreshToken);
@@ -117,23 +117,23 @@ namespace BeerRateApi.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (ArgumentNullException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (ArgumentException ex)
             {
-                return NotFound(new { ex.Message });
+                return NotFound(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(new { ex.Message });
+                return Unauthorized(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex) 
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
 
@@ -165,11 +165,11 @@ namespace BeerRateApi.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                return BadRequest(new {ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex) 
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
 
         }
@@ -180,7 +180,7 @@ namespace BeerRateApi.Controllers
         {
             if (string.IsNullOrEmpty(remindPasswordDTO.Email))
             {
-                return Unauthorized(new { Message = "Email cannot be empty" });
+                return Unauthorized(new ErrorMessageDTO { ErrorMessage = "Email cannot be empty" });
             }
 
             try
@@ -190,15 +190,15 @@ namespace BeerRateApi.Controllers
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(new { ex.Message });
+                return Unauthorized(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (ArgumentNullException ex)
             {
-                return BadRequest(new { ex.Message });
+                return BadRequest(new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { ex.Message });
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
     }
