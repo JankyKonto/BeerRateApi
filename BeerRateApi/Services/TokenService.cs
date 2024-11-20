@@ -50,7 +50,7 @@ namespace BeerRateApi.Services
         public string GenerateRandom32Token()
         {
             const int length = 32;
-            const string chars = "abcdefghijklmn0123456789";
+            const string chars = "abcdefghijklmnoprstuvwxyz0123456789";
 
             var random = new Random();
             var randomString = new string(Enumerable.Repeat(chars, length)

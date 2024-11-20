@@ -186,7 +186,7 @@ namespace BeerRateApi.Controllers
             }
             try
             {
-                await _userService.RemindPasswordSendEmail(remindPasswordDTO.Email, Request);
+                await _userService.RemindPasswordSendEmail(remindPasswordDTO.Email);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)
@@ -203,12 +203,12 @@ namespace BeerRateApi.Controllers
             }
         }
         [AllowAnonymous]
-        [HttpPost("remind-password-realization")]
+        [HttpPost("realise-password-reminding")]
         public async Task<IActionResult> RemindPasswordRealization(string newPassword,string token)
         {
             try
             {
-                _userService.RealisePasswordReminding(newPassword, token);
+                await _userService.RealisePasswordReminding(newPassword, token);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)
@@ -216,6 +216,10 @@ namespace BeerRateApi.Controllers
                 return Unauthorized(new { ex.Message });
             }
             catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(new { ex.Message });
             }

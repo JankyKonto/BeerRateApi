@@ -181,13 +181,13 @@ namespace BeerRateApi.Services
 
         public async Task RemindPasswordSendEmail(string email)
         {
-            string token = _tokenService.GenerateRandom64Token();
-            DateTime expireDate = DateTime.UtcNow.AddHours(1);
+            string token = _tokenService.GenerateRandom32Token();
+            var clientAddress = _configuration.GetSection("ClientAppSettings")["Address"];
+            DateTime expireDate = DateTime.UtcNow.AddHours(6);
             StringBuilder message = new StringBuilder();
 
-            string hostAddress = "";
-            message.AppendLine("Aby przypomnieć hasło kliknij link poniżej:");
-            message.AppendLine($"{hostAddress}/remind-password/{token}");
+            message.AppendLine("Aby przypomnieć hasło kliknij link poniżej: <br/>");
+            message.AppendLine($"<a href=\"https://{clientAddress}/realise-password-reminding/{token}\">https://{clientAddress}/realise-password-reminding/{token}</a>");
 
             var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
 
@@ -201,7 +201,6 @@ namespace BeerRateApi.Services
                 user.RemindPasswordTokenExpiry = expireDate;
                 DbContext.SaveChangesAsync();
                 await _emailService.SendAsync(user.Email, "Beer-rate przypomnienie hasła", message.ToString());
-
             }
         }
 
@@ -212,17 +211,29 @@ namespace BeerRateApi.Services
             {
                 throw new UnauthorizedAccessException("User not found");
             }
-            else if (user.RemindPasswordTokenExpiry > DateTime.UtcNow)
+            else if (user.RemindPasswordTokenExpiry < DateTime.UtcNow)
             {
                 throw new UnauthorizedAccessException("Token expired");
-            } 
+            }
+            else if (newPassword.Length < 8)
+            {
+                throw new ArgumentException("Password is too short");
+            }
+            else if (newPassword == null)
+            {
+                throw new ArgumentNullException("Password is null");
+            }
+            else if (token == null)
+            {
+                throw new ArgumentNullException("Token is null");
+            }
             else
             {
                 var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newPassword);
                 user.PasswordHash = passwordHash;
                 user.RemindPasswordToken = null;
                 user.RemindPasswordTokenExpiry = null;
-                
+                DbContext.SaveChanges();
             }    
         }
     }
