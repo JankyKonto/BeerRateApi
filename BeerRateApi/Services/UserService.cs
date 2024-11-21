@@ -2,8 +2,10 @@
 using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 
 
@@ -13,13 +15,17 @@ namespace BeerRateApi.Services
     {
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
 
-        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper)
+        public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper, IConfiguration configuration)
             : base(dbContext, logger, mapper)
         {
+            _configuration = configuration;
             _tokenService = tokenService;
             _emailService = emailService;
         }
+
+
 
         public async Task<RegisterResult> RegisterUser (RegisterDTO registerDTO)
         {
@@ -173,15 +179,62 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task RemindPassword(string email)
+        public async Task RemindPasswordSendEmail(string email)
         {
+            string token = _tokenService.GenerateRandom32Token();
+            var clientAddress = _configuration.GetSection("ClientAppSettings")["Address"];
+            DateTime expireDate = DateTime.UtcNow.AddHours(6);
+            StringBuilder message = new StringBuilder();
+
+            message.AppendLine("Aby przypomnieć hasło kliknij link poniżej: <br/>");
+            message.AppendLine($"<a href=\"https://{clientAddress}/realise-password-reminding/{token}\">https://{clientAddress}/realise-password-reminding/{token}</a>");
+
             var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
+
             if (user == null)
             {
                 throw new UnauthorizedAccessException("User not found");
             }
+            else
+            {
+                user.RemindPasswordToken = token;
+                user.RemindPasswordTokenExpiry = expireDate;
+                DbContext.SaveChangesAsync();
+                await _emailService.SendAsync(user.Email, "Beer-rate przypomnienie hasła", message.ToString());
+            }
+        }
 
-            await _emailService.SendAsync(user.Email, "Remind password", "This is a test email message with paswword remind");
+        public async Task RealisePasswordReminding(string newPassword, string token)
+        {
+            User user = await DbContext.Users.FirstOrDefaultAsync(user=>user.RemindPasswordToken == token);
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("User not found");
+            }
+            else if (user.RemindPasswordTokenExpiry < DateTime.UtcNow)
+            {
+                throw new UnauthorizedAccessException("Token expired");
+            }
+            else if (newPassword.Length < 8)
+            {
+                throw new ArgumentException("Password is too short");
+            }
+            else if (newPassword == null)
+            {
+                throw new ArgumentNullException("Password is null");
+            }
+            else if (token == null)
+            {
+                throw new ArgumentNullException("Token is null");
+            }
+            else
+            {
+                var passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newPassword);
+                user.PasswordHash = passwordHash;
+                user.RemindPasswordToken = null;
+                user.RemindPasswordTokenExpiry = null;
+                DbContext.SaveChanges();
+            }    
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeerRateApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241017144518_init2")]
+    [Migration("20241113232959_init2")]
     partial class init2
     {
         /// <inheritdoc />
@@ -45,9 +45,11 @@ namespace BeerRateApi.Migrations
                     b.Property<int>("Ibu")
                         .HasColumnType("int");
 
-                    b.Property<string>("Kind")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -60,9 +62,6 @@ namespace BeerRateApi.Migrations
                     b.Property<string>("Producer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isComitted")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -142,6 +141,12 @@ namespace BeerRateApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ConfirmEmailToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ConfirmEmailTokenExpiry")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -158,6 +163,16 @@ namespace BeerRateApi.Migrations
 
                     b.Property<DateTime?>("RefreshTokenExpiry")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("RemindPasswordToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RemindPasswordTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()

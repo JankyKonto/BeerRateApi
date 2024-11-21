@@ -6,28 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BeerRateApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Beers",
+                name: "BeerImages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Producer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Kind = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OriginCountry = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AlcoholAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Ibu = table.Column<int>(type: "int", nullable: false),
-                    isComitted = table.Column<bool>(type: "bit", nullable: false)
+                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Caption = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Beers", x => x.Id);
+                    table.PrimaryKey("PK_BeerImages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,11 +37,42 @@ namespace BeerRateApi.Migrations
                     IsEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RefreshTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    RefreshTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RemindPasswordToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RemindPasswordTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ConfirmEmailToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConfirmEmailTokenExpiry = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Beers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Producer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kind = table.Column<int>(type: "int", nullable: false),
+                    OriginCountry = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AlcoholAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Ibu = table.Column<int>(type: "int", nullable: false),
+                    IsConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    BeerImageId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Beers_BeerImages_BeerImageId",
+                        column: x => x.BeerImageId,
+                        principalTable: "BeerImages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,10 +82,10 @@ namespace BeerRateApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TasteRate = table.Column<int>(type: "int", nullable: false),
-                    AromaRate = table.Column<int>(type: "int", nullable: false),
-                    FoamRate = table.Column<int>(type: "int", nullable: false),
-                    ColourRate = table.Column<int>(type: "int", nullable: false),
+                    TasteRate = table.Column<int>(type: "int", nullable: true),
+                    AromaRate = table.Column<int>(type: "int", nullable: true),
+                    FoamRate = table.Column<int>(type: "int", nullable: true),
+                    ColorRate = table.Column<int>(type: "int", nullable: true),
                     BeerId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -78,6 +105,11 @@ namespace BeerRateApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Beers_BeerImageId",
+                table: "Beers",
+                column: "BeerImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_BeerId",
@@ -101,6 +133,9 @@ namespace BeerRateApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "BeerImages");
         }
     }
 }
