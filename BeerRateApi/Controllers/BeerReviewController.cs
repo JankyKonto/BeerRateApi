@@ -1,10 +1,8 @@
 ﻿using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
-using BeerRateApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
-using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
@@ -71,7 +69,6 @@ namespace BeerRateApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
-
             }
         }
 
@@ -90,6 +87,7 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("pages-amount/{beerId}")]
         public async Task<IActionResult> GetBeerReviewPagesAmount(int beerId)
         {
