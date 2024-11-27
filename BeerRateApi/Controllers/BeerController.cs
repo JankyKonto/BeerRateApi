@@ -60,7 +60,7 @@ namespace BeerRateApi.Controllers
             try
             {
                 var beers = await _beerService.GetBeersPage(page, dto);
-                return Ok(new { Beers = beers });
+                return Ok(beers);
             }
             catch (Exception ex)
             {

@@ -180,8 +180,11 @@ namespace BeerRateApi.Services
         public async Task<PagesWithBeersDTO> GetBeersPage(int page, FilterAndSortBeersDTO dto)
         {
             int pagesAmount = await GetBeersPagesAmount();
-
-            if (page < 1 || page > pagesAmount)
+            if (page == 0)
+            {
+                page = 1;
+            }
+            else if (page < 1 || page > pagesAmount)
             {
                 throw new ArgumentException("Wrong page number");
             }
