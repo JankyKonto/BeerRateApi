@@ -11,29 +11,29 @@ namespace BeerRateApi.Services
         public BeerReviewService(AppDbContext dbContext, ILogger logger, IMapper mapper)
             : base(dbContext, logger, mapper) { }
         private const int reviewsPerPage = 10;
-        public async Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO AddBeerReviewDTO)
+        public async Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO addBeerReviewDTO)
         {
             try
             {
-                if (await DbContext.Reviews.AnyAsync(review => review.UserId == AddBeerReviewDTO.UserId))
+                if (await DbContext.Reviews.AnyAsync(review => review.UserId == addBeerReviewDTO.UserId && review.BeerId == addBeerReviewDTO.BeerId))
                 {
                     throw new InvalidOperationException($"This user has been already rated this beer");
                 }
 
                 var review = new Review()
                 {
-                    Text = AddBeerReviewDTO.Text,
-                    TasteRate = AddBeerReviewDTO.TasteRate,
-                    AromaRate = AddBeerReviewDTO.AromaRate,
-                    FoamRate = AddBeerReviewDTO.FoamRate,
-                    ColorRate = AddBeerReviewDTO.ColorRate,
-                    BeerId = AddBeerReviewDTO.BeerId,
-                    UserId = AddBeerReviewDTO.UserId,
-                    CreatedAt = DateTime.UtcNow,
+                    Text = addBeerReviewDTO.Text,
+                    TasteRate = addBeerReviewDTO.TasteRate,
+                    AromaRate = addBeerReviewDTO.AromaRate,
+                    FoamRate = addBeerReviewDTO.FoamRate,
+                    ColorRate = addBeerReviewDTO.ColorRate,
+                    BeerId = addBeerReviewDTO.BeerId,
+                    UserId = addBeerReviewDTO.UserId,
+                    CreatedAt = DateTime.Now,
                 };
                 DbContext.Reviews.Add(review);
                 await DbContext.SaveChangesAsync();
-                var user = await DbContext.Users.FindAsync(AddBeerReviewDTO.UserId);
+                var user = await DbContext.Users.FindAsync(addBeerReviewDTO.UserId);
                 string username = user.Username;
                 return new AddBeerReviewResult()
                 {
