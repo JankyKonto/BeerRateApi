@@ -73,8 +73,11 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<PagesWithBeersDTO> FilterAndSortBeers(FilterAndSortBeersDTO dto, int startIndex, int endIndex)
+        public async Task<PagesWithBeersDTO> FilterAndSortBeers(FilterAndSortBeersDTO dto, int page)
         {
+            var startIndex = (page - 1) * beersPerPage;
+            var endIndex = beersPerPage * page;
+
             try
             {
                 var query = DbContext.Beers.AsQueryable();
@@ -156,12 +159,16 @@ namespace BeerRateApi.Services
                             break;
                     }
                 }
-
+                var beersCount = await query.CountAsync();
+                var pages = beersCount % beersPerPage == 0 ? beersCount / beersPerPage : beersCount / beersPerPage + 1;
                 query = query.Skip(startIndex).Take(endIndex - startIndex);
 
                 var beers = await query.ToListAsync();
-                var beersCount = beers.Count;
-                var pages = beersCount % beersPerPage == 0 ? beersCount / beersPerPage : beersCount / beersPerPage + 1;
+
+                if(page > pages)
+                {
+                    throw new ArgumentException("Wrong page number");
+                }
 
                 var pageWithBeers = new PagesWithBeersDTO();
 
@@ -189,7 +196,7 @@ namespace BeerRateApi.Services
                 throw new ArgumentException("Wrong page number");
             }
 
-            return await FilterAndSortBeers(dto, (page - 1) * beersPerPage, beersPerPage * page);
+            return await FilterAndSortBeers(dto, page);
         }
 
         public async Task<int> GetBeersPagesAmount()
