@@ -1,0 +1,2482 @@
+[
+  {
+    "Text": "Piwo jest dobrze zbalansowane, z wyraźnym smakiem, który długo pozostaje na podniebieniu. Aromat jest delikatny, ale przyjemny.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 3,
+    "UserId": 2,
+    "CreatedAt": "2024-11-27T12:34:00"
+  },
+  {
+    "Text": "Aromat tego piwa jest intensywny, z nutami karmelu i prażonych ziaren. Piwo ma pełny smak, jednak może być zbyt gorzkie dla niektórych.",
+    "TasteRate": 6,
+    "AromaRate": 9,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 7,
+    "UserId": 3,
+    "CreatedAt": "2024-11-27T12:40:00"
+  },
+  {
+    "Text": "Piwo ma bardzo jasny kolor i dobrze utrzymującą się pianę. Jego smak jest delikatny, a po zapachu widać, że to coś wyjątkowego.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 10,
+    "BeerId": 11,
+    "UserId": 4,
+    "CreatedAt": "2024-11-27T12:45:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo z intensywnym smakiem palonych słodów. Ma głęboki aromat, który przypomina czekoladę. Dobrze komponuje się z deserami.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 13,
+    "UserId": 5,
+    "CreatedAt": "2024-11-27T12:50:00"
+  },
+  {
+    "Text": "Lekko orzeźwiające piwo o umiarkowanym smaku chmielu. Jest odrobinę wodniste, ale przyjemne do picia na ciepłe dni.",
+    "TasteRate": 5,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 17,
+    "UserId": 6,
+    "CreatedAt": "2024-11-27T12:55:00"
+  },
+  {
+    "Text": "Bardzo intensywny zapach piwa od pierwszego łyka. Smak jest pełny, chociaż dla niektórych może być zbyt ciężki. Ciemny kolor sprawia, że od razu widać, że to piwo mocniejsze.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 19,
+    "UserId": 7,
+    "CreatedAt": "2024-11-27T13:00:00"
+  },
+  {
+    "Text": "To piwo posiada delikatną goryczkę, która nie przytłacza smaku. Jest lekko owocowe, co daje przyjemne wrażenie.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 23,
+    "UserId": 8,
+    "CreatedAt": "2024-11-27T13:05:00"
+  },
+  {
+    "Text": "Wyjątkowo aromatyczne piwo z nutami cytrusowymi, bardzo świeże i orzeźwiające. Doskonałe na upalne dni.",
+    "TasteRate": 8,
+    "AromaRate": 9,
+    "FoamRate": 7,
+    "ColorRate": 7,
+    "BeerId": 29,
+    "UserId": 9,
+    "CreatedAt": "2024-11-27T13:10:00"
+  },
+  {
+    "Text": "Piwo o zdecydowanej goryczce, z nutami ziół i chmielu. Idealne dla miłośników mocniejszych piw.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 33,
+    "UserId": 10,
+    "CreatedAt": "2024-11-27T13:15:00"
+  },
+  {
+    "Text": "Piwo bardzo lekkie, o subtelnym smaku. Jest idealne do picia w czasie spotkań towarzyskich. Nieprzytłaczające, ale smaczne.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 6,
+    "BeerId": 37,
+    "UserId": 11,
+    "CreatedAt": "2024-11-27T13:20:00"
+  },
+  {
+    "Text": "Piwo o wyjątkowym smaku, łączące delikatną słodycz z wyraźną goryczką. Aromat jest subtelny, ale przyjemny. Dobre do picia na co dzień.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 7,
+    "BeerId": 41,
+    "UserId": 12,
+    "CreatedAt": "2024-11-27T13:25:00"
+  },
+  {
+    "Text": "To piwo ma bogaty aromat przypominający zapach świeżo skoszonej trawy. Smak jest lekki, ale z wyraźnym chmielowym finiszem.",
+    "TasteRate": 6,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 43,
+    "UserId": 13,
+    "CreatedAt": "2024-11-27T13:30:00"
+  },
+  {
+    "Text": "Piwo ma intensywny zapach przypominający prażoną kawę. Smak jest pełny, z dominującymi nutami czekolady i karmelu. Idealne na chłodniejsze dni.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 47,
+    "UserId": 14,
+    "CreatedAt": "2024-11-27T13:35:00"
+  },
+  {
+    "Text": "Bardzo lekkie piwo, idealne na letnie popołudnia. Smak jest bardzo subtelny, niemal wodnisty, z delikatną goryczką na końcu.",
+    "TasteRate": 5,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 53,
+    "UserId": 15,
+    "CreatedAt": "2024-11-27T13:40:00"
+  },
+  {
+    "Text": "Piwo o mocnym, wytrawnym smaku, który długo utrzymuje się na podniebieniu. Dobrze zrównoważony aromat chmielu. Bardzo dobre dla fanów ciemniejszych piw.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 9,
+    "BeerId": 59,
+    "UserId": 16,
+    "CreatedAt": "2024-11-27T13:45:00"
+  },
+  {
+    "Text": "To piwo jest bardzo orzeźwiające. Smak jest lekki, cytrusowy, z wyraźnym akcentem chmielu. Doskonałe na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 61,
+    "UserId": 17,
+    "CreatedAt": "2024-11-27T13:50:00"
+  },
+  {
+    "Text": "Bardzo intensywne piwo z bogatym smakiem palonego słodu. Aromat przypomina przyprawy i ciemne owoce, co daje całości wyjątkowy charakter.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 10,
+    "BeerId": 67,
+    "UserId": 18,
+    "CreatedAt": "2024-11-27T13:55:00"
+  },
+  {
+    "Text": "Piwo o delikatnej słodyczy z wyważoną goryczką. Jest lekkie, ale pełne smaku, idealne na każdą okazję.",
+    "TasteRate": 8,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 7,
+    "BeerId": 71,
+    "UserId": 19,
+    "CreatedAt": "2024-11-27T14:00:00"
+  },
+  {
+    "Text": "Ciemne piwo z pełnym, wyrazistym smakiem. Na pierwszym planie pojawiają się nuty karmelu i palonego cukru. Idealne do deserów.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 73,
+    "UserId": 20,
+    "CreatedAt": "2024-11-27T14:05:00"
+  },
+  {
+    "Text": "To piwo jest lekkie, z delikatnym, orzeźwiającym smakiem. Ma przyjemny zapach chmielu, który nie jest zbyt intensywny.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 79,
+    "UserId": 21,
+    "CreatedAt": "2024-11-27T14:10:00"
+  },
+  {
+    "Text": "Piwo o wyjątkowym smaku, pełnym nut karmelu i lekko wyczuwalnej goryczki. Aromat jest intensywny i przyjemny, idealne do długich wieczorów.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 9,
+    "BeerId": 83,
+    "UserId": 22,
+    "CreatedAt": "2024-11-27T14:15:00"
+  },
+  {
+    "Text": "To piwo ma delikatny smak, który przypomina owocowe nuty. Jest odświeżające i dobrze zrównoważone, świetne na lato.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 89,
+    "UserId": 23,
+    "CreatedAt": "2024-11-27T14:20:00"
+  },
+  {
+    "Text": "Piwo o pełnym, bogatym smaku przypominającym mieszankę ciemnych owoców i przypraw. Ma intensywny zapach, który doskonale komponuje się z jego smakiem.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 91,
+    "UserId": 24,
+    "CreatedAt": "2024-11-27T14:25:00"
+  },
+  {
+    "Text": "Lekka goryczka, bardzo przyjemny aromat chmielu i zrównoważony smak. Idealne do relaksu po pracy.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 8,
+    "ColorRate": 6,
+    "BeerId": 97,
+    "UserId": 25,
+    "CreatedAt": "2024-11-27T14:30:00"
+  },
+  {
+    "Text": "Piwo o ciemnym kolorze i mocnym, palonym smaku. Aromat jest wyraźny, przypominający pieczoną kawę i czekoladę.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 26,
+    "CreatedAt": "2024-11-27T14:35:00"
+  },
+  {
+    "Text": "To piwo ma wyjątkowy, owocowy posmak, który pozostaje na długo. W smaku pojawiają się subtelne nuty jabłka i cytrusów.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 103,
+    "UserId": 27,
+    "CreatedAt": "2024-11-27T14:40:00"
+  },
+  {
+    "Text": "Intensywnie gorzkie piwo z nutami ziół. Smak jest dość wytrawny, ale bardzo orzeźwiający. Idealne dla fanów goryczki.",
+    "TasteRate": 8,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 109,
+    "UserId": 28,
+    "CreatedAt": "2024-11-27T14:45:00"
+  },
+  {
+    "Text": "Piwo lekkie i orzeźwiające, z wyraźnym smakiem cytrusów. Aromat jest subtelny, a całość przyjemna i łatwa do wypicia.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 8,
+    "ColorRate": 6,
+    "BeerId": 113,
+    "UserId": 29,
+    "CreatedAt": "2024-11-27T14:50:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku słodu i delikatnej goryczce. Jest bardzo zrównoważone, doskonałe do picia w towarzystwie.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 117,
+    "UserId": 30,
+    "CreatedAt": "2024-11-27T14:55:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o intensywnym smaku czekolady i kawy. Wyraźna goryczka na końcu, idealne na zimowe wieczory.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 119,
+    "UserId": 31,
+    "CreatedAt": "2024-11-27T15:00:00"
+  },
+  {
+    "Text": "Piwo o bardzo przyjemnym smaku, który łączy subtelne nuty owoców i kwiatów. Jest lekkie, ale pełne charakteru, idealne na wieczorne spotkania.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 8,
+    "ColorRate": 6,
+    "BeerId": 3,
+    "UserId": 8,
+    "CreatedAt": "2024-11-27T16:45:00"
+  },
+  {
+    "Text": "Ciemne piwo o intensywnych nutach czekolady, kawy i karmelu. Jest pełne, ale nie przytłaczające, a goryczka jest subtelna, ale wyczuwalna.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 7,
+    "UserId": 9,
+    "CreatedAt": "2024-11-27T16:50:00"
+  },
+  {
+    "Text": "Piwo o lekkim, orzeźwiającym smaku, z nutami cytrusów i delikatną goryczką. Doskonałe na gorące dni, świetnie pasuje do sałatek i lekkich potraw.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 11,
+    "UserId": 10,
+    "CreatedAt": "2024-11-27T16:55:00"
+  },
+  {
+    "Text": "To piwo ma bardzo intensywny smak słodu, z nutami przypalonych ciastek i karmelu. Jest to piwo o mocnym charakterze, idealne dla fanów ciemniejszych trunków.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 13,
+    "UserId": 11,
+    "CreatedAt": "2024-11-27T17:00:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku z wyraźnymi nutami suszonych owoców i miodu. Ma przyjemną goryczkę, która dobrze balansuje słodycz.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 7,
+    "BeerId": 17,
+    "UserId": 12,
+    "CreatedAt": "2024-11-27T17:05:00"
+  },
+  {
+    "Text": "Bardzo lekkie piwo, które ma subtelny smak owoców cytrusowych. Jest orzeźwiające, ale niezbyt wyraziste, idealne na relaks w ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 23,
+    "UserId": 13,
+    "CreatedAt": "2024-11-27T17:10:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku z nutami karmelu, czekolady i orzechów. Jest intensywne, ale dobrze wyważone, a jego goryczka jest przyjemnie łagodna.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 29,
+    "UserId": 14,
+    "CreatedAt": "2024-11-27T17:15:00"
+  },
+  {
+    "Text": "To piwo łączy intensywny aromat chmielu z delikatnym, owocowym posmakiem. Goryczka jest dobrze wyważona, co sprawia, że piwo jest przyjemne do picia.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 31,
+    "UserId": 15,
+    "CreatedAt": "2024-11-27T17:20:00"
+  },
+  {
+    "Text": "Piwo o intensywnych nutach ziołowych i kwiatowych, z wyraźną, ale nie dominującą goryczką. Jest bardzo orzeźwiające i doskonale sprawdza się w ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 8,
+    "ColorRate": 7,
+    "BeerId": 37,
+    "UserId": 16,
+    "CreatedAt": "2024-11-27T17:25:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku, który przypomina mieszankę suszonych owoców i przypraw. Jest zrównoważone, ale z dość wyraźną goryczką, która dodaje charakteru.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 43,
+    "UserId": 17,
+    "CreatedAt": "2024-11-27T17:30:00"
+  },
+  {
+    "Text": "Piwo o bardzo wyrazistym smaku chmielu, który łączy się z lekką nutą cytrusów. Goryczka jest dosyć intensywna, ale nie przytłaczająca.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 5,
+    "UserId": 18,
+    "CreatedAt": "2024-11-27T17:35:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo, którego smak jest pełny, z nutami karmelu, czekolady i przypalonego słodu. Goryczka jest wyważona i nie przytłacza.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 7,
+    "UserId": 19,
+    "CreatedAt": "2024-11-27T17:40:00"
+  },
+  {
+    "Text": "To lekkie piwo z nutami świeżych owoców i subtelną, cytrusową goryczką. Jest rześkie i łatwe do picia, idealne na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 9,
+    "UserId": 20,
+    "CreatedAt": "2024-11-27T17:45:00"
+  },
+  {
+    "Text": "Piwo o mocnym smaku słodu i z nutami przypalonych ciastek oraz karmelu. Jest pełne, ale dobrze zbalansowane, a goryczka nadaje mu charakteru.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 9,
+    "BeerId": 13,
+    "UserId": 21,
+    "CreatedAt": "2024-11-27T17:50:00"
+  },
+  {
+    "Text": "Piwo lekkie, o bardzo delikatnym smaku kwiatów i owoców. Goryczka jest prawie niezauważalna, przez co piwo jest idealne do picia na co dzień.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 17,
+    "UserId": 22,
+    "CreatedAt": "2024-11-27T17:55:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku z nutami suszonych owoców i przypraw. Jego goryczka jest wyraźna, ale dobrze współgra z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 19,
+    "UserId": 23,
+    "CreatedAt": "2024-11-27T18:00:00"
+  },
+  {
+    "Text": "Piwo o wyraźnym smaku ziół i przypraw, z lekką nutą karmelu. Jest dość intensywne, ale nie przytłaczające. Idealne do jedzenia.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 7,
+    "BeerId": 23,
+    "UserId": 24,
+    "CreatedAt": "2024-11-27T18:05:00"
+  },
+  {
+    "Text": "Ciemne piwo, w którym dominuje smak czekolady, karmelu i palonego słodu. Goryczka jest dość mocna, ale nie dominująca.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 29,
+    "UserId": 25,
+    "CreatedAt": "2024-11-27T18:10:00"
+  },
+  {
+    "Text": "Piwo o lekkim, orzeźwiającym smaku z nutami cytrusów i kwiatów. Goryczka jest łagodna, co sprawia, że piwo jest bardzo łatwe do picia.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 31,
+    "UserId": 26,
+    "CreatedAt": "2024-11-27T18:15:00"
+  },
+  {
+    "Text": "Piwo z intensywnym zapachem chmielu i lekką, owocową nutą. Goryczka jest przyjemnie wyważona, idealne na letnie spotkania z przyjaciółmi.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 37,
+    "UserId": 27,
+    "CreatedAt": "2024-11-27T18:20:00"
+  },
+  {
+    "Text": "Piwo o przyjemnym smaku, który łączy nuty miodu i karmelu. Goryczka jest łagodna, a całość bardzo dobrze zbalansowana.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 41,
+    "UserId": 28,
+    "CreatedAt": "2024-11-27T18:25:00"
+  },
+  {
+    "Text": "To piwo ma intensywny smak ziołowy, z lekką nutą cytrusową. Jest orzeźwiające, ale z wyraźną, nieco gorzką goryczką.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 43,
+    "UserId": 29,
+    "CreatedAt": "2024-11-27T18:30:00"
+  },
+  {
+    "Text": "Ciemne piwo, w którym dominują smaki karmelu, czekolady i orzechów. Goryczka jest mocna, ale nie przytłacza, co sprawia, że piwo jest bardzo przyjemne.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 47,
+    "UserId": 30,
+    "CreatedAt": "2024-11-27T18:35:00"
+  },
+  {
+    "Text": "Piwo o lekkim, owocowym smaku, z nutami cytrusów i kwiatów. Ma subtelną goryczkę, co czyni je idealnym do picia na letnie wieczory.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 53,
+    "UserId": 31,
+    "CreatedAt": "2024-11-27T18:40:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku, w którym wyraźnie można wyczuć karmel i czekoladę. Ma wyważoną goryczkę, która dobrze komponuje się z bogatym smakiem.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 59,
+    "UserId": 32,
+    "CreatedAt": "2024-11-27T18:45:00"
+  },
+  {
+    "Text": "Bardzo lekkie piwo, prawie wodniste, z nutami świeżych owoców i ziół. Goryczka jest subtelna, przez co piwo jest wyjątkowo orzeźwiające.",
+    "TasteRate": 5,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 61,
+    "UserId": 33,
+    "CreatedAt": "2024-11-27T18:50:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest wyczuwalna, ale nie dominuje, co sprawia, że piwo jest bardzo pijalne.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 67,
+    "UserId": 34,
+    "CreatedAt": "2024-11-27T18:55:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku czekolady i orzechów. Jego goryczka jest wyważona, co sprawia, że piwo jest bardzo dobrze zbalansowane i przyjemne w smaku.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 73,
+    "UserId": 35,
+    "CreatedAt": "2024-11-27T19:00:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku cytrusów i lekkiej ziołowej nutce. Goryczka jest delikatna, co czyni je świetnym wyborem na letnie dni.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 79,
+    "UserId": 36,
+    "CreatedAt": "2024-11-27T19:05:00"
+  },
+  {
+    "Text": "Piwo o bardzo intensywnym smaku chmielu, z nutami cytrusów i ziół. Goryczka jest mocna, ale piwo jest dobrze zbalansowane, świetne na chłodne wieczory.",
+    "TasteRate": 8,
+    "AromaRate": 9,
+    "FoamRate": 7,
+    "ColorRate": 7,
+    "BeerId": 83,
+    "UserId": 37,
+    "CreatedAt": "2024-11-27T19:10:00"
+  },
+  {
+    "Text": "To piwo ma bardzo pełny, słodowy smak z nutami miodu i karmelu. Goryczka jest subtelna, ale dobrze balansuje słodką stronę piwa.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 89,
+    "UserId": 38,
+    "CreatedAt": "2024-11-27T19:15:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, z lekką nutą ziół. Jest orzeźwiające i łatwe do picia, idealne na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 95,
+    "UserId": 39,
+    "CreatedAt": "2024-11-27T19:20:00"
+  },
+  {
+    "Text": "To piwo ma intensywny smak chmielu i świeżych owoców, zwłaszcza cytrusów. Goryczka jest wyczuwalna, ale dobrze balansuje całość.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 97,
+    "UserId": 40,
+    "CreatedAt": "2024-11-27T19:25:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo, które oferuje intensywne smaki czekolady, karmelu i przypalonych owoców. Goryczka jest wyważona, co czyni je idealnym wyborem na chłodniejsze wieczory.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 41,
+    "CreatedAt": "2024-11-27T19:30:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku z delikatnymi nutami owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest subtelna, co czyni piwo bardzo przyjemnym.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 42,
+    "CreatedAt": "2024-11-27T19:35:00"
+  },
+  {
+    "Text": "Piwo o złożonym smaku z nutami karmelu, czekolady i lekkim akcentem owocowym. Goryczka jest przyjemna, dobrze balansując słodkie smaki.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 107,
+    "UserId": 43,
+    "CreatedAt": "2024-11-27T19:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku ziół i przypraw, z lekką nutą cytrusów. Goryczka jest mocna, ale dobrze równoważy całość.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 109,
+    "UserId": 44,
+    "CreatedAt": "2024-11-27T19:45:00"
+  },
+  {
+    "Text": "Ciemne piwo, które łączy smaki karmelu, orzechów i przypalonych ciastek. Jest pełne i bardzo bogate w smaku, a goryczka dobrze je dopełnia.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 45,
+    "CreatedAt": "2024-11-27T19:50:00"
+  },
+  {
+    "Text": "Piwo o orzeźwiającym smaku cytrusów, z lekką nutą ziół. Goryczka jest delikatna, a całość jest wyjątkowo rześka i łatwa do picia.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 2,
+    "CreatedAt": "2024-11-27T19:55:00"
+  },
+  {
+    "Text": "To piwo ma bogaty smak, który łączy nuty miodu, karmelu i czekolady. Goryczka jest subtelna, ale świetnie komponuje się z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 119,
+    "UserId": 3,
+    "CreatedAt": "2024-11-27T20:00:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku z nutami cytrusów i świeżych ziół. Goryczka jest łagodna, co sprawia, że jest to idealne piwo na lato.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 4,
+    "CreatedAt": "2024-11-27T20:05:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o bogatym smaku czekolady, karmelu i orzechów. Goryczka jest wyważona i doskonale komponuje się z pełnym smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 9,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 5,
+    "CreatedAt": "2024-11-27T20:10:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku owoców tropikalnych, takich jak mango i ananas, z subtelną goryczką. Idealne na ciepłe dni, orzeźwiające i łatwe do picia.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 113,
+    "UserId": 6,
+    "CreatedAt": "2024-11-27T20:15:00"
+  },
+  {
+    "Text": "Piwo z wyraźnymi nutami chmielu i ziół, które przeplatają się z delikatnymi akcentami cytrusów. Goryczka jest mocna, ale dobrze zbalansowana.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 8,
+    "ColorRate": 7,
+    "BeerId": 115,
+    "UserId": 7,
+    "CreatedAt": "2024-11-27T20:20:00"
+  },
+  {
+    "Text": "Ciemne piwo o głębokim smaku przypalonych owoców, karmelu i czekolady. Goryczka jest mocna, ale dobrze współgra z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 117,
+    "UserId": 8,
+    "CreatedAt": "2024-11-27T20:25:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku ziół i świeżych owoców, z delikatną goryczką. Jest lekkie i orzeźwiające, świetne na wiosenne dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 119,
+    "UserId": 9,
+    "CreatedAt": "2024-11-27T20:30:00"
+  },
+  {
+    "Text": "Piwo o bardzo intensywnym smaku owoców tropikalnych z akcentem cytrusów. Goryczka jest mocna, ale dobrze zbalansowana, co sprawia, że piwo jest przyjemne w piciu.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 10,
+    "CreatedAt": "2024-11-27T20:35:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o głębokim smaku czekolady i przypalonych owoców. Goryczka jest wyraźna, ale piwo jest dobrze zbalansowane.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 105,
+    "UserId": 11,
+    "CreatedAt": "2024-11-27T20:40:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów i świeżych owoców, z delikatną goryczką. Jest bardzo orzeźwiające i lekkie, idealne na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 107,
+    "UserId": 12,
+    "CreatedAt": "2024-11-27T20:45:00"
+  },
+  {
+    "Text": "Piwo o wyraźnym smaku chmielu i ziół, z lekką nutą owoców tropikalnych. Goryczka jest intensywna, ale dobrze balansuje całość.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 111,
+    "UserId": 13,
+    "CreatedAt": "2024-11-27T20:50:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, czekolady i orzechów, z lekką nutą przypalonych owoców. Goryczka jest wyważona, co sprawia, że piwo jest bardzo przyjemne w piciu.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 111,
+    "UserId": 14,
+    "CreatedAt": "2024-11-27T20:55:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów i ziół, z subtelną goryczką. Jest to piwo idealne na wiosenne i letnie dni, lekkie i orzeźwiające.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 15,
+    "CreatedAt": "2024-11-27T21:00:00"
+  },
+  {
+    "Text": "Ciemne piwo z intensywnym smakiem czekolady, karmelu i orzechów. Goryczka jest mocna, ale doskonale komponuje się z bogatym smakiem.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 119,
+    "UserId": 16,
+    "CreatedAt": "2024-11-27T21:05:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest delikatna, przez co piwo jest bardzo pijalne i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 101,
+    "UserId": 17,
+    "CreatedAt": "2024-11-27T21:10:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku chmielu i ziół, z lekką nutą cytrusów. Goryczka jest dość wyraźna, ale piwo jest dobrze zbalansowane i pełne.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 107,
+    "UserId": 18,
+    "CreatedAt": "2024-11-27T21:15:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku, w którym wyczuwalne są nuty miodu, karmelu i czekolady. Goryczka jest subtelna, ale doskonale równoważy słodycz.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 103,
+    "UserId": 19,
+    "CreatedAt": "2024-11-27T21:20:00"
+  },
+  {
+    "Text": "Bardzo lekkie piwo o smaku świeżych owoców i ziół. Goryczka jest niemal niewyczuwalna, co sprawia, że piwo jest przyjemnie orzeźwiające.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 20,
+    "CreatedAt": "2024-11-27T21:25:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, takich jak ananas i mango, z wyraźną goryczką. Jest orzeźwiające, ale jednocześnie pełne w smaku.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 21,
+    "CreatedAt": "2024-11-27T21:30:00"
+  },
+  {
+    "Text": "Ciemne piwo o smaku przypalonych owoców, czekolady i karmelu. Goryczka jest wyraźna, ale dobrze współgra z głębokim smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 117,
+    "UserId": 22,
+    "CreatedAt": "2024-11-27T21:35:00"
+  },
+  {
+    "Text": "Piwo o świeżym, owocowym smaku, z lekką nutą cytrusową. Goryczka jest łagodna, co sprawia, że piwo jest idealnym wyborem na letnie dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 23,
+    "CreatedAt": "2024-11-27T21:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu i czekolady, z wyczuwalnymi nutami orzechów. Goryczka jest wyważona, co sprawia, że piwo jest bardzo przyjemne w piciu.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 24,
+    "CreatedAt": "2024-11-27T21:45:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku chmielu i ziół, z nutami cytrusów. Goryczka jest dość mocna, ale dobrze zbalansowana z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 25,
+    "CreatedAt": "2024-11-27T21:50:00"
+  },
+  {
+    "Text": "Ciemne piwo o głębokim smaku karmelu, orzechów i przypalonych owoców. Goryczka jest mocna, ale dobrze równoważy słodycz.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 26,
+    "CreatedAt": "2024-11-27T21:55:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku owoców tropikalnych, z akcentami mango i ananasa. Goryczka jest łagodna, co sprawia, że piwo jest łatwe do picia.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 27,
+    "CreatedAt": "2024-11-27T22:00:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku miodu, czekolady i karmelu. Goryczka jest delikatna, a całość jest bardzo dobrze zbalansowana.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 113,
+    "UserId": 28,
+    "CreatedAt": "2024-11-27T22:05:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów, z nutami ziół. Goryczka jest subtelna, co czyni to piwo bardzo orzeźwiającym i przyjemnym.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 29,
+    "CreatedAt": "2024-11-27T22:10:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza ananasa i mango, z wyczuwalną goryczką. Jest pełne i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 117,
+    "UserId": 30,
+    "CreatedAt": "2024-11-27T22:15:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo z intensywnymi nutami karmelu, czekolady i orzechów. Goryczka jest mocna, ale dobrze komponuje się z bogatym smakiem.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 119,
+    "UserId": 31,
+    "CreatedAt": "2024-11-27T22:20:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów, z nutą miodu. Goryczka jest niska, co sprawia, że piwo jest bardzo orzeźwiające.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 32,
+    "CreatedAt": "2024-11-27T22:25:00"
+  },
+  {
+    "Text": "Piwo o wyraźnym smaku chmielu i ziół, z nutami cytrusów. Goryczka jest mocna, ale doskonale balansuje całość.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 33,
+    "CreatedAt": "2024-11-27T22:30:00"
+  },
+  {
+    "Text": "Ciemne piwo o głębokim smaku karmelu, czekolady i przypalonych owoców. Goryczka jest wyraźna, ale dobrze zbalansowana.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 105,
+    "UserId": 34,
+    "CreatedAt": "2024-11-27T22:35:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, z wyraźną nutą chmielu i ziół. Goryczka jest lekka, co sprawia, że piwo jest bardzo orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 107,
+    "UserId": 35,
+    "CreatedAt": "2024-11-27T22:40:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i orzechów. Goryczka jest mocna, ale dobrze współgra z bogatym smakiem, tworząc harmonijną całość.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 36,
+    "CreatedAt": "2024-11-27T22:45:00"
+  },
+  {
+    "Text": "Piwo o świeżym, owocowym smaku, z akcentami ananasa i mango. Goryczka jest niska, a piwo jest lekkie i bardzo pijalne.",
+    "TasteRate": 7,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 37,
+    "CreatedAt": "2024-11-27T22:50:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o głębokim smaku przypalonych owoców, czekolady i karmelu. Goryczka jest mocna, ale dobrze zrównoważona z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 38,
+    "CreatedAt": "2024-11-27T22:55:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów i miodu, z subtelną goryczką. Jest orzeźwiające i lekkie, doskonałe na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 39,
+    "CreatedAt": "2024-11-27T23:00:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest wyczuwalna, ale dobrze zbalansowana z całością smaku.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 101,
+    "UserId": 40,
+    "CreatedAt": "2024-11-27T23:05:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku miodu, karmelu i orzechów. Goryczka jest bardzo łagodna, co sprawia, że piwo jest bardzo pijalne i przyjemne.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 103,
+    "UserId": 41,
+    "CreatedAt": "2024-11-27T23:10:00"
+  },
+  {
+    "Text": "Piwo o mocnym smaku chmielu, który przeplata się z delikatnymi nutami owoców tropikalnych. Goryczka jest intensywna, ale dobrze balansuje piwo.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 105,
+    "UserId": 42,
+    "CreatedAt": "2024-11-27T23:15:00"
+  },
+  {
+    "Text": "Ciemne piwo o bogatym smaku karmelu, orzechów i czekolady. Goryczka jest mocna, ale piwo jest dobrze zbalansowane i pełne.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 43,
+    "CreatedAt": "2024-11-27T23:20:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców cytrusowych, z nutami mango i ananasa. Goryczka jest wyważona, co sprawia, że piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 109,
+    "UserId": 44,
+    "CreatedAt": "2024-11-27T23:25:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, z subtelną nutą ziół. Goryczka jest bardzo delikatna, co sprawia, że piwo jest łatwe do picia i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 45,
+    "CreatedAt": "2024-11-27T23:30:00"
+  },
+  {
+    "Text": "Ciemne piwo o wyraźnym smaku karmelu i czekolady, z delikatnymi nutami orzechów. Goryczka jest mocna, ale dobrze zbalansowana.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 103,
+    "UserId": 2,
+    "CreatedAt": "2024-11-27T23:35:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, głównie mango i ananasa. Goryczka jest wyważona, piwo jest lekkie i orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 105,
+    "UserId": 3,
+    "CreatedAt": "2024-11-27T23:40:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku czekolady, karmelu i przypalonych owoców. Goryczka jest intensywna, ale dobrze łączy się z pełnym smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 4,
+    "CreatedAt": "2024-11-27T23:45:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku miodu, karmelu i owoców tropikalnych. Goryczka jest niska, co czyni to piwo bardzo przyjemnym i łatwym do wypicia.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 109,
+    "UserId": 5,
+    "CreatedAt": "2024-11-27T23:50:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku cytrusów i ziół. Goryczka jest wyraźna, ale dobrze balansuje całość. Piwo idealne na gorące dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 6,
+    "CreatedAt": "2024-11-27T23:55:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o smaku karmelu, orzechów i przypalonych owoców. Goryczka jest mocna, ale idealnie łączy się z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 7,
+    "CreatedAt": "2024-11-28T00:00:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku owoców cytrusowych, z wyczuwalnymi nutami mango i ananasa. Goryczka jest łagodna, co sprawia, że piwo jest bardzo orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 8,
+    "CreatedAt": "2024-11-28T00:05:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku czekolady, orzechów i przypalonych owoców. Goryczka jest mocna, ale dobrze komponuje się z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 5,
+    "ColorRate": 9,
+    "BeerId": 117,
+    "UserId": 9,
+    "CreatedAt": "2024-11-28T00:10:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów i ziół, z delikatną goryczką. Piwo jest orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 10,
+    "CreatedAt": "2024-11-28T00:15:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów i delikatnej goryczce. Dobrze zbalansowane, orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 11,
+    "CreatedAt": "2024-11-28T00:20:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu, orzechów i przypalonych owoców. Goryczka jest wyraźna, ale dobrze współgra z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 5,
+    "ColorRate": 9,
+    "BeerId": 103,
+    "UserId": 12,
+    "CreatedAt": "2024-11-28T00:25:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku miodu, czekolady i orzechów. Goryczka jest subtelna, a całość jest bardzo dobrze zbalansowana.",
+    "TasteRate": 8,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 105,
+    "UserId": 13,
+    "CreatedAt": "2024-11-28T00:30:00"
+  },
+  {
+    "Text": "Piwo o orzeźwiającym smaku cytrusów i delikatnej goryczce. Idealne na ciepłe dni, pełne świeżości i lekkiego charakteru.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 107,
+    "UserId": 14,
+    "CreatedAt": "2024-11-28T00:35:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku czekolady, karmelu i przypalonych owoców. Goryczka jest intensywna, ale piwo jest dobrze zbalansowane.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 15,
+    "CreatedAt": "2024-11-28T00:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, głównie mango i ananasa, z subtelną goryczką. Orzeźwiające i lekkie.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 16,
+    "CreatedAt": "2024-11-28T00:45:00"
+  },
+  {
+    "Text": "Bardzo ciemne piwo o smaku karmelu, czekolady i przypalonych owoców. Goryczka jest mocna, ale dobrze pasuje do głębokiego smaku.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 17,
+    "CreatedAt": "2024-11-28T00:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, z wyczuwalnymi nutami mango i ananasa. Goryczka jest niska, piwo jest lekkie i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 18,
+    "CreatedAt": "2024-11-28T00:55:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku miodu, karmelu i orzechów. Goryczka jest subtelna, co sprawia, że piwo jest bardzo pijalne.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 117,
+    "UserId": 19,
+    "CreatedAt": "2024-11-28T01:00:00"
+  },
+  {
+    "Text": "Piwo o wyraźnym smaku chmielu i cytrusów. Goryczka jest dość mocna, ale dobrze zbalansowana z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 119,
+    "UserId": 20,
+    "CreatedAt": "2024-11-28T01:05:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, z wyraźną nutą ziół. Goryczka jest bardzo łagodna, piwo jest orzeźwiające i przyjemne w smaku.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 21,
+    "CreatedAt": "2024-11-28T01:10:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu, czekolady i lekkiej nuty orzechów. Goryczka jest dobrze zrównoważona, a całość jest przyjemna i pełna.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 103,
+    "UserId": 22,
+    "CreatedAt": "2024-11-28T01:15:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest niska, co sprawia, że piwo jest lekkie i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 23,
+    "CreatedAt": "2024-11-28T01:20:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku karmelu, czekolady i przypalonych owoców. Goryczka jest mocna, ale doskonale pasuje do bogatego smaku piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 24,
+    "CreatedAt": "2024-11-28T01:25:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, z wyczuwalną nutą miodu. Goryczka jest niska, co sprawia, że piwo jest bardzo lekkie i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 25,
+    "CreatedAt": "2024-11-28T01:30:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku czekolady, karmelu i orzechów. Goryczka jest mocna, ale dobrze równoważy się z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 111,
+    "UserId": 26,
+    "CreatedAt": "2024-11-28T01:35:00"
+  },
+  {
+    "Text": "Piwo o orzeźwiającym smaku cytrusów i delikatnej goryczce. Dobrze zbalansowane, idealne na gorące dni.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 27,
+    "CreatedAt": "2024-11-28T01:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest średnia, co sprawia, że piwo jest bardzo orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 28,
+    "CreatedAt": "2024-11-28T01:45:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku miodu, karmelu i przypalonych orzechów. Goryczka jest lekka, piwo jest gładkie i przyjemne w smaku.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 117,
+    "UserId": 29,
+    "CreatedAt": "2024-11-28T01:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku chmielu, cytrusów i lekkiej goryczce. Jest lekkie, idealne do picia na co dzień.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 30,
+    "CreatedAt": "2024-11-28T01:55:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów, z subtelną nutą ziół i kwiatów. Goryczka jest bardzo łagodna, piwo jest idealne na relaksujące popołudnia.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 31,
+    "CreatedAt": "2024-11-28T02:00:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku karmelu, czekolady i prażonych orzechów. Goryczka jest intensywna, ale dobrze współgra z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 103,
+    "UserId": 32,
+    "CreatedAt": "2024-11-28T02:05:00"
+  },
+  {
+    "Text": "Piwo o wyraźnym smaku owoców tropikalnych, zwłaszcza mango i ananasa, z delikatną goryczką. Idealne na lato, orzeźwiające i lekkie.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 33,
+    "CreatedAt": "2024-11-28T02:10:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, czekolady i przypalonych owoców. Goryczka jest dość mocna, ale doskonale łączy się z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 34,
+    "CreatedAt": "2024-11-28T02:15:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku miodu, karmelu i orzechów. Goryczka jest subtelna, piwo jest gładkie i przyjemne w smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 109,
+    "UserId": 35,
+    "CreatedAt": "2024-11-28T02:20:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów, z lekką nutą ziół. Goryczka jest niska, co sprawia, że piwo jest orzeźwiające i lekkie.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 111,
+    "UserId": 36,
+    "CreatedAt": "2024-11-28T02:25:00"
+  },
+  {
+    "Text": "Piwo o głębokim smaku karmelu, orzechów i przypalonych owoców. Goryczka jest intensywna, ale dobrze komponuje się z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 37,
+    "CreatedAt": "2024-11-28T02:30:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku owoców cytrusowych i tropikalnych, głównie mango i ananasa. Goryczka jest umiarkowana, piwo jest lekkie i orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 38,
+    "CreatedAt": "2024-11-28T02:35:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku miodu, karmelu i orzechów. Goryczka jest niska, a całość jest bardzo gładka i przyjemna.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 117,
+    "UserId": 39,
+    "CreatedAt": "2024-11-28T02:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku cytrusów, z wyczuwalnymi nutami miodu. Goryczka jest średnia, piwo jest orzeźwiające i lekkie.",
+    "TasteRate": 7,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 119,
+    "UserId": 40,
+    "CreatedAt": "2024-11-28T02:45:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i orzechów. Goryczka jest wyraźna, ale dobrze współgra z resztą smaków, tworząc harmonijną całość.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 101,
+    "UserId": 41,
+    "CreatedAt": "2024-11-28T02:50:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku cytrusów, zwłaszcza grapefruita, z nutami ziół. Goryczka jest dość mocna, piwo idealnie nadaje się na letnie dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 42,
+    "CreatedAt": "2024-11-28T02:55:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, orzechów i miodu. Goryczka jest bardzo niska, piwo ma gładką teksturę i jest doskonale zbalansowane.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 105,
+    "UserId": 43,
+    "CreatedAt": "2024-11-28T03:00:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango, ananasa i marakui. Goryczka jest umiarkowana, co sprawia, że piwo jest bardzo orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 107,
+    "UserId": 44,
+    "CreatedAt": "2024-11-28T03:05:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku czekolady, karmelu, z lekkimi nutami kawy. Goryczka jest wyraźna, ale idealnie zbalansowana z bogatym smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 45,
+    "CreatedAt": "2024-11-28T03:10:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów i owoców tropikalnych. Goryczka jest bardzo niska, piwo jest lekkie i orzeźwiające, idealne na gorące dni.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 111,
+    "UserId": 2,
+    "CreatedAt": "2024-11-28T03:15:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, orzechów i czekolady. Goryczka jest niska, co sprawia, że piwo jest gładkie i łatwe do picia.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 113,
+    "UserId": 3,
+    "CreatedAt": "2024-11-28T03:20:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców cytrusowych i tropikalnych. Goryczka jest średnia, piwo jest orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 4,
+    "CreatedAt": "2024-11-28T03:25:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, orzechów i miodu. Goryczka jest bardzo niska, a piwo jest gładkie i dobrze zbalansowane.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 5,
+    "ColorRate": 9,
+    "BeerId": 117,
+    "UserId": 5,
+    "CreatedAt": "2024-11-28T03:30:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku cytrusów i tropikalnych owoców. Goryczka jest wyraźna, ale dobrze współgra z owocowym profilem piwa.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 6,
+    "CreatedAt": "2024-11-28T03:35:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców tropikalnych, z dominującą nutą mango i marakui. Goryczka jest umiarkowana, a piwo jest bardzo orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 7,
+    "CreatedAt": "2024-11-28T03:40:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i prażonych orzechów. Goryczka jest intensywna, ale świetnie komponuje się z bogatymi smakami piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 103,
+    "UserId": 8,
+    "CreatedAt": "2024-11-28T03:45:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, zwłaszcza grejpfrutów. Goryczka jest lekka, piwo jest świeże i lekkie, idealne na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 9,
+    "CreatedAt": "2024-11-28T03:50:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest wyraźna, ale dobrze zbalansowana z całością smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 107,
+    "UserId": 10,
+    "CreatedAt": "2024-11-28T03:55:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest średnia, piwo jest przyjemnie orzeźwiające i lekkie.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 109,
+    "UserId": 11,
+    "CreatedAt": "2024-11-28T04:00:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów i miodu. Goryczka jest bardzo niska, co sprawia, że piwo jest gładkie i bardzo orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 111,
+    "UserId": 12,
+    "CreatedAt": "2024-11-28T04:05:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, orzechów i przypalonego chleba. Goryczka jest wyraźna, ale doskonale pasuje do pełnego smaku piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 5,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 13,
+    "CreatedAt": "2024-11-28T04:10:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, czekolady i kawy. Goryczka jest umiarkowana, a piwo jest bardzo gładkie i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 115,
+    "UserId": 14,
+    "CreatedAt": "2024-11-28T04:15:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów i tropikalnych owoców. Goryczka jest lekka, co sprawia, że piwo jest idealne na letnie dni.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 117,
+    "UserId": 15,
+    "CreatedAt": "2024-11-28T04:20:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku karmelu, orzechów i czekolady. Goryczka jest średnia, piwo jest pełne, a smaki doskonale się łączą.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 119,
+    "UserId": 16,
+    "CreatedAt": "2024-11-28T04:25:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i prażonych orzechów. Goryczka jest wyraźna, ale doskonale balansuje bogate smaki piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 17,
+    "CreatedAt": "2024-11-28T04:30:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest umiarkowana, idealne piwo na ciepłe dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 5,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 18,
+    "CreatedAt": "2024-11-28T04:35:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, głównie limonki i grejpfruta. Goryczka jest subtelna, piwo jest orzeźwiające i doskonałe na upalne dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 19,
+    "CreatedAt": "2024-11-28T04:40:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest intensywna, ale idealnie zbalansowana z bogatym smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 20,
+    "CreatedAt": "2024-11-28T04:45:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów, z wyraźną nutą grapefruita. Goryczka jest dość mocna, piwo ma intensywny, orzeźwiający charakter.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 21,
+    "CreatedAt": "2024-11-28T04:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku miodu, karmelu i lekkich orzechów. Goryczka jest niska, piwo jest gładkie, łatwe do picia i idealne na relaks.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 6,
+    "ColorRate": 8,
+    "BeerId": 111,
+    "UserId": 22,
+    "CreatedAt": "2024-11-28T04:55:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, czekolady i przypalonych owoców. Goryczka jest wyraźna, ale piwo ma odpowiednią równowagę między słodyczą a goryczką.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 23,
+    "CreatedAt": "2024-11-28T05:00:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, zwłaszcza grejpfruta, z nutą miodu. Goryczka jest bardzo niska, piwo jest orzeźwiające i idealne na lato.",
+    "TasteRate": 6,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 24,
+    "CreatedAt": "2024-11-28T05:05:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu, orzechów i czekolady. Goryczka jest dość mocna, ale dobrze pasuje do bogatego smaku piwa.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 117,
+    "UserId": 25,
+    "CreatedAt": "2024-11-28T05:10:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców tropikalnych, zwłaszcza marakui i ananasa. Goryczka jest średnia, piwo jest orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 119,
+    "UserId": 26,
+    "CreatedAt": "2024-11-28T05:15:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i kawałków prażonych orzechów. Goryczka jest delikatna, ale dobrze uzupełnia całość, tworząc piwo o intensywnym smaku.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 27,
+    "CreatedAt": "2024-11-28T05:20:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów, zwłaszcza limonki i grejpfruta. Goryczka jest subtelna, a piwo ma orzeźwiający, letni charakter.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 28,
+    "CreatedAt": "2024-11-28T05:25:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku mango, marakui i innych owoców tropikalnych. Goryczka jest średnia, a piwo jest przyjemnie orzeźwiające i lekkie.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 29,
+    "CreatedAt": "2024-11-28T05:30:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu i czekolady, z nutami orzechów i wanilii. Goryczka jest wyraźna, ale nie przytłacza pełni smaku.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 30,
+    "CreatedAt": "2024-11-28T05:35:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, zwłaszcza grapefruita. Goryczka jest lekka, piwo jest bardzo orzeźwiające i idealne na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 31,
+    "CreatedAt": "2024-11-28T05:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i prażonych orzechów. Goryczka jest dość mocna, ale bardzo dobrze komponuje się z resztą smaków.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 111,
+    "UserId": 32,
+    "CreatedAt": "2024-11-28T05:45:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest średnia, piwo ma wyraźny, orzeźwiający charakter.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 33,
+    "CreatedAt": "2024-11-28T05:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, orzechów i delikatnych nut czekolady. Goryczka jest niska, a piwo ma gładką, przyjemną teksturę.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 115,
+    "UserId": 34,
+    "CreatedAt": "2024-11-28T05:55:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango, marakui i papai. Goryczka jest dość mocna, piwo ma wyrazisty, orzeźwiający charakter.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 7,
+    "BeerId": 117,
+    "UserId": 35,
+    "CreatedAt": "2024-11-28T06:00:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku cytrusów, z lekkimi nutami miodu. Goryczka jest bardzo niska, piwo jest gładkie i orzeźwiające.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 36,
+    "CreatedAt": "2024-11-28T06:05:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest mocna, ale doskonale zrównoważona z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 37,
+    "CreatedAt": "2024-11-28T06:10:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest umiarkowana, piwo jest bardzo orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 38,
+    "CreatedAt": "2024-11-28T06:15:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku cytrusów, głównie limonki i grejpfruta. Goryczka jest niska, piwo jest lekkie i bardzo orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 39,
+    "CreatedAt": "2024-11-28T06:20:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, orzechów i delikatnej czekolady. Goryczka jest bardzo niska, piwo jest gładkie i łatwe do picia.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 8,
+    "BeerId": 107,
+    "UserId": 40,
+    "CreatedAt": "2024-11-28T06:25:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest wyraźna, ale bardzo dobrze zbalansowana z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 41,
+    "CreatedAt": "2024-11-28T06:30:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku owoców tropikalnych, zwłaszcza marakui i papai. Goryczka jest umiarkowana, piwo jest pełne smaku i orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 42,
+    "CreatedAt": "2024-11-28T06:35:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, zwłaszcza grejpfruta, z nutą miodu. Goryczka jest niska, piwo jest gładkie i bardzo orzeźwiające.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 43,
+    "CreatedAt": "2024-11-28T06:40:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango, papai i ananasa. Goryczka jest średnia, piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 115,
+    "UserId": 44,
+    "CreatedAt": "2024-11-28T06:45:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest wyraźna, ale doskonale komponuje się z resztą smaków.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 117,
+    "UserId": 45,
+    "CreatedAt": "2024-11-28T06:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych i delikatnym karmelu. Goryczka jest niska, piwo ma lekką teksturę, idealne na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 2,
+    "CreatedAt": "2024-11-28T06:55:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku miodu, karmelu i delikatnych nutach orzechów. Goryczka jest bardzo niska, piwo jest gładkie i świetnie komponuje się z deserami.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 101,
+    "UserId": 3,
+    "CreatedAt": "2024-11-28T07:00:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku cytrusów, zwłaszcza grejpfruta i limonki. Goryczka jest średnia, piwo jest orzeźwiające i idealne na upalne dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 4,
+    "CreatedAt": "2024-11-28T07:05:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, orzechów i przypalonych owoców. Goryczka jest wyraźna, piwo jest bardzo pełne w smaku, doskonałe do deserów.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 105,
+    "UserId": 5,
+    "CreatedAt": "2024-11-28T07:10:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku owoców tropikalnych, zwłaszcza mango i ananasa. Goryczka jest niska, piwo ma bardzo przyjemną, orzeźwiającą teksturę.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 107,
+    "UserId": 6,
+    "CreatedAt": "2024-11-28T07:15:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady i karmelu, z nutami prażonych orzechów. Goryczka jest średnia, piwo jest pełne smaku, gładkie i zbalansowane.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 7,
+    "CreatedAt": "2024-11-28T07:20:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku cytrusów, zwłaszcza grejpfruta i limonki. Goryczka jest bardzo niska, piwo jest orzeźwiające i ma przyjemną teksturę.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 111,
+    "UserId": 8,
+    "CreatedAt": "2024-11-28T07:25:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza mango i papai. Goryczka jest średnia, piwo jest pełne smaku i orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 113,
+    "UserId": 9,
+    "CreatedAt": "2024-11-28T07:30:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest wyraźna, ale dobrze współgra z bogatym smakiem piwa.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 115,
+    "UserId": 10,
+    "CreatedAt": "2024-11-28T07:35:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku miodu, orzechów i karmelu. Goryczka jest bardzo niska, piwo jest gładkie, łatwe do picia, idealne do lekkich przekąsek.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 117,
+    "UserId": 11,
+    "CreatedAt": "2024-11-28T07:40:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców tropikalnych, zwłaszcza marakui i ananasa. Goryczka jest umiarkowana, piwo jest świeże i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 12,
+    "CreatedAt": "2024-11-28T07:45:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i prażonych orzechów. Goryczka jest wyraźna, ale dobrze balansuje się z resztą smaków, dając pełne doznanie.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 101,
+    "UserId": 13,
+    "CreatedAt": "2024-11-28T07:50:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku cytrusów, głównie grejpfruta i limonki. Goryczka jest dość delikatna, piwo jest lekkie i orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 14,
+    "CreatedAt": "2024-11-28T07:55:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku owoców tropikalnych, zwłaszcza mango i marakui, z delikatną nutą czekolady. Goryczka jest umiarkowana, piwo ma orzeźwiającą teksturę.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 105,
+    "UserId": 15,
+    "CreatedAt": "2024-11-28T08:00:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest średnia, piwo jest bardzo pełne w smaku, doskonałe na zimowe wieczory.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 107,
+    "UserId": 16,
+    "CreatedAt": "2024-11-28T08:05:00"
+  },
+  {
+    "Text": "Piwo o lekkim smaku owoców cytrusowych, zwłaszcza limonki i grejpfruta. Goryczka jest bardzo niska, piwo jest orzeźwiające, doskonałe na upalne dni.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 17,
+    "CreatedAt": "2024-11-28T08:10:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku karmelu, prażonych orzechów i czekolady. Goryczka jest średnia, piwo jest pełne, ma gładką teksturę i doskonale komponuje się z deserami.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 111,
+    "UserId": 18,
+    "CreatedAt": "2024-11-28T08:15:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza ananasa i mango. Goryczka jest umiarkowana, piwo ma wyraźny owocowy charakter i jest bardzo orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 113,
+    "UserId": 19,
+    "CreatedAt": "2024-11-28T08:20:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i przypalonych orzechów. Goryczka jest wyraźna, piwo jest gładkie i pełne smaku, idealne na długie wieczory.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 115,
+    "UserId": 20,
+    "CreatedAt": "2024-11-28T08:25:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, zwłaszcza limonki i grejpfruta. Goryczka jest niska, piwo jest gładkie i orzeźwiające.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 117,
+    "UserId": 21,
+    "CreatedAt": "2024-11-28T08:30:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku czekolady i karmelu, z nutami orzechów i przypalonych owoców. Goryczka jest średnia, piwo jest pełne, ale nie przytłacza.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 119,
+    "UserId": 22,
+    "CreatedAt": "2024-11-28T08:35:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców tropikalnych, zwłaszcza ananasa i papai. Goryczka jest umiarkowana, piwo jest pełne smaku i orzeźwiające.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 23,
+    "CreatedAt": "2024-11-28T08:40:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu i orzechów, z lekką nutą czekolady. Goryczka jest niska, piwo jest gładkie i idealne na chłodne wieczory.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 24,
+    "CreatedAt": "2024-11-28T08:45:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku owoców cytrusowych, zwłaszcza limonki i grejpfruta. Goryczka jest średnia, piwo jest orzeźwiające i doskonałe na ciepłe dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 105,
+    "UserId": 25,
+    "CreatedAt": "2024-11-28T08:50:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest wyraźna, piwo ma pełny smak, idealne do ciast czekoladowych.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 107,
+    "UserId": 26,
+    "CreatedAt": "2024-11-28T08:55:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku karmelu, czekolady i owoców, z subtelnymi nutami orzechów. Goryczka jest średnia, piwo jest bardzo zrównoważone.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 9,
+    "BeerId": 109,
+    "UserId": 27,
+    "CreatedAt": "2024-11-28T09:00:00"
+  },
+  {
+    "Text": "Piwo o świeżym smaku owoców tropikalnych, zwłaszcza mango i marakui. Goryczka jest niska, piwo ma gładką teksturę, idealne na lato.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 28,
+    "CreatedAt": "2024-11-28T09:05:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu, czekolady i orzechów. Goryczka jest niska, piwo ma gładką teksturę, idealne na zimowe wieczory.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 29,
+    "CreatedAt": "2024-11-28T09:10:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku owoców tropikalnych, zwłaszcza ananasa, mango i papai. Goryczka jest umiarkowana, piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 30,
+    "CreatedAt": "2024-11-28T09:15:00"
+  },
+  {
+    "Text": "Piwo o pełnym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest średnia, piwo jest pełne, złożone i bardzo satysfakcjonujące.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 6,
+    "ColorRate": 10,
+    "BeerId": 117,
+    "UserId": 31,
+    "CreatedAt": "2024-11-28T09:20:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, zwłaszcza limonki i grejpfruta. Goryczka jest niska, piwo jest lekkie i orzeźwiające, idealne na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 32,
+    "CreatedAt": "2024-11-28T09:25:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku cytrusów, zwłaszcza limonki i grejpfruta. Goryczka jest niska, piwo jest lekkie, orzeźwiające i doskonałe na ciepłe dni.",
+    "TasteRate": 6,
+    "AromaRate": 5,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 101,
+    "UserId": 29,
+    "CreatedAt": "2024-11-28T12:50:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców tropikalnych, zwłaszcza ananasa, papai i marakui. Goryczka jest średnia, piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 103,
+    "UserId": 30,
+    "CreatedAt": "2024-11-28T12:55:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku karmelu i orzechów, z delikatną nutą czekolady. Goryczka jest średnia, piwo jest gładkie i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 7,
+    "ColorRate": 9,
+    "BeerId": 105,
+    "UserId": 31,
+    "CreatedAt": "2024-11-28T13:00:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu i orzechów, z lekką nutą przypalonych owoców. Goryczka jest niska, piwo jest gładkie i ma przyjemny, słodki posmak.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 107,
+    "UserId": 32,
+    "CreatedAt": "2024-11-28T13:05:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku tropikalnych owoców, zwłaszcza mango, marakui i ananasa. Goryczka jest umiarkowana, piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 5,
+    "BeerId": 109,
+    "UserId": 33,
+    "CreatedAt": "2024-11-28T13:10:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku cytrusów, zwłaszcza grejpfruta, z lekką nutą pomarańczy. Goryczka jest średnia, piwo jest orzeźwiające i lekkie.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 111,
+    "UserId": 34,
+    "CreatedAt": "2024-11-28T13:15:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku czekolady, karmelu i orzechów, z subtelną nutą przypalonych owoców. Goryczka jest średnia, piwo jest pełne, złożone i satysfakcjonujące.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 10,
+    "BeerId": 113,
+    "UserId": 35,
+    "CreatedAt": "2024-11-28T13:20:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców tropikalnych, zwłaszcza mango, papai i marakui. Goryczka jest umiarkowana, piwo jest orzeźwiające i bardzo smaczne.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 115,
+    "UserId": 36,
+    "CreatedAt": "2024-11-28T13:25:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest średnia, piwo jest pełne, gładkie i doskonałe do deserów.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 10,
+    "BeerId": 117,
+    "UserId": 37,
+    "CreatedAt": "2024-11-28T13:30:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku owoców cytrusowych, zwłaszcza grejpfruta i limonki. Goryczka jest wyraźna, piwo jest orzeźwiające, lekkie i idealne na lato.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 119,
+    "UserId": 38,
+    "CreatedAt": "2024-11-28T13:35:00"
+  },
+  {
+    "Text": "Piwo o delikatnym smaku karmelu i przypalonych orzechów, z nutą czekolady. Goryczka jest niska, piwo jest gładkie i bardzo przyjemne w piciu.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 101,
+    "UserId": 39,
+    "CreatedAt": "2024-11-28T13:40:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku cytrusów, zwłaszcza grejpfruta i pomarańczy. Goryczka jest średnia, piwo jest orzeźwiające i lekkie, świetne na lato.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 8,
+    "ColorRate": 5,
+    "BeerId": 103,
+    "UserId": 40,
+    "CreatedAt": "2024-11-28T13:45:00"
+  },
+  {
+    "Text": "Piwo o intensywnym smaku tropikalnych owoców, zwłaszcza ananasa i mango. Goryczka jest umiarkowana, piwo jest gładkie, pełne smaku i idealne na ciepłe dni.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 105,
+    "UserId": 41,
+    "CreatedAt": "2024-11-28T13:50:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku karmelu i orzechów, z nutą przypalonych owoców. Goryczka jest niska, piwo ma przyjemną teksturę i jest bardzo smaczne.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 6,
+    "BeerId": 107,
+    "UserId": 42,
+    "CreatedAt": "2024-11-28T13:55:00"
+  },
+  {
+    "Text": "Piwo o bogatym smaku czekolady, karmelu i przypalonych orzechów. Goryczka jest średnia, piwo jest pełne, gładkie i idealne do deserów.",
+    "TasteRate": 9,
+    "AromaRate": 8,
+    "FoamRate": 7,
+    "ColorRate": 10,
+    "BeerId": 109,
+    "UserId": 43,
+    "CreatedAt": "2024-11-28T14:00:00"
+  },
+  {
+    "Text": "Piwo o wyrazistym smaku tropikalnych owoców, zwłaszcza marakui, mango i papai. Goryczka jest średnia, piwo jest orzeźwiające i pełne smaku.",
+    "TasteRate": 8,
+    "AromaRate": 7,
+    "FoamRate": 6,
+    "ColorRate": 6,
+    "BeerId": 111,
+    "UserId": 44,
+    "CreatedAt": "2024-11-28T14:05:00"
+  },
+  {
+    "Text": "Piwo o subtelnym smaku owoców cytrusowych, zwłaszcza grejpfruta i limonki. Goryczka jest wyraźna, piwo jest lekkie, orzeźwiające i idealne na letnie dni.",
+    "TasteRate": 7,
+    "AromaRate": 6,
+    "FoamRate": 7,
+    "ColorRate": 5,
+    "BeerId": 113,
+    "UserId": 45,
+    "CreatedAt": "2024-11-28T14:10:00"
+  }
+]

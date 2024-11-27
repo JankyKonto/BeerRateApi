@@ -27,7 +27,7 @@ namespace BeerRateApi.Services
                 return new BeerImage
                 {
                     Data = memoryStream.ToArray(),
-                    FileName = formFile.FileName,
+                    FileType = formFile.FileName,
                     Caption = caption
                 };
             }
