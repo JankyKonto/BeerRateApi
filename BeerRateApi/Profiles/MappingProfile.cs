@@ -8,8 +8,7 @@ namespace BeerRateApi.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Beer, BeerDTO>()
-                .ForMember(dest => dest.Image, x => x.MapFrom(src => src.BeerImage.Data));
+            CreateMap<Beer, BeerDTO>();
         }
     }
 }

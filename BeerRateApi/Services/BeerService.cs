@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.Metrics;
+using AutoMapper;
 using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
@@ -156,7 +157,12 @@ namespace BeerRateApi.Services
                     }
                 }
 
+                query = query.Skip(startIndex).Take(endIndex - startIndex);
+
                 var beers = await query.ToListAsync();
+                var beersCount = beers.Count;
+                var pages = beersCount % reviewsPerPage == 0 ? beersCount / reviewsPerPage : beersCount / reviewsPerPage + 1;
+
                 return Mapper.Map<IEnumerable<BeerDTO>>(beers);
             }
             catch (Exception ex)

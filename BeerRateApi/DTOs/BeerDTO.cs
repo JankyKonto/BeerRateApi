@@ -11,6 +11,5 @@ namespace BeerRateApi.DTOs
         public string OriginCountry { get; set; }
         public decimal AlcoholAmount { get; set; }
         public int Ibu { get; set; }
-        public byte[] Image { get; set; }
     }
 }
