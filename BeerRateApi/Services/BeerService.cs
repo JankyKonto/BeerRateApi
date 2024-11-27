@@ -13,7 +13,7 @@ namespace BeerRateApi.Services
         {
 
         }
-        private const int reviewsPerPage = 10;
+        private const int beersPerPage = 10;
         private static async Task<BeerImage?> ConvertIFormFileToBeerImage(IFormFile formFile, string caption = "")
         {
             if (formFile == null || formFile.Length == 0)
@@ -73,7 +73,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<IEnumerable<BeerDTO>> FilterAndSortBeers(FilterAndSortBeersDTO dto, int startIndex, int endIndex)
+        public async Task<PagesWithBeersDTO> FilterAndSortBeers(FilterAndSortBeersDTO dto, int startIndex, int endIndex)
         {
             try
             {
@@ -161,9 +161,14 @@ namespace BeerRateApi.Services
 
                 var beers = await query.ToListAsync();
                 var beersCount = beers.Count;
-                var pages = beersCount % reviewsPerPage == 0 ? beersCount / reviewsPerPage : beersCount / reviewsPerPage + 1;
+                var pages = beersCount % beersPerPage == 0 ? beersCount / beersPerPage : beersCount / beersPerPage + 1;
 
-                return Mapper.Map<IEnumerable<BeerDTO>>(beers);
+                var pageWithBeers = new PagesWithBeersDTO();
+
+                pageWithBeers.Pages = pages;
+                pageWithBeers.Beers = Mapper.Map<IEnumerable<BeerDTO>>(beers);
+
+                return pageWithBeers;
             }
             catch (Exception ex)
             {
@@ -172,7 +177,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetBeersPage(int page, FilterAndSortBeersDTO dto)
+        public async Task<PagesWithBeersDTO> GetBeersPage(int page, FilterAndSortBeersDTO dto)
         {
             int pagesAmount = await GetBeersPagesAmount();
 
@@ -181,13 +186,13 @@ namespace BeerRateApi.Services
                 throw new ArgumentException("Wrong page number");
             }
 
-            return await FilterAndSortBeers(dto, (page - 1) * reviewsPerPage, reviewsPerPage * page);
+            return await FilterAndSortBeers(dto, (page - 1) * beersPerPage, beersPerPage * page);
         }
 
         public async Task<int> GetBeersPagesAmount()
         {
             var counter = await GetBeersCounter();
-            return counter % reviewsPerPage == 0 ? counter / reviewsPerPage : counter / reviewsPerPage + 1;
+            return counter % beersPerPage == 0 ? counter / beersPerPage : counter / beersPerPage + 1;
         }
 
         public async Task<int> GetBeersCounter ()
