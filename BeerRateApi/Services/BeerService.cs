@@ -196,5 +196,17 @@ namespace BeerRateApi.Services
                 throw;
             }
         }
+
+        public async Task<byte[]> GetBeerImage (int id)
+        {
+            var beer = await DbContext.Beers.FindAsync(id);
+
+            if (beer == null)
+            {
+                throw new InvalidOperationException($"Beer with id '{id}' not found.");
+            }
+            return beer.BeerImage.Data;
+
+        }
     }
 }

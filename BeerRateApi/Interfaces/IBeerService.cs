@@ -11,5 +11,6 @@ namespace BeerRateApi.Interfaces
         Task<int> GetBeersCounter();
         Task<IEnumerable<BeerDTO>> GetBeersPage(int page, FilterAndSortBeersDTO dto);
         Task<int> GetBeersPagesAmount();
+        Task<byte[]> GetBeerImage(int id);
     }
 }

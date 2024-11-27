@@ -112,5 +112,20 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet("{id}/image")]
+        public async Task<IActionResult> GetBeerImage(int id)
+        {
+            try
+            {
+                var getBeerImageResult = await _beerService.GetBeerImage(id);
+                return File(getBeerImageResult,"image/png");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+        }
     }
 }
