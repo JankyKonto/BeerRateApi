@@ -12,7 +12,7 @@ namespace BeerRateApi
                 //Variables with test data paths declaration
                 string currentPath = Directory.GetCurrentDirectory();
                 string beersPath = $"{currentPath}\\TestData\\Beers.json";
-                string beerImagePath = $"{currentPath}\\TestData\\BeerImage.json";
+                string beerImagePath = $"{currentPath}\\TestData\\BeerImage.png";
                 string usersPath = $"{currentPath}\\TestData\\Users.json";
                 string reviewsPath = $"{currentPath}\\TestData\\Reviews.json";
 
@@ -39,7 +39,7 @@ namespace BeerRateApi
                     });
 
                 //Image collection fulfiling
-                byte[] imageFile = await File.ReadAllBytesAsync(beersPath);
+                byte[] imageFile = await File.ReadAllBytesAsync(beerImagePath);
                 string fileType = File.GetAttributes(beersPath).GetType().FullName;
                 foreach (var beer in beers)
                 {
