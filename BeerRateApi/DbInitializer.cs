@@ -1,6 +1,8 @@
 ﻿using BeerRateApi.Models;
 using System.Text.Json;
-
+using Microsoft.AspNetCore.StaticFiles;
+using Castle.Components.DictionaryAdapter.Xml;
+using Microsoft.EntityFrameworkCore;
 namespace BeerRateApi
 {
     public static class DbInitializer
@@ -40,7 +42,8 @@ namespace BeerRateApi
 
                 //Image collection fulfiling
                 byte[] imageFile = await File.ReadAllBytesAsync(beerImagePath);
-                string fileType = File.GetAttributes(beersPath).GetType().FullName;
+                string fileType;
+                new FileExtensionContentTypeProvider().TryGetContentType(beerImagePath,out fileType);
                 foreach (var beer in beers)
                 {
                     BeerImage beerImage = new BeerImage()
@@ -53,12 +56,14 @@ namespace BeerRateApi
                 }
 
                 //Adding objects to database
+
                 context.BeerImages.AddRangeAsync(beerImages);
                 context.Beers.AddRangeAsync(beers);
                 context.Users.AddRangeAsync(users);
-                //context.Reviews.AddRangeAsync(reviews);
-
                 context.SaveChanges();
+                context.Reviews.AddRangeAsync(reviews);
+                context.SaveChanges();
+                context.Database.CloseConnection();
             }
             
         }
