@@ -116,6 +116,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 var app = builder.Build();
+
+//Database seeding
+await DbInitializer.SeedAsync(app.Services
+    .CreateScope()
+    .ServiceProvider
+    .GetRequiredService<AppDbContext>());
+
 app.UseCors();
 
 if (app.Environment.IsDevelopment())

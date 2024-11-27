@@ -1,0 +1,272 @@
+[
+  {
+    "Username": "adminUser123",
+    "Email": "admin@domain.com",
+    "Password": "AdminPass123!",
+    "UserType": "Admin"
+  },
+  {
+    "Username": "johnDoe456",
+    "Email": "john.doe@company.com",
+    "Password": "JohnDoePass987!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "aliceSmith789",
+    "Email": "alice.smith@example.org",
+    "Password": "AlicePass2024!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "bobJohnson101",
+    "Email": "bob.johnson@website.net",
+    "Password": "BobPass@456",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "emilyDavis112",
+    "Email": "emily.davis@service.co",
+    "Password": "EmilyPass$112",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "michaelBrown321",
+    "Email": "michael.brown@webmail.com",
+    "Password": "MichaelPass789!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "susanTaylor456",
+    "Email": "susan.taylor@platform.org",
+    "Password": "SusanPass1234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "davidWilson567",
+    "Email": "david.wilson@domain.co",
+    "Password": "DavidPass!567",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "lauraWhite678",
+    "Email": "laura.white@service.net",
+    "Password": "LauraPass@6789",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "kevinMartin789",
+    "Email": "kevin.martin@company.org",
+    "Password": "KevinPass!234",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "sophiaClark890",
+    "Email": "sophia.clark@site.com",
+    "Password": "SophiaPass!890",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "jackAdams901",
+    "Email": "jack.adams@enterprise.co",
+    "Password": "JackPass1234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "oliviaKing123",
+    "Email": "olivia.king@online.org",
+    "Password": "OliviaPass!123",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "danielScott234",
+    "Email": "daniel.scott@global.net",
+    "Password": "DanielPass234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "miaHarris345",
+    "Email": "mia.harris@service.com",
+    "Password": "MiaPass$345",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "oliverMartinez456",
+    "Email": "oliver.martinez@techmail.com",
+    "Password": "OliverPass!4567",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "chloeLewis567",
+    "Email": "chloe.lewis@startup.net",
+    "Password": "ChloePass!5678",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "benjaminRoberts678",
+    "Email": "benjamin.roberts@corporation.co",
+    "Password": "BenjaminPass678!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "lucasWalker789",
+    "Email": "lucas.walker@service.net",
+    "Password": "LucasPass@7890",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "ellaYoung890",
+    "Email": "ella.young@company.org",
+    "Password": "EllaPass!8901",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "harryParker901",
+    "Email": "harry.parker@platform.co",
+    "Password": "HarryPass901!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "islaHughes123",
+    "Email": "isla.hughes@webservice.org",
+    "Password": "IslaPass@1234",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "liamEvans234",
+    "Email": "liam.evans@domain.net",
+    "Password": "LiamPass234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "ellaRobinson345",
+    "Email": "ella.robinson@techservice.com",
+    "Password": "EllaPass@3456",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "matthewGreen456",
+    "Email": "matthew.green@enterprise.co",
+    "Password": "MatthewPass456!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "noahBaker567",
+    "Email": "noah.baker@service.com",
+    "Password": "NoahPass5678!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "mariaNelson678",
+    "Email": "maria.nelson@company.net",
+    "Password": "MariaPass!6789",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "ethanCarter789",
+    "Email": "ethan.carter@platform.org",
+    "Password": "EthanPass7890!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "sofiaMitchell890",
+    "Email": "sofia.mitchell@site.com",
+    "Password": "SofiaPass8901!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "aidenCollins901",
+    "Email": "aiden.collins@global.org",
+    "Password": "AidenPass9012!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "zoePerez123",
+    "Email": "zoe.perez@service.net",
+    "Password": "ZoePass1234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "ryanDavis234",
+    "Email": "ryan.davis@corporation.co",
+    "Password": "RyanPass2345!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "lilyGonzalez345",
+    "Email": "lily.gonzalez@webmail.org",
+    "Password": "LilyPass@3456",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "jamesMartinez456",
+    "Email": "james.martinez@platform.net",
+    "Password": "JamesPass4567!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "graceLopez567",
+    "Email": "grace.lopez@techservice.com",
+    "Password": "GracePass5678!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "charlotteKing678",
+    "Email": "charlotte.king@company.com",
+    "Password": "CharlottePass!6789",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "lucyHernandez789",
+    "Email": "lucy.hernandez@platform.org",
+    "Password": "LucyPass7890!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "josephScott890",
+    "Email": "joseph.scott@service.net",
+    "Password": "JosephPass8901!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "victoriaAdams901",
+    "Email": "victoria.adams@domain.co",
+    "Password": "VictoriaPass9012!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "sebastianPerez123",
+    "Email": "sebastian.perez@webmail.com",
+    "Password": "SebastianPass1234!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "miaRoberts234",
+    "Email": "mia.roberts@techservice.net",
+    "Password": "MiaPass2345!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "oliverEvans345",
+    "Email": "oliver.evans@platform.co",
+    "Password": "OliverPass3456!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "ellaMoore456",
+    "Email": "ella.moore@corporation.org",
+    "Password": "EllaPass4567!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "henryLee567",
+    "Email": "henry.lee@enterprise.com",
+    "Password": "HenryPass5678!",
+    "UserType": "NormalUser"
+  },
+  {
+    "Username": "sophiaRodriguez678",
+    "Email": "sophia.rodriguez@service.org",
+    "Password": "SophiaPass6789!",
+    "UserType": "NormalUser"
+  }
+]
