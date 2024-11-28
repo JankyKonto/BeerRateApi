@@ -97,6 +97,7 @@ namespace BeerRateApi.Services
                 var reviews =
                     DbContext.Reviews
                     .Where(review => review.BeerId == beerId)
+                    .OrderByDescending(review => review.CreatedAt)
                     .Skip(startIndex)
                     .Take(endIndex - startIndex)
                     .Select
