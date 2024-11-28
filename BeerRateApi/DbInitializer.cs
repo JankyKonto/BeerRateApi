@@ -3,6 +3,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.StaticFiles;
 using Castle.Components.DictionaryAdapter.Xml;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 namespace BeerRateApi
 {
     public static class DbInitializer
@@ -56,6 +57,7 @@ namespace BeerRateApi
 
                 //Adding objects to database
 
+
                 context.BeerImages.AddRangeAsync(beerImages);
                 context.Beers.AddRangeAsync(beers);
                 context.Users.AddRangeAsync(users);
@@ -92,6 +94,13 @@ namespace BeerRateApi
                 {
                     uniquePairs.Add(pair);
 
+                    int rndYear = random.Next(2019, DateTime.Now.Year+1);
+                    int rndMonth = random.Next(1, 12);
+                    int rndDay = random.Next(1, 28);
+                    int rndHour = random.Next(0, 23);
+                    int rndMinutes = random.Next(0, 59);
+                    int rndSeconds = random.Next(0, 59);
+                    DateTime date = new DateTime(rndYear, rndMonth, rndDay, rndHour, rndMinutes, rndSeconds);
                     // Create a new Review object
                     var review = new Review
                     {
@@ -102,7 +111,7 @@ namespace BeerRateApi
                         AromaRate = random.Next(4, 11),
                         FoamRate = random.Next(4, 11),
                         ColorRate = random.Next(4, 11),
-                        CreatedAt = DateTime.UtcNow
+                        CreatedAt = date
                     };
                     if (!reviews.Where(x => x.UserId == review.UserId && x.BeerId == review.BeerId).Any())
                     {
