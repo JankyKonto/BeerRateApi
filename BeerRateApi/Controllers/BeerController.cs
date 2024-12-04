@@ -151,5 +151,19 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
+
+        [HttpGet("unconfirmed")]
+        public async Task<IActionResult> GetUnconfirmedBeers (int page)
+        {
+            try
+            {
+                var beers = await _beerService.GetUnconfirmedBeers(page);
+                return Ok(beers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+        }
     }
 }
