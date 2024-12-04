@@ -60,7 +60,7 @@ namespace BeerRateApi.Services
         {
             try
             {
-                var beer = await DbContext.Beers.FindAsync(id);
+                var beer = await DbContext.Beers.FirstOrDefaultAsync(b => b.Id == id && b.IsRemoved == false);
                 if (beer != null)
                     return Mapper.Map<BeerDTO>(beer);
                 else
@@ -80,7 +80,7 @@ namespace BeerRateApi.Services
 
             try
             {
-                var query = DbContext.Beers.AsQueryable();
+                var query = DbContext.Beers.Where(b => b.IsRemoved == false).AsQueryable();
 
                 if (!string.IsNullOrEmpty(dto.Name))
                 {
@@ -165,7 +165,7 @@ namespace BeerRateApi.Services
 
                 var beers = await query.ToListAsync();
 
-                if(page > pages)
+                if (page > pages)
                 {
                     throw new ArgumentException("Wrong page number");
                 }
@@ -205,7 +205,7 @@ namespace BeerRateApi.Services
             return counter % beersPerPage == 0 ? counter / beersPerPage : counter / beersPerPage + 1;
         }
 
-        public async Task<int> GetBeersCounter ()
+        public async Task<int> GetBeersCounter()
         {
             try
             {
@@ -218,7 +218,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<byte[]> GetBeerImage (int id)
+        public async Task<byte[]> GetBeerImage(int id)
         {
             var beer = await DbContext.Beers.FindAsync(id);
 
@@ -228,6 +228,50 @@ namespace BeerRateApi.Services
             }
             return beer.BeerImage.Data;
 
+        }
+
+        public async Task ConfirmBeer(int beerId, int userId)
+        {
+            var user = await DbContext.Users.FindAsync(userId);
+            if (user != null && user.UserType == Enums.UserType.Admin)
+            {
+                var beer = await DbContext.Beers.FindAsync(beerId);
+                if (beer != null)
+                {
+                    beer.IsConfirmed = true;
+                    DbContext.Beers.Update(beer);
+                    await DbContext.SaveChangesAsync();
+                }
+                else
+                    throw new InvalidOperationException($"Beer with id '{beerId}' not found.");
+            }
+            else
+            {
+                throw new UnauthorizedAccessException($"User is not an Admin!");
+            }
+
+
+        }
+
+        public async Task DeleteBeer(int beerId, int userId)
+        {
+            var user = await DbContext.Users.FindAsync(userId);
+            if (user != null && user.UserType == Enums.UserType.Admin)
+            {
+                var beer = await DbContext.Beers.FindAsync(beerId);
+                if (beer != null)
+                {
+                    beer.IsRemoved = true;
+                    DbContext.Beers.Update(beer);
+                    await DbContext.SaveChangesAsync();
+                }
+                else
+                    throw new InvalidOperationException($"Beer with id '{beerId}' not found.");
+            }
+            else
+            {
+                throw new UnauthorizedAccessException($"User is not an Admin!");
+            }
         }
     }
 }

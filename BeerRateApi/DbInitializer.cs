@@ -26,7 +26,7 @@ namespace BeerRateApi
                 //Collections of objects which will be added to database
                 IEnumerable<Beer> beers = JsonSerializer.Deserialize<IEnumerable<Beer>>(beersJson);
                 IEnumerable<UserInitializer> usersData = JsonSerializer.Deserialize<IEnumerable<UserInitializer>>(usersJson);
-                IEnumerable<Review> reviews = await GenerateReviewsAsync(3000, reviewsPath);
+                IEnumerable<Review> reviews = GenerateReviews(3000, reviewsPath);
                 IEnumerable<User> users;
                 
                 ICollection<BeerImage> beerImages = new List<BeerImage>();
@@ -46,6 +46,7 @@ namespace BeerRateApi
                 new FileExtensionContentTypeProvider().TryGetContentType(beerImagePath,out fileType);
                 foreach (var beer in beers)
                 {
+                    beer.IsRemoved = false;
                     BeerImage beerImage = new BeerImage()
                     {
                         Caption = "BeerImage",
@@ -58,17 +59,16 @@ namespace BeerRateApi
                 //Adding objects to database
 
 
-                context.BeerImages.AddRangeAsync(beerImages);
-                context.Beers.AddRangeAsync(beers);
-                context.Users.AddRangeAsync(users);
-                context.SaveChanges();
-                context.Reviews.AddRangeAsync(reviews);
-                context.SaveChanges();
-                context.Database.CloseConnection();
+                await context.BeerImages.AddRangeAsync(beerImages);
+                await context.Beers.AddRangeAsync(beers);
+                await context.Users.AddRangeAsync(users);
+                await context.SaveChangesAsync();
+                await context.Reviews.AddRangeAsync(reviews);
+                await context.SaveChangesAsync();
             }
             
         }
-        public static async Task<List<Review>> GenerateReviewsAsync(int n, string reviewPath)
+        public static List<Review> GenerateReviews(int n, string reviewPath)
         {
             var random = new Random();
             var reviewTexts = JsonSerializer.Deserialize<IList<string>>(File.ReadAllText(reviewPath)); 
