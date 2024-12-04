@@ -4,6 +4,7 @@ using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BeerRateApi.Services
 {
@@ -60,7 +61,7 @@ namespace BeerRateApi.Services
         {
             try
             {
-                var beer = await DbContext.Beers.FindAsync(id);
+                var beer = await DbContext.Beers.FirstOrDefaultAsync(b => b.Id == id && b.IsRemoved == false);
                 if (beer != null)
                     return Mapper.Map<BeerDTO>(beer);
                 else
@@ -80,7 +81,7 @@ namespace BeerRateApi.Services
 
             try
             {
-                var query = DbContext.Beers.AsQueryable();
+                var query = DbContext.Beers.Where(b => b.IsRemoved == false && b.IsConfirmed == true).AsQueryable();
 
                 if (!string.IsNullOrEmpty(dto.Name))
                 {
@@ -205,7 +206,7 @@ namespace BeerRateApi.Services
             return counter % beersPerPage == 0 ? counter / beersPerPage : counter / beersPerPage + 1;
         }
 
-        public async Task<int> GetBeersCounter ()
+        public async Task<int> GetBeersCounter()
         {
             try
             {
@@ -218,7 +219,7 @@ namespace BeerRateApi.Services
             }
         }
 
-        public async Task<byte[]> GetBeerImage (int id)
+        public async Task<byte[]> GetBeerImage(int id)
         {
             var beer = await DbContext.Beers.FindAsync(id);
 
@@ -228,6 +229,74 @@ namespace BeerRateApi.Services
             }
             return beer.BeerImage.Data;
 
+        }
+
+        public async Task ConfirmBeer(int beerId, int userId)
+        {
+            var user = await DbContext.Users.FindAsync(userId);
+            if (user != null && user.UserType == Enums.UserType.Admin)
+            {
+                var beer = await DbContext.Beers.FindAsync(beerId);
+                if (beer != null)
+                {
+                    beer.IsConfirmed = true;
+                    DbContext.Beers.Update(beer);
+                    await DbContext.SaveChangesAsync();
+                }
+                else
+                    throw new InvalidOperationException($"Beer with id '{beerId}' not found.");
+            }
+            else
+            {
+                throw new UnauthorizedAccessException($"User is not an Admin!");
+            }
+
+
+        }
+
+        public async Task DeleteBeer(int beerId, int userId)
+        {
+            var user = await DbContext.Users.FindAsync(userId);
+            if (user != null && user.UserType == Enums.UserType.Admin)
+            {
+                var beer = await DbContext.Beers.FindAsync(beerId);
+                if (beer != null)
+                {
+                    beer.IsRemoved = true;
+                    DbContext.Beers.Update(beer);
+                    await DbContext.SaveChangesAsync();
+                }
+                else
+                    throw new InvalidOperationException($"Beer with id '{beerId}' not found.");
+            }
+            else
+            {
+                throw new UnauthorizedAccessException($"User is not an Admin!");
+            }
+        }
+
+        public async Task<PagesWithBeersDTO> GetUnconfirmedBeers(int page)
+        {
+            var startIndex = (page - 1) * beersPerPage;
+            var endIndex = beersPerPage * page;
+            var query = DbContext.Beers.Where(b => b.IsConfirmed == false && b.IsRemoved == false).AsQueryable();
+            var beersCount = await query.CountAsync();
+            var pages = beersCount % beersPerPage == 0 ? beersCount / beersPerPage : beersCount / beersPerPage + 1;
+            query = query.Skip(startIndex).Take(endIndex - startIndex);
+
+            var beers = await query.ToListAsync();
+
+            if (page > pages)
+            {
+                throw new ArgumentException("Wrong page number");
+            }
+
+            var pageWithBeers = new PagesWithBeersDTO();
+
+            pageWithBeers.Pages = pages;
+            pageWithBeers.Beers = Mapper.Map<IEnumerable<BeerDTO>>(beers);
+
+            return pageWithBeers;
         }
     }
 }

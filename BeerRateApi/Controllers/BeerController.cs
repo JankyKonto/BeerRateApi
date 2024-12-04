@@ -3,6 +3,7 @@ using BeerRateApi.Interfaces;
 using BeerRateApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
@@ -37,21 +38,6 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
-
-        /* [AllowAnonymous]
-        [HttpGet("beers")]
-        public async Task<IActionResult> GetBeers([FromQuery] FilterAndSortBeersDTO dto)
-        {
-            try
-            {
-                var getBeersResult = await _beerService.FilterAndSortBeers(dto);
-                return Ok(new { Beers = getBeersResult.Beers });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
-            }
-        } */
 
         [AllowAnonymous]
         [HttpGet("beers")]
@@ -121,6 +107,58 @@ namespace BeerRateApi.Controllers
             {
                 var getBeerImageResult = await _beerService.GetBeerImage(id);
                 return File(getBeerImageResult,"image/png");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpPost("{beerId}/confirm")]
+        public async Task<IActionResult> ConfirmBeer(int beerId)
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized(new { Message = "Invalid user identifier." });
+            }
+            try
+            {
+                await _beerService.ConfirmBeer(beerId, userId);
+                return Ok( new { } );
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpDelete("{beerId}")]
+        public async Task<IActionResult> DeleteBeer(int beerId)
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized(new { Message = "Invalid user identifier." });
+            }
+            try
+            {
+                await _beerService.DeleteBeer(beerId, userId);
+                return Ok(new { });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpGet("unconfirmed")]
+        public async Task<IActionResult> GetUnconfirmedBeers (int page)
+        {
+            try
+            {
+                var beers = await _beerService.GetUnconfirmedBeers(page);
+                return Ok(beers);
             }
             catch (Exception ex)
             {

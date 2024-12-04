@@ -195,7 +195,7 @@ namespace BeerRateApi.Services
             StringBuilder message = new StringBuilder();
 
             message.AppendLine("Aby przypomnieć hasło kliknij link poniżej: <br/>");
-            message.AppendLine($"<a href=\"https://{clientAddress}/realise-password-reminding/{token}\">https://{clientAddress}/realise-password-reminding/{token}</a>");
+            message.AppendLine($"<a href=\"{clientAddress}/realise-password-reminding/{token}\">{clientAddress}/realise-password-reminding/{token}</a>");
 
             var user = await DbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
 
