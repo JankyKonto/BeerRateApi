@@ -165,7 +165,7 @@ namespace BeerRateApi.Services
 
                 var beers = await query.ToListAsync();
 
-                if(page > pages)
+                if(page > pages && pages != 0)
                 {
                     throw new ArgumentException("Wrong page number");
                 }
