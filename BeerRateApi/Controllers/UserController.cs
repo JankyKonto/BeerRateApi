@@ -69,7 +69,7 @@ namespace BeerRateApi.Controllers
 
                 Response.Cookies.Append("jwtToken", loginResult.JwtToken, jwtCookieOptions);
 
-                return Ok(new { loginResult.Id, loginResult.Email, loginResult.Username});
+                return Ok(new { loginResult.Id, loginResult.Email, loginResult.Username, loginResult.IsUserAdmin});
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -115,7 +115,7 @@ namespace BeerRateApi.Controllers
 
                 Response.Cookies.Append("jwtToken", refreshResult.JwtToken, cookieOptions);
 
-                return Ok(new { refreshResult.Id, refreshResult.Username, refreshResult.Email });
+                return Ok(new { refreshResult.Id, refreshResult.Username, refreshResult.Email, refreshResult.IsUserAdmin });
             }
             catch (InvalidOperationException ex)
             {

@@ -8,5 +8,6 @@
         public string JwtToken { get; set; } = string.Empty;
         public DateTime? RefreshTokenExpiry { get; set; }
         public string RefreshToken { get; set; } = string.Empty;
+        public bool IsUserAdmin { get; set; } = false;
     }
 }

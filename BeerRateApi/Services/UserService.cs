@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BeerRateApi.DTOs;
+using BeerRateApi.Enums;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -98,7 +99,13 @@ namespace BeerRateApi.Services
 
                 var jwtToken = _tokenService.GenerateJwtToken(user.Username, user.Id);
 
-                return new LoginResult { Id=user.Id, Email=user.Email, Username=user.Username, JwtToken=jwtToken, RefreshTokenExpiry=user.RefreshTokenExpiry, RefreshToken=user.RefreshToken };
+                return new LoginResult { Id=user.Id, 
+                    Email=user.Email, 
+                    Username=user.Username, 
+                    JwtToken=jwtToken, 
+                    RefreshTokenExpiry=user.RefreshTokenExpiry, 
+                    RefreshToken=user.RefreshToken,  
+                    IsUserAdmin=user.UserType==UserType.Admin};
             }
             catch (Exception ex)
             {
@@ -129,6 +136,7 @@ namespace BeerRateApi.Services
                 }
 
                 var email = user.Email;
+                bool isUserAdmin = user.UserType==UserType.Admin;
                 if (email == null)
                 {
                     throw new ArgumentNullException(nameof(user.Email), "User email is missing.");
@@ -147,7 +155,7 @@ namespace BeerRateApi.Services
 
                 var jwtToken = _tokenService.GenerateJwtToken(principal.Identity.Name,id);
 
-                return new LoginResult { Id = id, Username = principal.Identity.Name, JwtToken=jwtToken, Email=email };
+                return new LoginResult { Id = id, Username = principal.Identity.Name, JwtToken=jwtToken, Email=email, IsUserAdmin=isUserAdmin };
             }
             catch(Exception ex)
             {
