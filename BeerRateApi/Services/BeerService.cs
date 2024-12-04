@@ -4,6 +4,7 @@ using BeerRateApi.DTOs;
 using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BeerRateApi.Services
 {
@@ -80,7 +81,7 @@ namespace BeerRateApi.Services
 
             try
             {
-                var query = DbContext.Beers.Where(b => b.IsRemoved == false).AsQueryable();
+                var query = DbContext.Beers.Where(b => b.IsRemoved == false && b.IsConfirmed == true).AsQueryable();
 
                 if (!string.IsNullOrEmpty(dto.Name))
                 {
@@ -272,6 +273,30 @@ namespace BeerRateApi.Services
             {
                 throw new UnauthorizedAccessException($"User is not an Admin!");
             }
+        }
+
+        public async Task<PagesWithBeersDTO> GetUnconfirmedBeers(int page)
+        {
+            var startIndex = (page - 1) * beersPerPage;
+            var endIndex = beersPerPage * page;
+            var query = DbContext.Beers.Where(b => b.IsConfirmed == false && b.IsRemoved == false).AsQueryable();
+            var beersCount = await query.CountAsync();
+            var pages = beersCount % beersPerPage == 0 ? beersCount / beersPerPage : beersCount / beersPerPage + 1;
+            query = query.Skip(startIndex).Take(endIndex - startIndex);
+
+            var beers = await query.ToListAsync();
+
+            if (page > pages)
+            {
+                throw new ArgumentException("Wrong page number");
+            }
+
+            var pageWithBeers = new PagesWithBeersDTO();
+
+            pageWithBeers.Pages = pages;
+            pageWithBeers.Beers = Mapper.Map<IEnumerable<BeerDTO>>(beers);
+
+            return pageWithBeers;
         }
     }
 }
