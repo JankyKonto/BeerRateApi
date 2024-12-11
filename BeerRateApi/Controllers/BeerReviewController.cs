@@ -103,5 +103,6 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
+
     }
 }

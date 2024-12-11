@@ -13,8 +13,13 @@ namespace BeerRateApi.Controllers
     public class BeerController : ControllerBase
     {
         private readonly IBeerService _beerService;
+        private readonly IBeerRecommendationService _beerRecommendationService;
 
-        public BeerController(IBeerService beerService) { _beerService = beerService; }
+        public BeerController(IBeerService beerService, IBeerRecommendationService beerRecommendationService) 
+        {
+            _beerService = beerService;
+            _beerRecommendationService = beerRecommendationService;
+        }
 
         [HttpPost("add")]
         public async Task<IActionResult> AddBeer ([FromForm] AddBeerDTO addBeerDTO)
@@ -164,6 +169,21 @@ namespace BeerRateApi.Controllers
             {
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
+        }
+        [AllowAnonymous]
+        [HttpGet("similar-beers/{beerId}")]
+        public async Task<IActionResult> GetSimilarBeers(int beerId)
+        {
+            try
+            {
+                var recomendations = _beerRecommendationService.RecommendSimilarBeers(beerId, 3);
+                return Ok(recomendations);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
+            }
+
         }
     }
 }
