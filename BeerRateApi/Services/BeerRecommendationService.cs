@@ -20,25 +20,29 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
 
     }
 
-    public IEnumerable<BeerDTO> RecommendSimilarBeers(int beerId, int numberOfRecommendations = 3)
+    public async Task<IEnumerable<BeerDTO>> RecommendSimilarBeers(int beerId, int numberOfRecommendations = 3)
     {
-        var beerToRecommend = DbContext.Beers.FirstOrDefault(b => b.Id == beerId);
+        var beerToRecommend = await DbContext.Beers.FirstOrDefaultAsync(b => b.Id == beerId);
         if (beerToRecommend == null) throw new ArgumentException("Beer not found.");
 
         // Prepare data for clustering
         var mlContext = new MLContext();
-        var beerFeatures = DbContext.Beers.Select(b => new BeerFeature
+        var beerFeatures = (await DbContext.Beers.ToListAsync()).Where(b=>b.IsConfirmed).Select(b => new BeerFeature
         {
             Id = b.Id,
             AlcoholAmount = (float)b.AlcoholAmount,
             Ibu = b.Ibu,
-            Kind = b.Kind
+            AverageTasteRate = b.AverageTasteRate,
+            AverageAromaRate = b.AverageAromaRate,
+            AverageFoamRate = b.AverageFoamRate,
+            AverageColorRate = b.AverageColorRate
         }).ToList();
 
         var dataView = mlContext.Data.LoadFromEnumerable(beerFeatures);
 
         // Define clustering pipeline
-        var pipeline = mlContext.Transforms.Concatenate("Features", nameof(BeerFeature.AlcoholAmount), nameof(BeerFeature.Ibu), nameof(BeerFeature.Kind))
+        var pipeline = mlContext.Transforms.Concatenate("Features", nameof(BeerFeature.AlcoholAmount), nameof(BeerFeature.Ibu), nameof(BeerFeature.AverageTasteRate),
+            nameof(BeerFeature.AverageAromaRate), nameof(BeerFeature.AverageFoamRate), nameof(BeerFeature.AverageColorRate))
             .Append(mlContext.Clustering.Trainers.KMeans("Features", numberOfClusters: Math.Min(DbContext.Beers.ToList().Count, 5)));
 
         // Train model
@@ -61,7 +65,7 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
             .Select(p => DbContext.Beers.First(b => b.Id == p.Id))
             .Take(numberOfRecommendations)
             .Select(beer => Mapper.Map<BeerDTO>(beer))
-            .ToList();
+            ;
 
 
 
@@ -74,7 +78,10 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
         public int Id { get; set; }
         public float AlcoholAmount { get; set; }
         public float Ibu { get; set; }
-        public float Kind { get; set; }
+        public float AverageTasteRate { get; set; }
+        public float AverageAromaRate { get; set; }
+        public float AverageFoamRate { get; set; }
+        public float AverageColorRate { get; set; }
     }
 
     private class ClusterPrediction : BeerFeature
