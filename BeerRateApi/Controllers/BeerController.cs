@@ -179,6 +179,10 @@ namespace BeerRateApi.Controllers
                 var recomendations = _beerRecommendationService.RecommendSimilarBeers(beerId, 3);
                 return Ok(recomendations);
             }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
