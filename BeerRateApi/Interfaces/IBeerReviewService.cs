@@ -10,5 +10,6 @@ namespace BeerRateApi.Interfaces
         Task<IEnumerable<GetBeerReviewResult>> GetBeerReviews(int beerId, int startIndex, int endIndex);
         Task<IEnumerable<GetBeerReviewResult>> GetBeerReviewsPage(int beerId, int page);
         Task<int> GetBeerReviewPagesAmount(int beerId);
+
     }
 }

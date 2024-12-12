@@ -14,32 +14,51 @@ using BeerRateApi.Interfaces;
 
 public class BeerRecommendationService : BaseService, IBeerRecommendationService
 {
+    private readonly Dictionary<string, float> _countriesEncoded;
     public BeerRecommendationService(AppDbContext dbContext, ILogger logger, IMapper mapper) 
         : base(dbContext, logger, mapper)
     {
-
+        _countriesEncoded = new Dictionary<string, float>();
+        float i = 0.0f;
+        dbContext.Beers.ToList().ForEach(beer =>
+        {
+            if (!_countriesEncoded.ContainsKey(beer.OriginCountry))
+            {
+                _countriesEncoded.Add(beer.OriginCountry, i);
+            }
+            i++;
+        });
     }
 
-    public IEnumerable<BeerDTO> RecommendSimilarBeers(int beerId, int numberOfRecommendations = 3)
+    public async Task<IEnumerable<BeerDTO>> RecommendSimilarBeers(int beerId, int numberOfRecommendations = 3)
     {
-        var beerToRecommend = DbContext.Beers.FirstOrDefault(b => b.Id == beerId);
+        var beerToRecommend = await DbContext.Beers.FirstOrDefaultAsync(b => b.Id == beerId);
+        int beerCounter = await DbContext.Beers.Where(b=>b.IsConfirmed).CountAsync();
         if (beerToRecommend == null) throw new ArgumentException("Beer not found.");
 
         // Prepare data for clustering
         var mlContext = new MLContext();
-        var beerFeatures = DbContext.Beers.Select(b => new BeerFeature
+        var beerFeatures = (await DbContext.Beers.ToListAsync()).Where(b=>b.IsConfirmed).Select(b => new BeerFeature
         {
             Id = b.Id,
+            
             AlcoholAmount = (float)b.AlcoholAmount,
+            Kind = b.Kind,
+            OriginCountry = _countriesEncoded[b.OriginCountry],
             Ibu = b.Ibu,
-            Kind = b.Kind
+            AverageTasteRate = b.AverageTasteRate,
+            AverageAromaRate = b.AverageAromaRate,
+            AverageFoamRate = b.AverageFoamRate,
+            AverageColorRate = b.AverageColorRate
         }).ToList();
 
         var dataView = mlContext.Data.LoadFromEnumerable(beerFeatures);
 
         // Define clustering pipeline
-        var pipeline = mlContext.Transforms.Concatenate("Features", nameof(BeerFeature.AlcoholAmount), nameof(BeerFeature.Ibu), nameof(BeerFeature.Kind))
-            .Append(mlContext.Clustering.Trainers.KMeans("Features", numberOfClusters: Math.Min(DbContext.Beers.ToList().Count, 5)));
+        var pipeline = mlContext.Transforms.Concatenate("Features",nameof(BeerFeature.Kind), nameof(BeerFeature.AlcoholAmount), nameof(BeerFeature.Ibu), nameof(BeerFeature.AverageTasteRate),
+            nameof(BeerFeature.AverageAromaRate), nameof(BeerFeature.AverageFoamRate), nameof(BeerFeature.AverageColorRate), nameof(BeerFeature.OriginCountry))
+            .Append(mlContext.Clustering.Trainers.KMeans("Features", 
+            numberOfClusters: beerCounter % numberOfRecommendations != 0 ? beerCounter / numberOfRecommendations-1 : beerCounter / numberOfRecommendations));
 
         // Train model
         var model = pipeline.Fit(dataView);
@@ -61,21 +80,26 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
             .Select(p => DbContext.Beers.First(b => b.Id == p.Id))
             .Take(numberOfRecommendations)
             .Select(beer => Mapper.Map<BeerDTO>(beer))
-            .ToList();
+            ;
 
 
 
         return similarBeers;
     }
-
     // Classes for ML.NET
     private class BeerFeature
     {
         public int Id { get; set; }
+        public float Kind { get; set; }
+        public float OriginCountry {  get; set; }
         public float AlcoholAmount { get; set; }
         public float Ibu { get; set; }
-        public float Kind { get; set; }
+        public float AverageTasteRate { get; set; }
+        public float AverageAromaRate { get; set; }
+        public float AverageFoamRate { get; set; }
+        public float AverageColorRate { get; set; }
     }
+
 
     private class ClusterPrediction : BeerFeature
     {
