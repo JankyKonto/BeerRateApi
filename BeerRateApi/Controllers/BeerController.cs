@@ -177,7 +177,7 @@ namespace BeerRateApi.Controllers
             try
             {
                 var recomendations = _beerRecommendationService.RecommendSimilarBeers(beerId, 3);
-                return Ok(recomendations);
+                return Ok(new { Beers = recomendations });
             }
             catch (ArgumentException ex)
             {
