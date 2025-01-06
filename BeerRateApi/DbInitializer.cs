@@ -6,8 +6,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 namespace BeerRateApi
 {
+    /// <summary>
+    /// A static class responsible for seeding initial data into the database.
+    /// </summary>
     public static class DbInitializer
     {
+        /// <summary>
+        /// Seeds the database with initial data, such as users, beers, beer images, and reviews.
+        /// </summary>
+        /// <param name="context">The application database context.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         public static async Task SeedAsync(AppDbContext context)
         {
             if (context.Database.EnsureCreated())
@@ -68,6 +76,13 @@ namespace BeerRateApi
             }
             
         }
+
+        /// <summary>
+        /// Generates a list of reviews with randomized data.
+        /// </summary>
+        /// <param name="n">The number of reviews to generate.</param>
+        /// <param name="reviewPath">The file path for the reviews text data.</param>
+        /// <returns>A list of generated reviews.</returns>
         public static List<Review> GenerateReviews(int n, string reviewPath)
         {
             var random = new Random();

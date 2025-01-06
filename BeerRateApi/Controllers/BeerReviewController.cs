@@ -7,18 +7,35 @@ using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
+    /// <summary>
+    /// Handles beer review operations such as adding a review, retrieving reviews, and getting review counters.
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BeerReviewController : Controller
     {
+        /// <summary>
+        /// The service for interacting with beer reviews.
+        /// </summary>
         public readonly IBeerReviewService _beerReviewService;
-        
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BeerReviewController"/> class.
+        /// </summary>
+        /// <param name="beerReviewService">The service used for beer review operations.</param>
         public BeerReviewController(IBeerReviewService beerReviewService)
         {
             _beerReviewService = beerReviewService;
         }
 
+
+        /// <summary>
+        /// Adds a beer review.
+        /// </summary>
+        /// <param name="addBeerReviewDTO">The details of the beer review to add.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPost("add")]
         public async Task<IActionResult> AddBeerReview(AddBeerReviewDTO addBeerReviewDTO)
         {
@@ -43,6 +60,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a specific beer review by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the beer review.</param>
+        /// <returns>The requested beer review or an error message if not found.</returns>
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBeerReview(int id)
@@ -58,6 +80,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves the total number of reviews for a specific beer.
+        /// </summary>
+        /// <param name="beerId">The identifier of the beer.</param>
+        /// <returns>The total number of reviews for the specified beer.</returns>
         [AllowAnonymous]
         [HttpGet("reviews-counter/{beerId}")]
         public async Task<IActionResult> GetBeerReviewsCounter(int beerId)
@@ -73,6 +100,12 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a paginated list of reviews for a specific beer.
+        /// </summary>
+        /// <param name="beerId">The identifier of the beer.</param>
+        /// <param name="page">The page number for pagination.</param>
+        /// <returns>A paginated list of beer reviews.</returns>
         [AllowAnonymous]
         [HttpGet("reviews/{beerId}")]
         public async Task<IActionResult> GetBeerReviewsPage(int beerId, int page)
@@ -88,6 +121,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves the number of pages required to display all reviews for a specific beer.
+        /// </summary>
+        /// <param name="beerId">The identifier of the beer.</param>
+        /// <returns>The number of pages needed to display all reviews for the beer.</returns>
         [AllowAnonymous]
         [HttpGet("pages-amount/{beerId}")]
         public async Task<IActionResult> GetBeerReviewPagesAmount(int beerId)

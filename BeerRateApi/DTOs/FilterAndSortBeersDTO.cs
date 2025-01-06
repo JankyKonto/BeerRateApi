@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Provides criteria for filtering and sorting beers, such as kind, producer, or alphabetical order.
+    /// </summary>
     public class FilterAndSortBeersDTO
     {
         public string Name { get; set; } = string.Empty;

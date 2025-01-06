@@ -7,6 +7,9 @@ using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing beer-related operations.
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -15,12 +18,22 @@ namespace BeerRateApi.Controllers
         private readonly IBeerService _beerService;
         private readonly IBeerRecommendationService _beerRecommendationService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BeerController"/> class.
+        /// </summary>
+        /// <param name="beerService">Service for managing beers.</param>
+        /// <param name="beerRecommendationService">Service for recommending beers.</param>
         public BeerController(IBeerService beerService, IBeerRecommendationService beerRecommendationService) 
         {
             _beerService = beerService;
             _beerRecommendationService = beerRecommendationService;
         }
 
+        /// <summary>
+        /// Adds a new beer to the database.
+        /// </summary>
+        /// <param name="addBeerDTO">Data Transfer Object containing beer details.</param>
+        /// <returns>Returns the result of adding a beer or an error message.</returns>
         [HttpPost("add")]
         public async Task<IActionResult> AddBeer ([FromForm] AddBeerDTO addBeerDTO)
         {
@@ -44,6 +57,12 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a paginated list of beers based on filters and sorting options.
+        /// </summary>
+        /// <param name="page">Page number to retrieve.</param>
+        /// <param name="dto">Filter and sorting options.</param>
+        /// <returns>Returns a paginated list of beers.</returns>
         [AllowAnonymous]
         [HttpGet("beers")]
         public async Task<IActionResult> GetBeersPage (int page, [FromQuery] FilterAndSortBeersDTO dto)
@@ -59,6 +78,10 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves the total number of pages for beers.
+        /// </summary>
+        /// <returns>Returns the total pages amount.</returns>
         [AllowAnonymous]
         [HttpGet("pages-amount")]
         public async Task<IActionResult> GetBeersPagesAmount()
@@ -74,6 +97,10 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves the total number of beers in the database.
+        /// </summary>
+        /// <returns>Returns the total number of beers.</returns>
         [AllowAnonymous]
         [HttpGet("beers-counter")]
         public async Task<IActionResult> GetBeersCounter()
@@ -89,6 +116,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a specific beer by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the beer to retrieve.</param>
+        /// <returns>Returns the beer details for the given ID.</returns>
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBeer(int id)
@@ -104,6 +136,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves the image of a specific beer by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the beer to retrieve the image for.</param>
+        /// <returns>Returns the image of the beer in PNG format.</returns>
         [AllowAnonymous]
         [HttpGet("{id}/image")]
         public async Task<IActionResult> GetBeerImage(int id)
@@ -119,6 +156,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Confirms a beer for a specific user.
+        /// </summary>
+        /// <param name="beerId">The ID of the beer to confirm.</param>
+        /// <returns>Returns an empty response upon successful confirmation.</returns>
         [HttpPost("{beerId}/confirm")]
         public async Task<IActionResult> ConfirmBeer(int beerId)
         {
@@ -138,6 +180,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes a beer from the database for a specific user.
+        /// </summary>
+        /// <param name="beerId">The ID of the beer to delete.</param>
+        /// <returns>Returns an empty response upon successful deletion.</returns>
         [HttpDelete("{beerId}")]
         public async Task<IActionResult> DeleteBeer(int beerId)
         {
@@ -157,6 +204,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves unconfirmed beers for a specific page.
+        /// </summary>
+        /// <param name="page">The page number to retrieve unconfirmed beers for.</param>
+        /// <returns>Returns a list of unconfirmed beers for the requested page.</returns>
         [HttpGet("unconfirmed")]
         public async Task<IActionResult> GetUnconfirmedBeers (int page)
         {
@@ -170,6 +222,12 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
+
+        /// <summary>
+        /// Retrieves a list of similar beers to the specified beer.
+        /// </summary>
+        /// <param name="beerId">The ID of the beer to find similar beers for.</param>
+        /// <returns>Returns a list of recommended similar beers.</returns>
         [AllowAnonymous]
         [HttpGet("similar-beers/{beerId}")]
         public async Task<IActionResult> GetSimilarBeers(int beerId)

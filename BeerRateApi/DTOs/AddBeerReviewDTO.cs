@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Contains the data required to add a review for a beer, including fields like user rating, text, and the associated beer ID.
+    /// </summary>
     public class AddBeerReviewDTO
     {
         public string? Text { get; set; }

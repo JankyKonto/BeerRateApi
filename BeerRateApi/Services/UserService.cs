@@ -12,12 +12,25 @@ using System.Text.RegularExpressions;
 
 namespace BeerRateApi.Services
 {
+    /// <summary>
+    /// A service for managing Users.
+    /// Provides methods for user registration, login, password management, token handling, and email operations.
+    /// </summary>
     public class UserService : BaseService, IUserService
     {
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserService"/> class.
+        /// </summary>
+        /// <param name="dbContext">The database context.</param>
+        /// <param name="tokenService">The token service for generating and validating tokens.</param>
+        /// <param name="emailService">The email service for sending emails.</param>
+        /// <param name="logger">The logger for logging errors and information.</param>
+        /// <param name="mapper">The object mapper for DTOs and models.</param>
+        /// <param name="configuration">The application configuration settings.</param>
         public UserService(AppDbContext dbContext, ITokenService tokenService, IEmailService emailService, ILogger logger, IMapper mapper, IConfiguration configuration)
             : base(dbContext, logger, mapper)
         {
@@ -27,7 +40,13 @@ namespace BeerRateApi.Services
         }
 
 
-
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="registerDTO">The user registration details.</param>
+        /// <returns>A <see cref="RegisterResult"/> containing the registered username.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the username or email already exists.</exception>
+        /// <exception cref="ArgumentException">Thrown if the password is too short or the username contains forbidden characters.</exception>
         public async Task<RegisterResult> RegisterUser (RegisterDTO registerDTO)
         {
             try
@@ -66,6 +85,12 @@ namespace BeerRateApi.Services
             }
         }
 
+        /// <summary>
+        /// Logs in a user.
+        /// </summary>
+        /// <param name="loginDTO">The user login credentials.</param>
+        /// <returns>A <see cref="LoginResult"/> containing user details and tokens.</returns>
+        /// <exception cref="UnauthorizedAccessException">Thrown if the email or password is invalid.</exception>
         public async Task<LoginResult> LoginUser(LoginDTO loginDTO)
         {
             try
@@ -114,11 +139,13 @@ namespace BeerRateApi.Services
             }
         }
 
-        public ResetResult ResetPassword(ResetDTO resetDTO)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Refreshes a user's JWT token.
+        /// </summary>
+        /// <param name="expiredToken">The expired JWT token.</param>
+        /// <param name="refreshToken">The associated refresh token.</param>
+        /// <returns>A <see cref="LoginResult"/> with a refreshed JWT token.</returns>
+        /// <exception cref="UnauthorizedAccessException">Thrown for invalid or expired tokens.</exception>
         public async Task<LoginResult> Refresh(string expiredToken, string refreshToken) 
         {
             try
@@ -164,6 +191,11 @@ namespace BeerRateApi.Services
             }
         }
 
+        /// <summary>
+        /// Revokes a user's refresh token.
+        /// </summary>
+        /// <param name="id">The ID of the user.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown if the user is not found.</exception>
         public async Task Revoke(int id)
         {
             try
@@ -187,6 +219,11 @@ namespace BeerRateApi.Services
             }
         }
 
+        /// <summary>
+        /// Sends a password reminder email to the user.
+        /// </summary>
+        /// <param name="email">The user's email address.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown if the user is not found.</exception>
         public async Task RemindPasswordSendEmail(string email)
         {
             string token = _tokenService.GenerateRandom32Token();
@@ -212,6 +249,14 @@ namespace BeerRateApi.Services
             }
         }
 
+        /// <summary>
+        /// Resets a user's password using a token.
+        /// </summary>
+        /// <param name="newPassword">The new password.</param>
+        /// <param name="token">The reset token.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown for invalid or expired tokens.</exception>
+        /// <exception cref="ArgumentException">Thrown if the password is too short.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the password or token is null.</exception>
         public async Task RealisePasswordReminding(string newPassword, string token)
         {
             User user = await DbContext.Users.FirstOrDefaultAsync(user=>user.RemindPasswordToken == token);
