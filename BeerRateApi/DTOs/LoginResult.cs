@@ -1,5 +1,8 @@
 ﻿namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Returns the result of a user login operation, including JWT tokens, refresh tokens, and user details.
+    /// </summary>
     public class LoginResult
     {
         public int Id { get; set; }

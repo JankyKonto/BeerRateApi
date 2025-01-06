@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Represents the data required to add a new beer to the system. Includes properties such as beer name, producer, kind and other relevant details.
+    /// </summary>
     public class AddBeerDTO
     {
         public string Name { get; set; } = string.Empty;

@@ -1,6 +1,9 @@
 ﻿
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Encapsulates the details of a single beer review, such as user comments, rating, and review date.
+    /// </summary>
     public class GetBeerReviewResult
     {
         public int Id { get; set; }
