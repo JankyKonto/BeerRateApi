@@ -12,6 +12,9 @@ using System.Security.Claims;
 
 namespace BeerRateApi.Controllers
 {
+    /// <summary>
+    /// Controller for managing user-related operations such as registration, login, token management, and password reminders.
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -20,8 +23,17 @@ namespace BeerRateApi.Controllers
 
         private readonly IUserService _userService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController"/> class.
+        /// </summary>
+        /// <param name="userService">Service for handling user-related operations.</param>
         public UserController(IUserService userService) { _userService = userService; }
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="registerDTO">The user registration details.</param>
+        /// <returns>An HTTP response indicating the result of the registration process.</returns>
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
@@ -41,6 +53,11 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Logs in a user and issues JWT and refresh tokens as cookies.
+        /// </summary>
+        /// <param name="loginDTO">The user login details.</param>
+        /// <returns>An HTTP response with user details if successful.</returns>
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login (LoginDTO loginDTO)
@@ -85,6 +102,10 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Refreshes the JWT token using the provided refresh token.
+        /// </summary>
+        /// <returns>A new JWT token and user details.</returns>
         [AllowAnonymous]
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh ()
@@ -139,6 +160,10 @@ namespace BeerRateApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Revokes the refresh and JWT tokens of the currently authenticated user.
+        /// </summary>
+        /// <returns>An HTTP response indicating the revocation result.</returns>
         [HttpDelete("revoke")]
         public async Task<IActionResult> Revoke()
         {
@@ -176,6 +201,11 @@ namespace BeerRateApi.Controllers
 
         }
 
+        /// <summary>
+        /// Sends a password reminder email to the specified address.
+        /// </summary>
+        /// <param name="remindPasswordDTO">The password reminder details.</param>
+        /// <returns>An HTTP response indicating the result.</returns>
         [AllowAnonymous]
         [HttpPost("remind-password-send-email")]
         public async Task<IActionResult> RemindPasswordSendEmail(RemindPasswordDTO remindPasswordDTO)
@@ -202,6 +232,12 @@ namespace BeerRateApi.Controllers
                 return StatusCode(500, new ErrorMessageDTO { ErrorMessage = ex.Message });
             }
         }
+
+        /// <summary>
+        /// Realizes the password reset process using a provided token and new password.
+        /// </summary>
+        /// <param name="dto">The password reset details.</param>
+        /// <returns>An HTTP response indicating the result.</returns>
         [AllowAnonymous]
         [HttpPost("realise-password-reminding")]
         public async Task<IActionResult> RemindPasswordRealization(ResetPasswordDTO dto)
