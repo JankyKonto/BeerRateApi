@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace BeerRateApi.Models
 {
+    /// <summary>
+    /// Represents the JSON initialization data for creating a new user.
+    /// </summary>
     public class UserInitializer
     {
         public required string Username { get; set; }
