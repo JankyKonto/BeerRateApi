@@ -1,5 +1,6 @@
 # How to launch the app
 
-1. Install PNPM bu running `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression` in PowerShell.
-2. Go into project directory and run `pnpm install` command to install required dependencies.
-3. Run the project with `pnpm dev` command.
+1. Install Visual Studio 2022 from this website: [https://visualstudio.microsoft.com/pl/vs/]().
+1. Clone this repository by running `git clone https://github.com/JankyKonto/BeerRateApi.git` command.
+1. Run the `BeerRateApi.sln` file using Visual Studio 2022.
+1. Start the app by clicking on the green arrow in the top bar of the app.
