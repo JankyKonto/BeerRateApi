@@ -2,6 +2,7 @@
 
 namespace BeerRateApi.Interfaces
 {
+    
     public interface IBeerReviewService
     {
         Task<AddBeerReviewResult> AddBeerReview(AddBeerReviewDTO AddBeerReviewDTO);
