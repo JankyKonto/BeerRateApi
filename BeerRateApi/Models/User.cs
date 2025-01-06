@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.Models
 {
+    /// <summary>
+    /// Represents a user in the system.
+    /// </summary>
     public class User
     {
         public int Id { get; set; }

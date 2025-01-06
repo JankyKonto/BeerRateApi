@@ -4,6 +4,9 @@ namespace BeerRateApi.Models
 {
     public class Beer
     {
+        /// <summary>
+        /// Represents a beer entity with various properties, including its ratings and associated reviews.
+        /// </summary>
         public int Id { get; set; }
         public string Name { get; set; }
         public string Producer { get ; set; }

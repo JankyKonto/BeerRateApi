@@ -4,13 +4,29 @@ using System.Net.Mail;
 
 namespace BeerRateApi.Services
 {
+    /// <summary>
+    /// A service for managing email sending
+    /// </summary>
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
+
+        /// <summary>
+        /// Constructor for EmailService.
+        /// </summary>
+        /// <param name="configuration">Application configuration to retrieve email sender settings.</param>
         public EmailService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+
+        /// <summary>
+        /// Sends an email asynchronously.
+        /// </summary>
+        /// <param name="toEmail">Recipient email address.</param>
+        /// <param name="subject">Subject of the email.</param>
+        /// <param name="body">Body of the email in HTML format.</param>
+        /// <exception cref="ArgumentNullException">Thrown when email sender settings are invalid or missing.</exception>
         public async Task SendAsync(string toEmail, string subject, string body)
         {
             
