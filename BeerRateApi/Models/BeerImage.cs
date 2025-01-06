@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.Models
 {
+    /// <summary>
+    /// Represents an image associated with a beer, including its data and metadata.
+    /// </summary>
     public class BeerImage
     {
         public int Id { get; set; }

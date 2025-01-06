@@ -4,8 +4,14 @@ using BeerRateApi.Models;
 
 namespace BeerRateApi.Profiles
 {
+    /// <summary>
+    /// A profile for configuring object-to-object mappings with AutoMapper.
+    /// </summary>
     public class MappingProfile : Profile
     {
+        /// <summary>
+        /// Constructor that defines the mappings for the application.
+        /// </summary>
         public MappingProfile()
         {
             CreateMap<Beer, BeerDTO>().ConstructUsing((src, res) =>
