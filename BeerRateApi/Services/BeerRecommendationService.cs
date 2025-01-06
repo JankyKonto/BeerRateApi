@@ -38,7 +38,7 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
 
         // Prepare data for clustering
         var mlContext = new MLContext();
-        var beerFeatures = (await DbContext.Beers.ToListAsync()).Where(b=>b.IsConfirmed).Select(b => new BeerFeature
+        var beerFeatures = (await DbContext.Beers.Where(b => b.IsConfirmed).ToListAsync()).Select(b => new BeerFeature
         {
             Id = b.Id,
             
