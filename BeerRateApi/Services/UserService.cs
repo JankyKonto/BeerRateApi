@@ -5,6 +5,7 @@ using BeerRateApi.Interfaces;
 using BeerRateApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Security;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -64,6 +65,26 @@ namespace BeerRateApi.Services
                 if (registerDTO.Password.Length < 8)
                 {
                     throw new ArgumentException("Password is too short");
+                }
+
+                if (!registerDTO.Password.Any(char.IsUpper))
+                {
+                    throw new ArgumentException("Password needs at least one character [A-Z]");
+                }
+
+                if (!registerDTO.Password.Any(char.IsLower))
+                {
+                    throw new ArgumentException("Password needs at least one character [a-z]");
+                }
+
+                if (!registerDTO.Password.Any(char.IsDigit))
+                {
+                    throw new ArgumentException("Password needs at least one digit");
+                }
+
+                if (!registerDTO.Password.Any(c => "!@#$%^&*()".Contains(c)))
+                {
+                    throw new ArgumentException("Password needs at least one special character: !@#$%^&*()");
                 }
 
                 Regex regex = new Regex(@"^[a-zA-Z0-9_]+$");
