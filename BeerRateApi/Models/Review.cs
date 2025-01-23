@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.Models
 {
+    /// <summary>
+    /// Represents a review made by a user for a specific beer.
+    /// </summary>
     public class Review
     {
         public int Id { get; set; }

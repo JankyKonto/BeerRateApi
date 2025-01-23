@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Represents an object of beer retrieved from the system.
+    /// </summary>
     public class GetBeerResult
     {
         public string Name { get; set; } = string.Empty;

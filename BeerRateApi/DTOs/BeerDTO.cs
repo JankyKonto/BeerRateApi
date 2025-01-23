@@ -2,6 +2,9 @@
 
 namespace BeerRateApi.DTOs
 {
+    /// <summary>
+    /// Describes a beer entity, including properties like name, producer, alcohol amount, and other beer-specific details.
+    /// </summary>
     public class BeerDTO
     {
         public int Id { get; set; }

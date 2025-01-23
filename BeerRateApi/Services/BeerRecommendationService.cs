@@ -12,9 +12,22 @@ using AutoMapper;
 using Microsoft.Extensions.Logging;
 using BeerRateApi.Interfaces;
 
+/// <summary>
+/// Service for providing beer recommendations based on clustering.
+/// </summary>
 public class BeerRecommendationService : BaseService, IBeerRecommendationService
 {
+    /// <summary>
+    /// Encoded dictionary mapping countries to unique float values.
+    /// </summary>
     private readonly Dictionary<string, float> _countriesEncoded;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BeerRecommendationService"/> class.
+    /// </summary>
+    /// <param name="dbContext">Database context for accessing data.</param>
+    /// <param name="logger">Logger for logging errors and information.</param>
+    /// <param name="mapper">Mapper for object-to-object mapping.</param>
     public BeerRecommendationService(AppDbContext dbContext, ILogger logger, IMapper mapper) 
         : base(dbContext, logger, mapper)
     {
@@ -29,7 +42,13 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
             i++;
         });
     }
-
+    /// <summary>
+    /// Recommends similar beers based on clustering.
+    /// </summary>
+    /// <param name="beerId">The ID of the beer to find similar beers for.</param>
+    /// <param name="numberOfRecommendations">The number of recommendations to return. Default is 3.</param>
+    /// <returns>A collection of recommended beers as DTOs.</returns>
+    /// <exception cref="ArgumentException">Thrown when the beer with the given ID is not found.</exception>
     public async Task<IEnumerable<BeerDTO>> RecommendSimilarBeers(int beerId, int numberOfRecommendations = 3)
     {
         var beerToRecommend = await DbContext.Beers.FirstOrDefaultAsync(b => b.Id == beerId);
@@ -38,7 +57,7 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
 
         // Prepare data for clustering
         var mlContext = new MLContext();
-        var beerFeatures = (await DbContext.Beers.ToListAsync()).Where(b=>b.IsConfirmed).Select(b => new BeerFeature
+        var beerFeatures = (await DbContext.Beers.Where(b => b.IsConfirmed).ToListAsync()).Select(b => new BeerFeature
         {
             Id = b.Id,
             
@@ -86,7 +105,9 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
 
         return similarBeers;
     }
-    // Classes for ML.NET
+    /// <summary>
+    /// Class representing beer features used for clustering.
+    /// </summary>
     private class BeerFeature
     {
         public int Id { get; set; }
@@ -100,9 +121,14 @@ public class BeerRecommendationService : BaseService, IBeerRecommendationService
         public float AverageColorRate { get; set; }
     }
 
-
+    /// <summary>
+    /// Class representing clustering predictions.
+    /// </summary>
     private class ClusterPrediction : BeerFeature
     {
+        /// <summary>
+        /// The predicted cluster ID for the beer.
+        /// </summary>
         [ColumnName("PredictedLabel")]
         public uint PredictedClusterId { get; set; }
     }
