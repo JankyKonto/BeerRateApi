@@ -44,6 +44,11 @@ namespace BeerRateApi.Services
                     throw new InvalidOperationException($"Beer with name '{addBeerDTO.Name}' already exists.");
                 }
 
+                if (addBeerDTO.Ibu < 0 || addBeerDTO.AlcoholAmount < 0)
+                {
+                    throw new InvalidOperationException($"Value cannot be negative");
+                }
+
                 var beer = new Beer { Name = addBeerDTO.Name, Producer = addBeerDTO.Producer, Kind = addBeerDTO.Kind, OriginCountry = addBeerDTO.OriginCountry, AlcoholAmount = addBeerDTO.AlcoholAmount, Ibu = addBeerDTO.Ibu, BeerImage = await ConvertIFormFileToBeerImage(addBeerDTO.BeerImage) };
                 DbContext.Beers.Add(beer);
                 await DbContext.SaveChangesAsync();
